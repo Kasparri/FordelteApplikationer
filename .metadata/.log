@@ -35,3 +35,6 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:55:00.233
 !MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148$Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:58:41.542
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148$Template.class]
