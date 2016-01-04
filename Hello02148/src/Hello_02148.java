@@ -99,13 +99,13 @@ public class Hello_02148 {
 
 		// Get your app key and secret from the Dropbox developers website and
 		// insert them below
-		final String APP_KEY = "YOUR_KEY_HERE";
-		final String APP_SECRET = "YOUR_SECRETE_HERE";
+		final String APP_KEY = "6gm4dggg0pm4qd3";
+		final String APP_SECRET = "mnm27mqi749672i";
 		appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
 		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault().toString());
 
 		// Insert here the access token from your app.
-		final String accessToken = "YOUR_TOKEN_HERE";
+		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
 
 		client = new DbxClient(config, accessToken);
 
