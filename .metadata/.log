@@ -11,3 +11,27 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:50:47.153
 !MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, resultCollectorBean, coreLifecycleObserver, classFileChangeProcessor, cleanEventProcessor, coreUpdateNotifier, saveDetector, failureMediator, infinitestActivationController, markerClearingRunnable, markerClearingObserver, markerPlacer, problemMarkerRegistry, resourceLookupAdapter, slowMarkerRegistry, preferenceChangeHandler, slowTestObserver, swtEventQueue, testResultAggregator, visualStatusPresenter, coreFactory, eclipseWorkspace, infinitestCoreRegistry, javaProjectSet, workspaceResourceFinder, workspace, sourceContainer]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:53:31.544
+!MESSAGE Filter file /Users/Kasper/git/FordelteApplikationer/Hello02148/infinitest.filters does not exist.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:53:31.585
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:53:31.597
+!MESSAGE Added core Hello02148 with classpath /Users/Kasper/git/FordelteApplikationer/Hello02148/bin:/var/folders/8x/zh_11lls2hdg49k44xr4x76m0000gn/T/infinitest1363464280.jar
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:54:49.374
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:54:49.398
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148$Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:55:00.107
+!MESSAGE Files removed. Reloading Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:55:00.107
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-04 10:55:00.233
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148$Template.class]
