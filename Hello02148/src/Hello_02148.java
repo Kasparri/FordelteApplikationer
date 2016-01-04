@@ -1,5 +1,5 @@
 // Include the Dropbox SDK.
-// Virker for Kasper
+// Virker for Kasper men også for frederik?
 import com.dropbox.core.*;
 import java.io.*;
 import java.util.Locale;
