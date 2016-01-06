@@ -8,35 +8,36 @@ import com.dropbox.core.DbxWriteMode;
 
 public class Template {
 	
-		static DbxClient client;
-	
 		String path; // File folder
 		String name; // File name (without extension), "?" denotes any value
 		String ext; // File extension, "?" denotes any value
 		byte[] content; // File content (as byte array)
+		boolean supported;
 
 		public Template(String p, String n, String e, byte[] c) {
 			this.path = p;
 			this.name = n;
 			this.ext = e;
 			this.content = c;
+			this.supported = false;
+			//this.client = Main.getClient();
 		}
 
 		// Blocking operation to check the existence of a file matching a
 		// template
 		// The template is updated with the matched values for the tuple
 		// arguments that were binders (i.e. "?")
-		public void qry() throws DbxException, IOException {
-			read(false);
+		public void qry(DbxClient client) throws DbxException, IOException {
+			read(client, false);
 		}
 
 		// As qry() but the file is removed from the space
-		public void get() throws DbxException, IOException {
-			read(true);
+		public void get(DbxClient client) throws DbxException, IOException {
+			read(client, true);
 		}
 
 		// Auxiliary function that implements the both qry() and get()
-		public void read(boolean delete) throws DbxException, IOException {
+		public void read(DbxClient client, boolean delete) throws DbxException, IOException {
 			DbxEntry.WithChildren listing;
 			String name_aux = name;
 			String ext_aux = ext;
@@ -56,7 +57,8 @@ public class Template {
 						if (j == -1)
 							continue;
 						if (supportedTypes(child.name.substring(j+1))){
-							ext_aux = "pictures";
+							supported = true;
+							ext_aux = child.name.substring(j + 1);
 						} else {
 							ext_aux = child.name.substring(j + 1);
 						}
@@ -88,7 +90,7 @@ public class Template {
 			}
 		}
 
-		public void put() throws DbxException, IOException {
+		public void put(DbxClient client) throws DbxException, IOException {
 			ByteArrayInputStream in = new ByteArrayInputStream(content);
 			
 			client.uploadFile(path + name + "." + ext, DbxWriteMode.add(), -1, in);
@@ -96,7 +98,8 @@ public class Template {
 		}
 		
 		public boolean supportedTypes(String s){
-			if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG")){
+			if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG") 
+					|| s.equals("png") || s.equals("jpg") || s.equals("jpeg")){
 				return true;
 			}
 			return false;
