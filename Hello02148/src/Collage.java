@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 public class Collage {
 	
 	static int counter = 0;
-	
+	// j
 	// one
 	String collage(String im0) throws IOException {
 
