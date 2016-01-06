@@ -1,5 +1,4 @@
 // Include the Dropbox SDK.
-// Virker for Kasper men også for frederik?
 import com.dropbox.core.*;
 import java.io.*;
 import java.util.Locale;
@@ -7,6 +6,7 @@ import java.util.Locale;
 public class Hello_02148 {
 
 	// Some global variables
+	//PUSH TEST
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
