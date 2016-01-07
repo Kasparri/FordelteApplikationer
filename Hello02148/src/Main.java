@@ -1,14 +1,15 @@
 import java.io.IOException;
 import java.util.Locale;
+
 import com.dropbox.core.DbxAppInfo;
 import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 
 public class Main {
 
 	// Some global variables
-	// PUSH TEST
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
@@ -55,11 +56,26 @@ public class Main {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
+			System.out.println(pictureAmount());
 
 		}
 
 	}
 
+	public static int pictureAmount() throws DbxException{
+		int amount = 0;
+		String path = "/space/collage/pics";
+		DbxEntry.WithChildren listing = client.getMetadataWithChildren(path);
+		for (DbxEntry child : listing.children){
+			amount++;
+		}
+		
+		
+		
+		return amount;
+	}
+	
+	
 	public static boolean isPicture(String s) {
 		if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG") || s.equals("png") || s.equals("jpg")
 				|| s.equals("jpeg")) {
