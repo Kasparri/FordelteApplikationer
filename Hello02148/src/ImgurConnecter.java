@@ -1,11 +1,17 @@
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Base64;
@@ -13,8 +19,7 @@ import java.util.Base64;
 import javax.imageio.ImageIO;
 
 public class ImgurConnecter {
-	
-	public static void main(String[] args)  {
+ 	public static void main(String[] args)  {
 		File file = new File("C:\\Users\\Mads\\Pictures\\beta.PNG");
 		try {
 			System.out.println(uploadToImgur(file));
@@ -22,9 +27,12 @@ public class ImgurConnecter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String image = "http://i.imgur.com/TJRrIdJ.jpg";
+		downloadFromImgur(image);
 
 	}
 	public static String uploadToImgur(File file) throws IOException {
+
 	    BufferedImage image = null;
 	    URL url;
 	    //Reading and preparing the image in base64
@@ -66,4 +74,39 @@ public class ImgurConnecter {
 
 	    return stb.toString();
 	}
+	public static String downloadFromImgur(String imageURL) {
+		URL url;
+		try {
+			url = new URL(imageURL);
+			InputStream inStream = new BufferedInputStream(url.openStream());
+			ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+			byte[] buff = new byte[1024];
+			int n=0;
+			while (-1!=(n=inStream.read(buff))) {
+				outStream.write(buff,0,n);
+			}
+			outStream.close();
+			inStream.close();
+			byte[] result = outStream.toByteArray();
+			String name = imageURL.substring(imageURL.length()-11, imageURL.length());
+			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Mads\\Pictures\\"+name);
+			fileStream.write(result);
+			fileStream.close();
+			
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return null;
+		
+	}
 }
+
