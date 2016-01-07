@@ -56,7 +56,6 @@ public class Main {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
-			System.out.println(pictureAmount());
 		}
 
 	}
@@ -65,13 +64,6 @@ public class Main {
 	public static int pictureAmount() throws DbxException{		
 		String path = "/space/collage/pics";
 		return client.getMetadataWithChildren(path).children.size();
-		
-		// Fundet en ny løsning :D
-//		int amount = 0;
-//		for (DbxEntry child : listing.children){
-//			amount++;
-//		}
-//		return amount;
 	}
 	
 	
