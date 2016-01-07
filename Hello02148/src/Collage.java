@@ -1,47 +1,45 @@
-import java.awt.Image;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Collage {
-	
-	static int counter = 0;
-	// jkk
-	// one
-	String collage(String im0) throws IOException {
 
-		int width = 300*2;
-		int height = 255*2;
-		int type;
+	static int counter = 0;
+	static int width = 300;
+	static int widthh = width * 2;
+	static int height = 255;
+	static int heightt = height * 2;
+	static int type = 1;
+
+	// one
+	static String collage(String im0) throws IOException {
 
 		// fetching image files
 		File imgFiles = new File(im0);
 
 		// creating a image array from image files
-		BufferedImage tempImg = ImageIO.read(imgFiles);
-		Image buffImage = tempImg.getScaledInstance(width, height, Image.SCALE_DEFAULT);
-		
-		type = ImageIO.read(imgFiles).getType();
+
+		BufferedImage temp = ImageIO.read(imgFiles);
+		BufferedImage tempImg = new BufferedImage(widthh, heightt, type);
+		Graphics2D g = tempImg.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(temp, 0, 0, widthh, heightt, 0, 0, temp.getWidth(), temp.getHeight(), null);
+		BufferedImage buffImage = tempImg;
+		g.dispose();
 
 		// Initializing the final image
-		BufferedImage finalImg = new BufferedImage(width * 2, height, type);
+		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
 		finalImg.createGraphics().drawImage(buffImage, 0, 0, null);
-		
-		// nameing the file
-		counter++;
-		String name = "collage" + counter + ".jpg";
-		System.out.println(name + "was created");
-		ImageIO.write(finalImg, "jpeg", new File(name));
-		return name;
-	}
-	
-	// two
-	String collage(String im0, String im1) throws IOException {
 
-		int width = 300;
-		int height = 255*2;
-		int type;
+		// nameing the file
+		return path(finalImg);
+	}
+
+	// two
+	static String collage(String im0, String im1) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[2];
@@ -50,34 +48,29 @@ public class Collage {
 		imgFiles[1] = new File(im1);
 
 		// creating a image array from image files
-		Image[] buffImage = new BufferedImage[2];
+		BufferedImage[] buffImage = new BufferedImage[2];
 		for (int i = 0; i < 2; i++) {
-			BufferedImage tempImg = ImageIO.read(imgFiles[i]);
-			buffImage[i] = tempImg.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+			BufferedImage temp = ImageIO.read(imgFiles[i]);
+			BufferedImage tempImg = new BufferedImage(width, heightt, type);
+			Graphics2D g = tempImg.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, heightt, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			buffImage[i] = tempImg;
+			g.dispose();
 		}
 
-		type = ImageIO.read(imgFiles[0]).getType();
-
 		// Initializing the final image
-		BufferedImage finalImg = new BufferedImage(width * 2, height, type);
-		
+		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
+
 		finalImg.createGraphics().drawImage(buffImage[0], 0, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
-		
-		// nameing the file
-		counter++;
-		String name = "collage" + counter + ".jpg";
-		System.out.println(name + "was created");
-		ImageIO.write(finalImg, "jpeg", new File(name));
-		return name;
-	}
-	
-	// three 
-	String collage(String im0, String im1, String im2) throws IOException {
 
-		int width = 300;
-		int height = 255;
-		int type;
+		// nameing the file
+		return path(finalImg);
+	}
+
+	// three
+	static String collage(String im0, String im1, String im2) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[3];
@@ -87,39 +80,35 @@ public class Collage {
 		imgFiles[2] = new File(im2);
 
 		// creating a image array from image files
-		Image[] buffImage = new BufferedImage[3];
+		BufferedImage[] buffImage = new BufferedImage[3];
+		int tempWidth = width;
 		for (int i = 0; i < 3; i++) {
-			BufferedImage tempImg = ImageIO.read(imgFiles[i]);
-			if (i==2)
-				width = width*2;
-			buffImage[i] = tempImg.getScaledInstance(width, height, Image.SCALE_DEFAULT);
-			width = 300;
+			if (i == 2) {
+				width = width * 2;
+			}
+			BufferedImage temp = ImageIO.read(imgFiles[i]);
+			BufferedImage tempImg = new BufferedImage(width, height, type);
+			Graphics2D g = tempImg.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			buffImage[i] = tempImg;
+			g.dispose();
 		}
-
-		type = ImageIO.read(imgFiles[0]).getType();
+		width = tempWidth;
 
 		// Initializing the final image
-		BufferedImage finalImg = new BufferedImage(width * 2, height * 2, type);
+		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
 
-		
 		finalImg.createGraphics().drawImage(buffImage[0], 0, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[2], 0, height, null);
-		
-		// nameing the file
-		counter++;
-		String name = "collage" + counter + ".jpg";
-		System.out.println(name + "was created");
-		ImageIO.write(finalImg, "jpeg", new File(name));
-		return name;
-	}
-	
-	// four
-	String collage(String im0, String im1, String im2, String im3) throws IOException {
 
-		int width = 300;
-		int height = 255;
-		int type;
+		// nameing the file
+		return path(finalImg);
+	}
+
+	// four
+	static String collage(String im0, String im1, String im2, String im3) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[4];
@@ -130,39 +119,34 @@ public class Collage {
 		imgFiles[3] = new File(im3);
 
 		// creating a image array from image files
-		Image[] buffImage = new BufferedImage[4];
+		BufferedImage[] buffImage = new BufferedImage[4];
 		for (int i = 0; i < 4; i++) {
-			BufferedImage tempImg = ImageIO.read(imgFiles[i]);
-			buffImage[i] = tempImg.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+			BufferedImage temp = ImageIO.read(imgFiles[i]);
+			BufferedImage tempImg = new BufferedImage(width, height, type);
+			Graphics2D g = tempImg.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			buffImage[i] = tempImg;
+			g.dispose();
 		}
 
-		type = ImageIO.read(imgFiles[0]).getType();
-
 		// Initializing the final image
-		BufferedImage finalImg = new BufferedImage(width * 2, height * 2, type);
+		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
 
 		int num = 0;
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
-				finalImg.createGraphics().drawImage(buffImage[num], width * j, height * i, null);
+				finalImg.createGraphics().drawImage(buffImage[num], width * i, height * j, null);
 				num++;
 			}
 		}
-		
+
 		// nameing the file
-		counter++;
-		String name = "collage" + counter + ".jpg";
-		System.out.println(name + "was created");
-		ImageIO.write(finalImg, "jpeg", new File(name));
-		return name;
+		return path(finalImg);
 	}
 
 	// five
-	String collage(String im0, String im1, String im2, String im3, String im4) throws IOException {
-
-		int width = 300;
-		int height = 255;
-		int type;
+	static String collage(String im0, String im1, String im2, String im3, String im4) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[5];
@@ -174,16 +158,19 @@ public class Collage {
 		imgFiles[4] = new File(im4);
 
 		// creating a image array from image files
-		Image[] buffImage = new BufferedImage[5];
+		BufferedImage[] buffImage = new BufferedImage[5];
 		for (int i = 0; i < 5; i++) {
-			BufferedImage tempImg = ImageIO.read(imgFiles[i]);
-			buffImage[i] = tempImg.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+			BufferedImage temp = ImageIO.read(imgFiles[i]);
+			BufferedImage tempImg = new BufferedImage(width, height, type);
+			Graphics2D g = tempImg.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			buffImage[i] = tempImg;
+			g.dispose();
 		}
 
-		type = ImageIO.read(imgFiles[0]).getType();
-
 		// Initializing the final image
-		BufferedImage finalImg = new BufferedImage(width * 2, height * 2, type);
+		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
 
 		int num = 0;
 		for (int i = 0; i < 2; i++) {
@@ -192,14 +179,19 @@ public class Collage {
 				num++;
 			}
 		}
-		finalImg.createGraphics().drawImage(buffImage[num], 150, 127, null);
-		
-		
+		finalImg.createGraphics().drawImage(buffImage[num], width/2, height/2, null);
+
 		// nameing the file
+		return path(finalImg);
+	}
+
+	static String path(BufferedImage image) throws IOException {
 		counter++;
 		String name = "collage" + counter + ".jpg";
-		System.out.println(name + "was created");
-		ImageIO.write(finalImg, "jpeg", new File(name));
+		System.out.println(name + " was created");
+		// mangler en ordentlig path
+		// name = "C:\\Users\\Frederik\\Desktop\\" + name;
+		// ImageIO.write(image, "jpg", new File(name));
 		return name;
 	}
 }
