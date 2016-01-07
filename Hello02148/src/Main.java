@@ -56,23 +56,26 @@ public class Main {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
-			System.out.println(pictureAmount());
 
 		}
 
 	}
 
-	public static int pictureAmount() throws DbxException{
-		int amount = 0;
+	// return amount of files in the picture folder
+	public static int pictureAmount() throws DbxException{		
 		String path = "/space/collage/pics";
 		DbxEntry.WithChildren listing = client.getMetadataWithChildren(path);
-		for (DbxEntry child : listing.children){
-			amount++;
-		}
+		return listing.children.size();
 		
-		
-		
-		return amount;
+		// Fundet en ny løsning :D
+//		int amount = 0;
+//		DbxEntry.WithChildren a = client.getMetadataWithChildren(path);
+//		DbxEntry.Folder b = a.asFolder();
+//		a.children.size()
+//		for (DbxEntry child : listing.children){
+//			amount++;
+//		}
+//		return amount;
 	}
 	
 	
