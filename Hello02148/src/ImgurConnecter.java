@@ -31,6 +31,8 @@ public class ImgurConnecter {
 //		System.out.println(uploadToImgur(file));
 //		String image = "http://i.imgur.com/TJRrIdJ.jpg";
 //		downloadFromImgur(image);
+ 		
+ 		//Den kan hente alle billeder fra et tag og komme tilbage med deres links
  		List<String> images = getImgByTag("http://imgur.com/t/selfie");
  		for(String img: images) {
  			System.out.println(img);
