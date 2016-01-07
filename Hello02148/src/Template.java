@@ -48,8 +48,9 @@ public class Template {
 			for (DbxEntry child : listing.children) {
 				if (name == "?") {
 					int j = child.name.lastIndexOf('.');
-					if (j == -1)
+					if (j == -1) {
 						continue;
+					}
 					name_aux = child.name.substring(0, j);
 				}
 				if (ext == "?") {

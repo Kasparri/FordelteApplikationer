@@ -43,8 +43,7 @@ public class Main {
 			t1.get(client);
 			System.out.println("Found file " + t1.name + "." + t1.ext);
 
-			// t2 is a tuple representing the previously retreived file in a new
-			// folder (named after the extension of the file)
+			// t2 is a tuple representing the previously retreived file in a new folder
 			if (isPicture(t1.type)) {
 				t2 = new Template(space + "/pics/", t1.name, t1.ext, t1.content);
 				System.out.println("Putting the file in the 'picture' subfolder");
