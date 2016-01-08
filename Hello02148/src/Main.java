@@ -44,7 +44,8 @@ public class Main {
 			t1.get(client);
 			System.out.println("Found file " + t1.name + "." + t1.ext);
 
-			// t2 is a tuple representing the previously retreived file in a new folder
+			// t2 is a tuple representing the previously retreived file in a new
+			// folder
 			if (isPicture(t1.type)) {
 				t2 = new Template(space + "/pics/", t1.name, t1.ext, t1.content);
 				System.out.println("Putting the file in the 'picture' subfolder");
@@ -60,13 +61,44 @@ public class Main {
 
 	}
 
+	// reads the .txt file command
+	public static void readTextCommand() throws DbxException {
+		String path = "/space/collage/text";
+		DbxEntry.WithChildren listing = client.getMetadataWithChildren(path);
+		for (DbxEntry child : listing.children) {
+			String command = child.name;
+			switch (command) {
+			case "create.txt":
+				// code here
+				break;
+
+			case "move.txt":
+				// code here
+				break;
+
+			case "delete.txt":
+				// code here
+				break;
+
+			case "upload.txt":
+				// code here
+				break;
+
+			default:
+				// code here
+				break;
+			}
+		}
+
+	}
+
 	// return amount of files in the picture folder
-	public static int pictureAmount() throws DbxException{		
+	public static int pictureAmount() throws DbxException {
 		String path = "/space/collage/pics";
 		return client.getMetadataWithChildren(path).children.size();
 	}
-	
-	
+
+	// whether or not a file is either a .png, .jpg or .jpeg file
 	public static boolean isPicture(String s) {
 		if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG") || s.equals("png") || s.equals("jpg")
 				|| s.equals("jpeg")) {
@@ -75,6 +107,7 @@ public class Main {
 		return false;
 	}
 
+	// whether or not a file is a .txt file
 	public static boolean isText(String s) {
 		if (s.equals("txt") || s.equals("TXT")) {
 			return true;
