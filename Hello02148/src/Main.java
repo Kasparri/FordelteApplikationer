@@ -23,7 +23,7 @@ public class Main {
 		final String APP_KEY = "6gm4dggg0pm4qd3";
 		final String APP_SECRET = "mnm27mqi749672i";
 		appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
-		config = new DbxRequestConfig("JavaTutorial/1.0ab", Locale.getDefault().toString());
+		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault().toString());
 
 		// Insert here the access token from your app.
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
@@ -77,10 +77,10 @@ public class Main {
 				// picname N]
 				ArrayList<String> data = readCreateCommand(path, child);
 				System.out.println(data);
-				
+
 				// collage code here
 
-				// deletes the command file after executing it
+				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
 				break;
 
@@ -89,7 +89,10 @@ public class Main {
 				break;
 
 			case "delete.txt":
-				delete(readDeleteCommand(path, child));
+				DbxEntry file = readDeleteCommand(path, child);
+				System.out.println("Deleting the file: " + file.name + ", in folder: " + file.path);
+				delete(file);
+				System.out.println("Deleting the command file 'delete.txt'");
 				delete(child);
 				break;
 
