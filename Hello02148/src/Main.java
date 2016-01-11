@@ -1,8 +1,10 @@
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+
 import com.dropbox.core.DbxAppInfo;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
@@ -105,8 +107,17 @@ public class Main {
 				DbxEntry uploadfile = fetchTextFile(path, child);
 				System.out.println("Uploading the file: " + uploadfile.name + ", in folder: " + uploadfile.path);
 				
-				// upload code
-				//TODO: Mads
+				
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				client.getFile(uploadfile.path + "/" + uploadfile.name, null, out);
+				byte[] fileArray = out.toByteArray();
+				FileOutputStream fos = new FileOutputStream(Main.path + uploadfile.name);
+				fos.write(fileArray);
+				fos.close();
+				
+				
+				
+				
 				
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
