@@ -26,8 +26,7 @@ import org.w3c.tidy.Tidy;
 
 public class ImgurConnecter {
 	public static void main(String[] args) {
-		// File file = new File("C:\\Users\\Mads\\Pictures\\beta.PNG");
-		// System.out.println(uploadToImgur(file));
+		//System.out.println(uploadToImgur(Main.path + "default.jpg"));
 		// String image = "http://i.imgur.com/TJRrIdJ.jpg";
 		// downloadFromImgur(image);
 
@@ -44,13 +43,15 @@ public class ImgurConnecter {
 //		Collage.multi(imgfiles);
 		System.out.println(getInfo("Kwxetau"));
 	}
-	public static String uploadToImgur(File file) {
+	public static String uploadToImgur(String filepath) {
 
 		BufferedImage image = null;
 		URL url;
 		String output = "upload failed";
+		File file = new File(filepath);
 		// Reading and preparing the image in base64
 		try {
+			
 			image = ImageIO.read(file);
 			// Encoding the image
 			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
