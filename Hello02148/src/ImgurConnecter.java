@@ -51,7 +51,6 @@ public class ImgurConnecter {
 		File file = new File(filepath);
 		// Reading and preparing the image in base64
 		try {
-			
 			image = ImageIO.read(file);
 			// Encoding the image
 			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
