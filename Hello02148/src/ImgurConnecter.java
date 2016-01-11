@@ -33,9 +33,9 @@ public class ImgurConnecter {
 //		downloadFromImgur(image);
  		
  		//Den kan hente alle billeder fra et tag og komme tilbage med deres links
- 		List<String> images = getImgByTag("http://imgur.com/t/selfie");
+ 		List<String> images = getImgByTag("http://imgur.com/t/archer");
  		for(String img: images) {
- 			System.out.println(img);
+ 			downloadFromImgur(img);
  		}
 		
 
@@ -106,7 +106,7 @@ public class ImgurConnecter {
 			inStream.close();
 			byte[] result = outStream.toByteArray();
 			String name = imageURL.substring(imageURL.length()-11, imageURL.length());
-			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Mads\\Pictures\\"+name);
+			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Mads\\Pictures\\imgur\\"+name);
 			fileStream.write(result);
 			fileStream.close();
 			
@@ -142,7 +142,8 @@ public class ImgurConnecter {
 			    srcs.add(imgs.item(i).getAttributes().getNamedItem("src").getNodeValue());
 			}
 			for(int i=0; i<srcs.size(); i++) {
-				srcs.set(i, srcs.get(i).substring(0, srcs.get(i).length()-5) + srcs.get(i).substring(srcs.get(i).length()-4));
+				srcs.set(i, srcs.get(i).substring(2, srcs.get(i).length()-5) + srcs.get(i).substring(srcs.get(i).length()-4));
+				srcs.set(i,"http://"+srcs.get(i));
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
