@@ -34,7 +34,7 @@ public class ImgurConnecter {
 		// Den kan hente alle billeder fra et tag og komme tilbage med deres
 		// links
 		List<String> images = getImgByTag("http://imgur.com/t/archer");
-		List<String> imgfiles = new ArrayList();
+		List<String> imgfiles = new ArrayList<String>();
 		for (String img : images) {
 			imgfiles.add(downloadFromImgur(img));
 		}
@@ -110,7 +110,7 @@ public class ImgurConnecter {
 			inStream.close();
 			byte[] result = outStream.toByteArray();
 			name = imageURL.substring(19,30);
-			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Frederik\\Desktop\\collages\\" + name);
+			FileOutputStream fileStream = new FileOutputStream(Main.path + name);
 			fileStream.write(result);
 			fileStream.close();
 			

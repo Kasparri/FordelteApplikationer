@@ -10,3 +10,4 @@ org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.source=1.8
 org.eclipse.jdt.core.userLibrary.dropbox-java-sdk=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary systemlibrary\="false" version\="2">\n\t<archive path\="/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/dropbox-core-sdk-1.8.2.jar"/>\n\t<archive path\="/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/jackson-core-2.6.1.jar"/>\n</userlibrary>\n
+org.eclipse.jdt.core.userLibrary.jtidy=<?xml version\="1.0" encoding\="UTF-8"?>\n<userlibrary systemlibrary\="false" version\="2">\n\t<archive path\="/Users/Kasper/Downloads/jtidy-r938/jtidy-r938.jar"/>\n</userlibrary>\n
