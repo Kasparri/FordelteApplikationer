@@ -81,6 +81,7 @@ public class Main {
 				System.out.println(data);
 
 				// collage code here
+				//TODO: Frederik
 
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
@@ -88,18 +89,27 @@ public class Main {
 
 			case "move.txt":
 				// code here
+				
+				
 				break;
 
 			case "delete.txt":
-				DbxEntry file = readDeleteCommand(path, child);
-				System.out.println("Deleting the file: " + file.name + ", in folder: " + file.path);
-				delete(file);
+				DbxEntry deletefile = fetchTextFile(path, child);
+				System.out.println("Deleting the file: " + deletefile.name + ", in folder: " + deletefile.path);
+				delete(deletefile);
 				System.out.println("Deleting the command file 'delete.txt'");
 				delete(child);
 				break;
 
 			case "upload.txt":
-				// imgur upload method here
+				DbxEntry uploadfile = fetchTextFile(path, child);
+				System.out.println("Uploading the file: " + uploadfile.name + ", in folder: " + uploadfile.path);
+				
+				// upload code
+				//TODO: Mads
+				
+				System.out.println("Deleting the command file 'upload.txt'");
+				delete(child);
 				break;
 
 			default:
@@ -156,7 +166,7 @@ public class Main {
 		return data;
 	}
 
-	private static DbxEntry readDeleteCommand(String path, DbxEntry child) throws DbxException, IOException {
+	private static DbxEntry fetchTextFile(String path, DbxEntry child) throws DbxException, IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		client.getFile(path + "/" + child.name, null, out);
 		Scanner sc = new Scanner(out.toString());
