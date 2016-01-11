@@ -26,7 +26,7 @@ import org.w3c.tidy.Tidy;
 
 public class ImgurConnecter {
 	public static void main(String[] args) {
-		//System.out.println(uploadToImgur(Main.path + "default.jpg"));
+		System.out.println(uploadToImgur(Main.path + "default.jpg"));
 		// String image = "http://i.imgur.com/TJRrIdJ.jpg";
 		// downloadFromImgur(image);
 
@@ -41,7 +41,7 @@ public class ImgurConnecter {
 //		System.out.println("collected images");
 //		
 //		Collage.multi(imgfiles);
-		System.out.println(getInfo("Kwxetau"));
+		//System.out.println(getInfo("Kwxetau"));
 	}
 	public static String uploadToImgur(String filepath) {
 
@@ -113,7 +113,7 @@ public class ImgurConnecter {
 			fileStream.write(result);
 			fileStream.close();
 			
-			File image = new File("C:\\Users\\Frederik\\Desktop\\collages\\" + name);
+			File image = new File(Main.path + name);
 			BufferedImage BI = ImageIO.read(image);
 			
 
