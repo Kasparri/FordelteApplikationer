@@ -33,19 +33,17 @@ public class ImgurConnecter {
 
 		// Den kan hente alle billeder fra et tag og komme tilbage med deres
 		// links
-		List<String> images = getImgByTag("http://imgur.com/t/archer");
-		List<String> imgfiles = new ArrayList<String>();
-		for (String img : images) {
-			imgfiles.add(downloadFromImgur(img));
-		}
-
-		System.out.println("collected images");
-		
-		Collage.multi(imgfiles);
+//		List<String> images = getImgByTag("http://imgur.com/t/archer");
+//		List<String> imgfiles = new ArrayList<String>();
+//		for (String img : images) {
+//			imgfiles.add(downloadFromImgur(img));
+//		}
+//
+//		System.out.println("collected images");
+//		
+//		Collage.multi(imgfiles);
+		System.out.println(getInfo("Kwxetau"));
 	}
-
-		
-
 	public static String uploadToImgur(File file) {
 
 		BufferedImage image = null;
@@ -169,4 +167,42 @@ public class ImgurConnecter {
 		return srcs;
 	}
 
+	public static String getInfo (String imageID) {
+		URL url;
+		String output = "Failed to get the info";
+		try {
+			//Setting up the connection
+			
+			url = new URL("https://api.imgur.com/3/image/"+imageID);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Authorization", "Client-ID " + "b34d2583bb8a43f");
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			
+			//Connecting
+			conn.connect();
+			
+			
+			//Getting the response
+			StringBuilder stb = new StringBuilder();
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while ((line = rd.readLine()) != null) {
+				stb.append(line).append("\n");
+			}
+			rd.close();
+			output = stb.toString();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return output;
+		
+	}
 }
