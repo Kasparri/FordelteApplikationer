@@ -1,6 +1,8 @@
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
-
+import java.util.Scanner;
 import com.dropbox.core.DbxAppInfo;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
@@ -21,7 +23,7 @@ public class Main {
 		final String APP_KEY = "6gm4dggg0pm4qd3";
 		final String APP_SECRET = "mnm27mqi749672i";
 		appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
-		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault().toString());
+		config = new DbxRequestConfig("JavaTutorial/1.0ab", Locale.getDefault().toString());
 
 		// Insert here the access token from your app.
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
@@ -57,19 +59,29 @@ public class Main {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
+
+			readTextCommands();
 		}
 
 	}
 
 	// reads the .txt file command
-	public static void readTextCommand() throws DbxException {
+	public static void readTextCommands() throws DbxException, IOException {
 		String path = "/space/collage/text";
 		DbxEntry.WithChildren listing = client.getMetadataWithChildren(path);
+
 		for (DbxEntry child : listing.children) {
-			String command = child.name;
-			switch (command) {
+			switch (child.name) {
 			case "create.txt":
-				// code here
+				// data is a list of structure [Collagename, picname 1, ...,
+				// picname N]
+				ArrayList<String> data = readCreateCommand(path, child);
+				System.out.println(data);
+				
+				// collage code here
+
+				// deletes the command file after executing it
+				delete(child);
 				break;
 
 			case "move.txt":
@@ -77,11 +89,12 @@ public class Main {
 				break;
 
 			case "delete.txt":
-				// code here
+				delete(readDeleteCommand(path, child));
+				delete(child);
 				break;
 
 			case "upload.txt":
-				// code here
+				// imgur upload method here
 				break;
 
 			default:
@@ -99,7 +112,7 @@ public class Main {
 	}
 
 	// whether or not a file is either a .png, .jpg or .jpeg file
-	public static boolean isPicture(String s) {
+	private static boolean isPicture(String s) {
 		if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG") || s.equals("png") || s.equals("jpg")
 				|| s.equals("jpeg")) {
 			return true;
@@ -108,11 +121,47 @@ public class Main {
 	}
 
 	// whether or not a file is a .txt file
-	public static boolean isText(String s) {
+	private static boolean isText(String s) {
 		if (s.equals("txt") || s.equals("TXT")) {
 			return true;
 		}
 		return false;
+	}
+
+	private static void delete(DbxEntry file) throws DbxException {
+		client.delete(file.path);
+	}
+
+	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) throws DbxException, IOException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		client.getFile(path + "/" + child.name, null, out);
+		// putting the ByteArrayOutputStream in the scanner as a String
+		Scanner sc = new Scanner(out.toString());
+		// making an ArrayList holding the name and filenames
+		ArrayList<String> data = new ArrayList<String>();
+		// the name of the collage
+		data.add(sc.nextLine());
+		int amount = sc.nextInt();
+		sc.nextLine();
+		for (int i = 0; i < amount; i++) {
+			data.add(sc.nextLine());
+		}
+		out.close();
+		sc.close();
+		return data;
+	}
+
+	private static DbxEntry readDeleteCommand(String path, DbxEntry child) throws DbxException, IOException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		client.getFile(path + "/" + child.name, null, out);
+		Scanner sc = new Scanner(out.toString());
+		String name = sc.nextLine();
+		String folderPath = sc.nextLine();
+		out.close();
+		sc.close();
+		DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
+		// the file to be deleted is returned
+		return file;
 	}
 
 }
