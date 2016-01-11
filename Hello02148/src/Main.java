@@ -17,8 +17,8 @@ public class Main {
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
-	static String[] paths = {"C:\\Users\\Mads\\Pictures\\Imgur\\","C:\\Users\\Frederik\\Desktop\\collages\\","/Users/Kasper/Pictures/imgur"};
-	static String path = paths[0];
+	static String[] paths = {"C:\\Users\\Mads\\Pictures\\Imgur\\","C:\\Users\\Frederik\\Desktop\\collages\\","/Users/Kasper/Pictures/imgur/"};
+	static String path = paths[2];
 
 	public static void main(String[] args) throws IOException, DbxException {
 
@@ -105,17 +105,17 @@ public class Main {
 
 			case "upload.txt":
 				DbxEntry uploadfile = fetchTextFile(path, child);
-				System.out.println("Uploading the file: " + uploadfile.name + ", in folder: " + uploadfile.path);
-				
-				
+				System.out.println("Uploading the file: " + uploadfile.name + ", from folder: " + uploadfile.path);
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				client.getFile(uploadfile.path + "/" + uploadfile.name, null, out);
+				client.getFile(uploadfile.path, null, out);
+				
 				byte[] fileArray = out.toByteArray();
 				FileOutputStream fos = new FileOutputStream(Main.path + uploadfile.name);
 				fos.write(fileArray);
 				fos.close();
 				
-				
+				System.out.println(ImgurConnecter.uploadToImgur(Main.path + uploadfile.name));
+				//System.out.println(ImgurConnecter.uploadToImgur("/space/collage/imgur/"));
 				
 				
 				
