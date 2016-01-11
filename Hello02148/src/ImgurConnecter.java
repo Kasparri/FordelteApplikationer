@@ -57,7 +57,6 @@ public class ImgurConnecter {
 			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 			ImageIO.write(image, "png", byteArray);
 			byte[] byteImage = byteArray.toByteArray();
-			// String dataImage = Base64.encode(byteImage);
 			String dataImage = Base64.getEncoder().encodeToString(byteImage);
 			String data = URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(dataImage, "UTF-8");
 
