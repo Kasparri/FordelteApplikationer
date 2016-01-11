@@ -3,6 +3,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import javax.imageio.ImageIO;
 
 public class Collage {
@@ -13,6 +15,80 @@ public class Collage {
 	static int height = 255;
 	static int heightt = height * 2;
 	static int type = 1;
+	
+	// multi
+	static String multi(List<String> imgfiles){
+		
+		while (imgfiles.size() > 1) {
+			switch (imgfiles.size()) {
+			case 2:
+				try {
+					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1));
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.add(imgfiles.size(), path);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 3:
+				try {
+					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(2));
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.add(imgfiles.size(), path);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 5:
+				try {
+					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(2),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(3),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(4));
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.add(imgfiles.size(), path);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			default:
+				try {
+					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(2),
+							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(3));
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.remove(0);
+					imgfiles.add(imgfiles.size(), path);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("done collaging");
+		return null;
+	}
 
 	// one
 	static String collage(String im0) throws IOException {
@@ -190,8 +266,8 @@ public class Collage {
 		String name = "collage" + counter + ".jpg";
 		System.out.println(name + " was created");
 		// mangler en ordentlig path
-		// name = "C:\\Users\\Frederik\\Desktop\\" + name;
-		// ImageIO.write(image, "jpg", new File(name));
+		String path = "C:\\Users\\Frederik\\Desktop\\collages\\" + name;
+		ImageIO.write(image, "jpg", new File(path));
 		return name;
 	}
 }

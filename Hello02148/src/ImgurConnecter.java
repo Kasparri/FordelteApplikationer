@@ -33,13 +33,18 @@ public class ImgurConnecter {
 
 		// Den kan hente alle billeder fra et tag og komme tilbage med deres
 		// links
-		List<String> images = getImgByTag("http://imgur.com/t/selfie");
-		List<String> imgfiles = null;
+		List<String> images = getImgByTag("http://imgur.com/t/archer");
+		List<String> imgfiles = new ArrayList();
 		for (String img : images) {
 			imgfiles.add(downloadFromImgur(img));
 		}
 
+		System.out.println("collected images");
+		
+		Collage.multi(imgfiles);
 	}
+
+		
 
 	public static String uploadToImgur(File file) {
 
@@ -55,30 +60,25 @@ public class ImgurConnecter {
 			byte[] byteImage = byteArray.toByteArray();
 			// String dataImage = Base64.encode(byteImage);
 			String dataImage = Base64.getEncoder().encodeToString(byteImage);
-			String data = URLEncoder.encode("image", "UTF-8") + "="
-					+ URLEncoder.encode(dataImage, "UTF-8");
+			String data = URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(dataImage, "UTF-8");
 
 			url = new URL("https://api.imgur.com/3/image");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Authorization", "Client-ID "
-					+ "b34d2583bb8a43f");
+			conn.setRequestProperty("Authorization", "Client-ID " + "b34d2583bb8a43f");
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
+			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
 			conn.connect();
 			StringBuilder stb = new StringBuilder();
-			OutputStreamWriter wr = new OutputStreamWriter(
-					conn.getOutputStream());
+			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(data);
 			wr.flush();
 
 			// Get the response
-			BufferedReader rd = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line;
 			while ((line = rd.readLine()) != null) {
 				stb.append(line).append("\n");
@@ -96,7 +96,7 @@ public class ImgurConnecter {
 
 	public static String downloadFromImgur(String imageURL) {
 		URL url;
-		String name="";
+		String name = "";
 		try {
 			url = new URL(imageURL);
 			InputStream inStream = new BufferedInputStream(url.openStream());
@@ -109,10 +109,8 @@ public class ImgurConnecter {
 			outStream.close();
 			inStream.close();
 			byte[] result = outStream.toByteArray();
-			name = imageURL.substring(imageURL.length() - 11,
-					imageURL.length());
-			FileOutputStream fileStream = new FileOutputStream(
-					"C:\\Users\\Mads\\Pictures\\imgur\\" + name);
+			name = imageURL.substring(19,30);
+			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Frederik\\Desktop\\collages\\" + name);
 			fileStream.write(result);
 			fileStream.close();
 
@@ -143,8 +141,7 @@ public class ImgurConnecter {
 			srcs = new ArrayList<String>();
 
 			for (int i = 0; i < imgs.getLength(); i++) {
-				srcs.add(imgs.item(i).getAttributes().getNamedItem("src")
-						.getNodeValue());
+				srcs.add(imgs.item(i).getAttributes().getNamedItem("src").getNodeValue());
 			}
 			for (int i = 0; i < srcs.size(); i++) {
 				srcs.set(i, srcs.get(i).substring(2, srcs.get(i).length() - 5)
