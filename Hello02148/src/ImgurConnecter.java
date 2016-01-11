@@ -1,7 +1,5 @@
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -34,7 +32,7 @@ public class ImgurConnecter {
 		// Den kan hente alle billeder fra et tag og komme tilbage med deres
 		// links
 		List<String> images = getImgByTag("http://imgur.com/t/archer");
-		List<String> imgfiles = new ArrayList();
+		List<String> imgfiles = new ArrayList<String>();
 		for (String img : images) {
 			imgfiles.add(downloadFromImgur(img));
 		}
@@ -43,8 +41,6 @@ public class ImgurConnecter {
 		
 		Collage.multi(imgfiles);
 	}
-
-		
 
 	public static String uploadToImgur(File file) {
 
@@ -110,7 +106,7 @@ public class ImgurConnecter {
 			inStream.close();
 			byte[] result = outStream.toByteArray();
 			name = imageURL.substring(19,30);
-			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Frederik\\Desktop\\collages\\" + name);
+			FileOutputStream fileStream = new FileOutputStream(Main.path + name);
 			fileStream.write(result);
 			fileStream.close();
 			
