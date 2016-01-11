@@ -113,6 +113,10 @@ public class ImgurConnecter {
 			FileOutputStream fileStream = new FileOutputStream("C:\\Users\\Frederik\\Desktop\\collages\\" + name);
 			fileStream.write(result);
 			fileStream.close();
+			
+			File image = new File("C:\\Users\\Frederik\\Desktop\\collages\\" + name);
+			BufferedImage BI = ImageIO.read(image);
+			
 
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -120,6 +124,7 @@ public class ImgurConnecter {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return "default.jpg";
 		}
 
 		return name;
