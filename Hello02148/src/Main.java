@@ -18,7 +18,7 @@ public class Main {
 	static DbxRequestConfig config;
 	static DbxClient client;
 	static String[] paths = {"C:\\Users\\Mads\\Pictures\\Imgur\\","C:\\Users\\Frederik\\Desktop\\collages\\","/Users/Kasper/Pictures/imgur/"};
-	static String path = paths[2];
+	static String path = paths[3];
 
 	public static void main(String[] args) throws IOException, DbxException {
 
