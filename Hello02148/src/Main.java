@@ -2,6 +2,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -39,6 +40,12 @@ public class Main {
 		// Two tuple templates for the main loop of the app
 		Template t1;
 		Template t2;
+		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
+		List<String> imgfiles = new ArrayList<String>();
+		for (String img : images) {
+			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+		}
+		System.out.println("collected images");
 		
 		String image = "http://i.imgur.com/0IDhAcc.jpg";
 		ImgurConnecter.downloadFromImgur(image);

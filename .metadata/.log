@@ -877,3 +877,46 @@ java.lang.NullPointerException
 
 !ENTRY org.infinitest.eclipse 1 0 2016-01-12 12:31:53.883
 !MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-12 12:38:42.766
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-12 12:40:07.471
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-12 12:44:03.757
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-12 12:58:05.679
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class]
+
+!ENTRY org.eclipse.egit.ui 4 0 2016-01-12 13:03:34.045
+!MESSAGE Checkout conflict with files: 
+Hello02148/bin/Main.class
+Hello02148/src/Main.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+Hello02148/bin/Main.class
+Hello02148/src/Main.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:413)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:329)
+	at org.eclipse.egit.core.op.PullOperation$1.run(PullOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2311)
+	at org.eclipse.egit.core.op.PullOperation.execute(PullOperation.java:137)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI.execute(PullOperationUI.java:140)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI$1.runInWorkspace(PullOperationUI.java:115)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+Hello02148/bin/Main.class
+Hello02148/src/Main.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:414)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:396)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:288)
+	... 8 more
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-12 13:04:51.305
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-12 13:06:13.724
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Main.class]
