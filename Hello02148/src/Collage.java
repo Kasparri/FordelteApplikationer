@@ -24,8 +24,8 @@ public class Collage {
 			switch (imgfiles.size()) {
 			case 2:
 				try {
-					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1));
+					String path = Collage.collage(Main.path + imgfiles.get(0),
+							Main.path + imgfiles.get(1));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.add(imgfiles.size(), path);
@@ -37,9 +37,9 @@ public class Collage {
 				break;
 			case 3:
 				try {
-					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(2));
+					String path = Collage.collage(Main.path + imgfiles.get(0),
+							Main.path + imgfiles.get(1),
+							Main.path + imgfiles.get(2));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -52,11 +52,11 @@ public class Collage {
 				break;
 			case 5:
 				try {
-					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(2),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(3),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(4));
+					String path = Collage.collage(Main.path + imgfiles.get(0),
+							Main.path + imgfiles.get(1),
+							Main.path + imgfiles.get(2),
+							Main.path + imgfiles.get(3),
+							Main.path + imgfiles.get(4));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -71,10 +71,10 @@ public class Collage {
 				break;
 			default:
 				try {
-					String path = Collage.collage("C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(0),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(1),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(2),
-							"C:\\Users\\Frederik\\Desktop\\collages\\" + imgfiles.get(3));
+					String path = Collage.collage(Main.path + imgfiles.get(0),
+							Main.path + imgfiles.get(1),
+							Main.path + imgfiles.get(2),
+							Main.path + imgfiles.get(3));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -268,7 +268,7 @@ public class Collage {
 		collagename = "collage" + counter;
 		System.out.println(name + " was created");
 		// mangler en ordentlig path
-		String path = "C:\\Users\\Frederik\\Desktop\\collages\\" + name;
+		String path = Main.path + name;
 		ImageIO.write(image, "jpg", new File(path));
 		return name;
 	}
