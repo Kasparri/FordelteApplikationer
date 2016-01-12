@@ -2,6 +2,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -41,9 +42,12 @@ public class Main {
 		// Two tuple templates for the main loop of the app
 		Template t1;
 		Template t2;
-		
-		String image = "http://i.imgur.com/mKv6wBO.jpg";
-		ImgurConnecter.downloadFromImgur(image);
+		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
+		List<String> imgfiles = new ArrayList<String>();
+		for (String img : images) {
+			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+		}
+		System.out.println("collected images");
 		
 		// Main loop that processes files in the shared space
 		while (true) {
