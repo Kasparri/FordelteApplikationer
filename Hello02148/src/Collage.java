@@ -15,6 +15,7 @@ public class Collage {
 	static int height = 255;
 	static int heightt = height * 2;
 	static int type = 1;
+	static String collagename = "collage" + counter;
 	
 	// multi
 	static String multi(List<String> imgfiles){
@@ -262,8 +263,9 @@ public class Collage {
 	}
 
 	static String path(BufferedImage image) throws IOException {
+		String name = collagename + ".jpg";
 		counter++;
-		String name = "collage" + counter + ".jpg";
+		collagename = "collage" + counter;
 		System.out.println(name + " was created");
 		// mangler en ordentlig path
 		String path = "C:\\Users\\Frederik\\Desktop\\collages\\" + name;

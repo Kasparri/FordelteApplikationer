@@ -87,6 +87,26 @@ public class Main {
 				System.out.println(data);
 
 				// collage code here
+				Collage.collagename = data.get(0);
+				Collage.collagename = Collage.collagename.substring(0, Collage.collagename.length()-4);
+				data.remove(0);
+				data.remove(0);
+				for (int i = 0; i == data.size(); i++){
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				client.getFile("/space/collage/pics/" + data.get(i), null, out);
+
+				byte[] fileArray = out.toByteArray();
+				String newpath = Main.path + data.get(i);
+				FileOutputStream fos = new FileOutputStream(newpath);
+				// FileOutputStream fos = new
+				// FileOutputStream("/space/collage/imgur/" + uploadfile.name);
+				fos.write(fileArray);
+				fos.close();
+				data.set(i, newpath);
+				}
+				
+				Collage.multi(data);
+				
 				//TODO: Frederik
 
 				System.out.println("Deleting the command file 'create.txt'");
