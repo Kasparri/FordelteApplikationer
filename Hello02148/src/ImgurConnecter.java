@@ -137,13 +137,7 @@ public class ImgurConnecter {
 		
 		// Uploading the file to dropbox
 		try {
-			image = new File(Main.path + name);
 			FileInputStream inputStream = new FileInputStream(image);
-			System.out.println("Name=" +name);
-			System.out.println("Image=" + image.toString());
-			System.out.println("inputstream=" +inputStream.toString());
-			System.out.println("Client= " + Main.client.toString());
-			
 			DbxEntry.File uploadedFile = Main.client.uploadFile(
 					"/space/collage/imgur/" + name, DbxWriteMode.add(),
 					image.length(), inputStream);

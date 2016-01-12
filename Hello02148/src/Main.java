@@ -19,7 +19,7 @@ public class Main {
 	static DbxClient client;
 	static String[] paths = { "C:\\Users\\Mads\\Pictures\\Imgur\\", "C:\\Users\\Frederik\\Desktop\\collages\\",
 			"/Users/Kasper/Pictures/imgur/" };
-	static String path = paths[0];
+	static String path = "./images/";
 
 	public static void main(String[] args) throws IOException, DbxException {
 
@@ -42,7 +42,7 @@ public class Main {
 		Template t1;
 		Template t2;
 		
-		String image = "http://i.imgur.com/oEEdar9.jpg";
+		String image = "http://i.imgur.com/mKv6wBO.jpg";
 		ImgurConnecter.downloadFromImgur(image);
 		
 		// Main loop that processes files in the shared space
