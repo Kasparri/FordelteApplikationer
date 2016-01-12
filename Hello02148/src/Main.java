@@ -2,6 +2,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -17,9 +18,7 @@ public class Main {
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
-	static String[] paths = { "C:\\Users\\Mads\\Pictures\\Imgur\\", "C:\\Users\\Frederik\\Desktop\\collages\\",
-			"/Users/Kasper/Pictures/imgur/" };
-	static String path = paths[0];
+	static String path = "./images/";
 
 	public static void main(String[] args) throws IOException, DbxException {
 
@@ -34,15 +33,21 @@ public class Main {
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
 
 		client = new DbxClient(config, accessToken);
-
+		
 		// Name of the shared folder to be used as shared space
 		final String space = "/space/collage";
 
 		// Two tuple templates for the main loop of the app
 		Template t1;
 		Template t2;
+		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
+		List<String> imgfiles = new ArrayList<String>();
+		for (String img : images) {
+			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+		}
+		System.out.println("collected images");
 		
-		String image = "http://i.imgur.com/oEEdar9.jpg";
+		String image = "http://i.imgur.com/0IDhAcc.jpg";
 		ImgurConnecter.downloadFromImgur(image);
 		
 		// Main loop that processes files in the shared space
@@ -67,7 +72,6 @@ public class Main {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
-
 			readTextCommands();
 		}
 
@@ -81,8 +85,8 @@ public class Main {
 		for (DbxEntry child : listing.children) {
 			switch (child.name) {
 			case "create.txt":
-				// data is a list of structure [Collagename, picname 1, ...,
-				// picname N]
+				// data is a list of structure [Collagename, picname 1,
+				// ...,picname N]
 				ArrayList<String> data = readCreateCommand(path, child);
 				System.out.println(data);
 
@@ -107,7 +111,7 @@ public class Main {
 				
 				Collage.multi(data);
 				
-				//TODO: Frederik
+				// TODO: Frederik
 
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
@@ -137,18 +141,11 @@ public class Main {
 						+ "'");
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				client.getFile(uploadfile.path, null, out);
-
 				byte[] fileArray = out.toByteArray();
 				FileOutputStream fos = new FileOutputStream(Main.path + uploadfile.name);
-				// FileOutputStream fos = new
-				// FileOutputStream("/space/collage/imgur/" + uploadfile.name);
 				fos.write(fileArray);
 				fos.close();
-
 				System.out.println(ImgurConnecter.uploadToImgur(Main.path + uploadfile.name));
-				// System.out.println(ImgurConnecter.uploadToImgur("/space/collage/imgur/"
-				// + uploadfile.name));
-
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
 				break;
