@@ -17,8 +17,6 @@ public class Main {
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
-	static String[] paths = { "C:\\Users\\Mads\\Pictures\\Imgur\\", "C:\\Users\\Frederik\\Desktop\\collages\\",
-			"/Users/Kasper/Pictures/imgur/" };
 	static String path = "./images/";
 
 	public static void main(String[] args) throws IOException, DbxException {
@@ -34,7 +32,7 @@ public class Main {
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
 
 		client = new DbxClient(config, accessToken);
-
+		
 		// Name of the shared folder to be used as shared space
 		final String space = "/space/collage";
 
@@ -42,7 +40,7 @@ public class Main {
 		Template t1;
 		Template t2;
 		
-		String image = "http://i.imgur.com/mKv6wBO.jpg";
+		String image = "http://i.imgur.com/0IDhAcc.jpg";
 		ImgurConnecter.downloadFromImgur(image);
 		
 		// Main loop that processes files in the shared space
