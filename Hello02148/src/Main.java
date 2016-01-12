@@ -17,8 +17,9 @@ public class Main {
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
-	static String[] paths = {"C:\\Users\\Mads\\Pictures\\Imgur\\","C:\\Users\\Frederik\\Desktop\\collages\\","/Users/Kasper/Pictures/imgur/"};
-	static String path = paths[2];
+	static String[] paths = { "C:\\Users\\Mads\\Pictures\\Imgur\\", "C:\\Users\\Frederik\\Desktop\\collages\\",
+			"/Users/Kasper/Pictures/imgur/" };
+	static String path = paths[3];
 
 	public static void main(String[] args) throws IOException, DbxException {
 
@@ -90,41 +91,51 @@ public class Main {
 				break;
 
 			case "move.txt":
-				// code here
-				
-				
+				// fetches the fromPath and toPath from the move.txt text file
+				String[] paths = fetchMovePaths(path, child);
+				System.out.println("Moving the file at placement: '" + paths[0] + "', to: '" + paths[1] + "'");
+				client.move(paths[0], paths[1]);
+				System.out.println("Deleting the command file 'move.txt'");
+				delete(child);
 				break;
 
 			case "delete.txt":
-				DbxEntry deletefile = fetchTextFile(path, child);
-				System.out.println("Deleting the file: " + deletefile.name + ", in folder: " + deletefile.path);
+				DbxEntry deletefile = fetchDeleteOrUpload(path, child);
+				System.out.println("Deleting the file: '" + deletefile.name + "', at placement: '" + deletefile.path
+						+ "'");
 				delete(deletefile);
 				System.out.println("Deleting the command file 'delete.txt'");
 				delete(child);
 				break;
 
 			case "upload.txt":
-				DbxEntry uploadfile = fetchTextFile(path, child);
-				System.out.println("Uploading the file: " + uploadfile.name + ", from folder: " + uploadfile.path);
+				DbxEntry uploadfile = fetchDeleteOrUpload(path, child);
+				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
+						+ "'");
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				client.getFile(uploadfile.path, null, out);
-				
+
 				byte[] fileArray = out.toByteArray();
 				FileOutputStream fos = new FileOutputStream(Main.path + uploadfile.name);
+				// FileOutputStream fos = new
+				// FileOutputStream("/space/collage/imgur/" + uploadfile.name);
 				fos.write(fileArray);
 				fos.close();
-				
+
 				System.out.println(ImgurConnecter.uploadToImgur(Main.path + uploadfile.name));
-				//System.out.println(ImgurConnecter.uploadToImgur("/space/collage/imgur/"));
-				
-				
-				
+				// System.out.println(ImgurConnecter.uploadToImgur("/space/collage/imgur/"
+				// + uploadfile.name));
+
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
 				break;
 
 			default:
-				// code here
+				if (child.isFile()) {
+					System.out.println("The .txt file " + child.name + " is an invalid command");
+					System.out.println("Moving the text file to the invalid folder");
+					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
+				}
 				break;
 			}
 		}
@@ -174,10 +185,11 @@ public class Main {
 		}
 		out.close();
 		sc.close();
+		// an ArrayList of the files to be included and the name is returned
 		return data;
 	}
 
-	private static DbxEntry fetchTextFile(String path, DbxEntry child) throws DbxException, IOException {
+	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) throws DbxException, IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		client.getFile(path + "/" + child.name, null, out);
 		Scanner sc = new Scanner(out.toString());
@@ -186,8 +198,21 @@ public class Main {
 		out.close();
 		sc.close();
 		DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
-		// the file to be deleted is returned
+		// the file to be deleted or uploaded is returned
 		return file;
+	}
+
+	private static String[] fetchMovePaths(String path, DbxEntry child) throws DbxException, IOException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		client.getFile(path + "/" + child.name, null, out);
+		String[] paths = new String[2];
+		Scanner sc = new Scanner(out.toString());
+		paths[0] = sc.nextLine();
+		paths[1] = sc.nextLine();
+		sc.close();
+		out.close();
+		// the string array is returned
+		return paths;
 	}
 
 }
