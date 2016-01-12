@@ -19,7 +19,7 @@ public class Main {
 	static DbxClient client;
 	static String[] paths = { "C:\\Users\\Mads\\Pictures\\Imgur\\", "C:\\Users\\Frederik\\Desktop\\collages\\",
 			"/Users/Kasper/Pictures/imgur/" };
-	static String path = paths[3];
+	static String path = paths[2];
 
 	public static void main(String[] args) throws IOException, DbxException {
 
@@ -64,7 +64,6 @@ public class Main {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
-
 			readTextCommands();
 		}
 
@@ -78,13 +77,13 @@ public class Main {
 		for (DbxEntry child : listing.children) {
 			switch (child.name) {
 			case "create.txt":
-				// data is a list of structure [Collagename, picname 1, ...,
-				// picname N]
+				// data is a list of structure [Collagename, picname 1,
+				// ...,picname N]
 				ArrayList<String> data = readCreateCommand(path, child);
 				System.out.println(data);
 
 				// collage code here
-				//TODO: Frederik
+				// TODO: Frederik
 
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
@@ -114,18 +113,11 @@ public class Main {
 						+ "'");
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				client.getFile(uploadfile.path, null, out);
-
 				byte[] fileArray = out.toByteArray();
 				FileOutputStream fos = new FileOutputStream(Main.path + uploadfile.name);
-				// FileOutputStream fos = new
-				// FileOutputStream("/space/collage/imgur/" + uploadfile.name);
 				fos.write(fileArray);
 				fos.close();
-
 				System.out.println(ImgurConnecter.uploadToImgur(Main.path + uploadfile.name));
-				// System.out.println(ImgurConnecter.uploadToImgur("/space/collage/imgur/"
-				// + uploadfile.name));
-
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
 				break;
