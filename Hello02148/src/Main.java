@@ -83,7 +83,7 @@ public class Main {
 	}
 
 	// reads the .txt file command
-	public static void readTextCommands() throws DbxException, IOException {
+	public static void readTextCommands() throws IOException, DbxException {
 		String textpath = "/space/collage/text";
 		DbxEntry.WithChildren listing = null;
 		try {
@@ -96,8 +96,8 @@ public class Main {
 			switch (child.name) {
 			case "create.txt":
 				// data is a list of structure [Collagename, picname 1,
-				// ...,picname N]
-				ArrayList<String> data = readCreateCommand(textpath, child);
+				// ...,picname n] with n amount of pictures used in the collage
+				List<String> data = readCreateCommand(textpath, child);
 				System.out.println(data);
 
 				// collage code here
@@ -115,25 +115,13 @@ public class Main {
 				}
 				Collage.multi(data);
 				File collage = new File(path + Collage.finalname);
-
-				try {
-					FileInputStream inputStream = new FileInputStream(collage);
-					DbxEntry.File uploadedFile = Main.client.uploadFile("/space/collage/collages/" + Collage.finalname,
-							DbxWriteMode.add(), collage.length(), inputStream);
-
-					System.out.println("Uploaded: " + uploadedFile.toString());
-					inputStream.close();
-					collage.delete();
-					collage.deleteOnExit();
-
-				} catch (DbxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+				FileInputStream inputStream = new FileInputStream(collage);
+				DbxEntry.File uploadedFile = Main.client.uploadFile("/space/collage/collages/" + Collage.finalname,
+						DbxWriteMode.add(), collage.length(), inputStream);
+				System.out.println("Uploaded: " + uploadedFile.toString());
+				inputStream.close();
+				collage.delete();
+				collage.deleteOnExit();
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
 				break;
@@ -154,7 +142,6 @@ public class Main {
 					System.out.println("Moving on to the next command");
 					continue;
 				}
-
 				break;
 
 			case "delete.txt":
@@ -194,11 +181,11 @@ public class Main {
 					System.out.println("The .txt file " + child.name + " is an invalid command");
 					System.out.println("Moving the text file to the invalid folder");
 					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
+
 				}
 				break;
 			}
 		}
-
 	}
 
 	public static int pictureAmount() {
@@ -234,10 +221,10 @@ public class Main {
 		}
 	}
 
-	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) {
-		Scanner sc = fetchCommand(path, child);
+	private static List<String> readCreateCommand(String path, DbxEntry child) {
+		Scanner sc = fetchCommandInScanner(path, child);
 		// making an ArrayList holding the name and filenames
-		ArrayList<String> data = new ArrayList<String>();
+		List<String> data = new ArrayList<String>();
 		// the name of the collage
 		data.add(sc.nextLine());
 		int amount = sc.nextInt();
@@ -253,7 +240,7 @@ public class Main {
 
 	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) {
 		try {
-			Scanner sc = fetchCommand(path, child);
+			Scanner sc = fetchCommandInScanner(path, child);
 			String name = sc.nextLine();
 			String folderPath = sc.nextLine();
 			sc.close();
@@ -274,7 +261,7 @@ public class Main {
 	}
 
 	private static String[] fetchMovePaths(String path, DbxEntry child) {
-		Scanner sc = fetchCommand(path, child);
+		Scanner sc = fetchCommandInScanner(path, child);
 		String[] paths = new String[2];
 		paths[0] = sc.nextLine();
 		paths[1] = sc.nextLine();
@@ -284,7 +271,7 @@ public class Main {
 	}
 
 	// fetches the command.txt file and returns it in a Scanner
-	private static Scanner fetchCommand(String path, DbxEntry child) {
+	private static Scanner fetchCommandInScanner(String path, DbxEntry child) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
 			client.getFile(path + "/" + child.name, null, out);

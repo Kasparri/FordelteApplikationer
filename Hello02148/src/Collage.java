@@ -16,18 +16,17 @@ public class Collage {
 	static int heightt = height * 2;
 	static int type = 1;
 	static String finalname = "";
-	
+
 	// multi
-	static String multi(List<String> imgfiles){
-		
+	static String multi(List<String> imgfiles) {
+
 		String name = "";
-		
+
 		while (imgfiles.size() > 1) {
 			switch (imgfiles.size()) {
 			case 2:
 				try {
-					name = Collage.collage(Main.path + imgfiles.get(0),
-							Main.path + imgfiles.get(1));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.add(imgfiles.size(), name);
@@ -39,9 +38,7 @@ public class Collage {
 				break;
 			case 3:
 				try {
-					name = Collage.collage(Main.path + imgfiles.get(0),
-							Main.path + imgfiles.get(1),
-							Main.path + imgfiles.get(2));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -54,11 +51,8 @@ public class Collage {
 				break;
 			case 5:
 				try {
-					name = Collage.collage(Main.path + imgfiles.get(0),
-							Main.path + imgfiles.get(1),
-							Main.path + imgfiles.get(2),
-							Main.path + imgfiles.get(3),
-							Main.path + imgfiles.get(4));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
+							imgfiles.get(4));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -67,16 +61,12 @@ public class Collage {
 					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			default:
 				try {
-					name = Collage.collage(Main.path + imgfiles.get(0),
-							Main.path + imgfiles.get(1),
-							Main.path + imgfiles.get(2),
-							Main.path + imgfiles.get(3));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -90,15 +80,16 @@ public class Collage {
 			}
 		}
 		System.out.println("done collaging");
-		
-		if (!finalname.equals("")){
+
+		if (!finalname.equals("")) {
 			File oldfile = new File(name);
-	        File newfile = new File(finalname);
-	        if(oldfile.renameTo(newfile)){
-	        	System.out.println("The collage was named: " + finalname);
-	        }else{
-	            System.out.println("A file with the name " + finalname + " allready exist. The collage was named " + name + " instead.");
-	        }
+			File newfile = new File(finalname);
+			if (oldfile.renameTo(newfile)) {
+				System.out.println("The collage was named: " + finalname);
+			} else {
+				System.out.println("A file with the name " + finalname + " already exist. The collage was named "
+						+ name + " instead.");
+			}
 		}
 		finalname = "";
 		return null;
@@ -269,7 +260,7 @@ public class Collage {
 				num++;
 			}
 		}
-		finalImg.createGraphics().drawImage(buffImage[num], width/2, height/2, null);
+		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
 
 		// nameing the file
 		return path(finalImg);
