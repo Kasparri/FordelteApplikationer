@@ -44,7 +44,7 @@ public class Main {
 		Template t1;
 		Template t2;
 		
-		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
+		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
 		List<String> imgfiles = new ArrayList<String>();
 		for (String img : images) {
 			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
