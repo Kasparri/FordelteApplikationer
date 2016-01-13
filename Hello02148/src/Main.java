@@ -44,15 +44,16 @@ public class Main {
 		Template t1;
 		Template t2;
 
-//		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
-//		List<String> imgfiles = new ArrayList<String>();
-//		for (String img : images) {
-//			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-//		}
-//		System.out.println("collected images");
-//
-//		String image = "http://i.imgur.com/0IDhAcc.jpg";
-//		ImgurConnecter.downloadFromImgur(image);
+		// List<String> images =
+		// ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
+		// List<String> imgfiles = new ArrayList<String>();
+		// for (String img : images) {
+		// imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+		// }
+		// System.out.println("collected images");
+		//
+		// String image = "http://i.imgur.com/0IDhAcc.jpg";
+		// ImgurConnecter.downloadFromImgur(image);
 
 		// Main loop that processes files in the shared space
 		while (true) {
@@ -153,12 +154,12 @@ public class Main {
 					System.out.println("Moving on to the next command");
 					continue;
 				}
-				
+
 				break;
 
 			case "delete.txt":
 				DbxEntry deletefile = fetchDeleteOrUpload(textpath, child);
-				if (deletefile == null){
+				if (deletefile == null) {
 					System.out.println("Moving on to the next command");
 					continue;
 				}
@@ -171,7 +172,7 @@ public class Main {
 
 			case "upload.txt":
 				DbxEntry uploadfile = fetchDeleteOrUpload(textpath, child);
-				if (uploadfile == null){
+				if (uploadfile == null) {
 					System.out.println("Moving on to the next command");
 					continue;
 				}
@@ -234,41 +235,27 @@ public class Main {
 	}
 
 	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) {
-		try {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			client.getFile(path + "/" + child.name, null, out);
-			// putting the ByteArrayOutputStream in the scanner as a String
-			Scanner sc = new Scanner(out.toString());
-			// making an ArrayList holding the name and filenames
-			ArrayList<String> data = new ArrayList<String>();
-			// the name of the collage
+		Scanner sc = fetchCommand(path, child);
+		// making an ArrayList holding the name and filenames
+		ArrayList<String> data = new ArrayList<String>();
+		// the name of the collage
+		data.add(sc.nextLine());
+		int amount = sc.nextInt();
+		sc.nextLine();
+		for (int i = 0; i < amount; i++) {
 			data.add(sc.nextLine());
-			int amount = sc.nextInt();
-			sc.nextLine();
-			for (int i = 0; i < amount; i++) {
-				data.add(sc.nextLine());
-			}
-			out.close();
-			sc.close();
-			// an ArrayList of the files to be included and the name is returned
-			return data;
-		} catch (DbxException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-		return null;
+		sc.close();
+		// an ArrayList of the files to be included and the name is returned
+		return data;
 
 	}
 
 	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) {
 		try {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			client.getFile(path + "/" + child.name, null, out);
-			Scanner sc = new Scanner(out.toString());
+			Scanner sc = fetchCommand(path, child);
 			String name = sc.nextLine();
 			String folderPath = sc.nextLine();
-			out.close();
 			sc.close();
 			DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
 			if (file == null) {
@@ -280,34 +267,34 @@ public class Main {
 				// the file to be deleted or uploaded is returned
 				return file;
 			}
-			
-			
 		} catch (DbxException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	private static String[] fetchMovePaths(String path, DbxEntry child) {
+		Scanner sc = fetchCommand(path, child);
+		String[] paths = new String[2];
+		paths[0] = sc.nextLine();
+		paths[1] = sc.nextLine();
+		sc.close();
+		// the string array is returned
+		return paths;
+	}
+
+	// fetches the command.txt file and returns it in a Scanner
+	private static Scanner fetchCommand(String path, DbxEntry child) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			client.getFile(path + "/" + child.name, null, out);
-			String[] paths = new String[2];
-			Scanner sc = new Scanner(out.toString());
-			paths[0] = sc.nextLine();
-			paths[1] = sc.nextLine();
-			sc.close();
-			out.close();
-			// the string array is returned
-			return paths;
 		} catch (DbxException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		Scanner sc = new Scanner(out.toString());
+		return sc;
 	}
 
 }
