@@ -36,24 +36,24 @@ public class Main {
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
 
 		client = new DbxClient(config, accessToken);
-		
+
 		// Name of the shared folder to be used as shared space
 		final String space = "/space/collage";
 
 		// Two tuple templates for the main loop of the app
 		Template t1;
 		Template t2;
-		
+
 		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
 		List<String> imgfiles = new ArrayList<String>();
 		for (String img : images) {
 			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
 		}
 		System.out.println("collected images");
-		
+
 		String image = "http://i.imgur.com/0IDhAcc.jpg";
 		ImgurConnecter.downloadFromImgur(image);
-		
+
 		// Main loop that processes files in the shared space
 		while (true) {
 
@@ -96,9 +96,9 @@ public class Main {
 
 				// collage code here
 				Collage.collagename = data.get(0);
-				Collage.collagename = Collage.collagename.substring(0, Collage.collagename.length()-4);
+				Collage.collagename = Collage.collagename.substring(0, Collage.collagename.length() - 4);
 				data.remove(0);
-				for (int i = 0; i < data.size(); i++){
+				for (int i = 0; i < data.size(); i++) {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
 					client.getFile("/space/collage/pics/" + data.get(i), null, out);
 					byte[] fileArray = out.toByteArray();
@@ -110,18 +110,17 @@ public class Main {
 				}
 				Collage.multi(data);
 				File collage = new File(path + Collage.finalName);
-				
+
 				try {
 					FileInputStream inputStream = new FileInputStream(collage);
-					DbxEntry.File uploadedFile = Main.client.uploadFile(
-							"/space/collage/collages/" + Collage.finalName, DbxWriteMode.add(),
-							collage.length(), inputStream);
+					DbxEntry.File uploadedFile = Main.client.uploadFile("/space/collage/collages/" + Collage.finalName,
+							DbxWriteMode.add(), collage.length(), inputStream);
 
 					System.out.println("Uploaded: " + uploadedFile.toString());
 					inputStream.close();
 					collage.delete();
 					collage.deleteOnExit();
-					
+
 				} catch (DbxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -129,8 +128,7 @@ public class Main {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
+
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
 				break;
@@ -207,24 +205,33 @@ public class Main {
 		client.delete(file.path);
 	}
 
-	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) throws DbxException, IOException {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		client.getFile(path + "/" + child.name, null, out);
-		// putting the ByteArrayOutputStream in the scanner as a String
-		Scanner sc = new Scanner(out.toString());
-		// making an ArrayList holding the name and filenames
-		ArrayList<String> data = new ArrayList<String>();
-		// the name of the collage
-		data.add(sc.nextLine());
-		int amount = sc.nextInt();
-		sc.nextLine();
-		for (int i = 0; i < amount; i++) {
+	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) {
+
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			client.getFile(path + "/" + child.name, null, out);
+			// putting the ByteArrayOutputStream in the scanner as a String
+			Scanner sc = new Scanner(out.toString());
+			// making an ArrayList holding the name and filenames
+			ArrayList<String> data = new ArrayList<String>();
+			// the name of the collage
 			data.add(sc.nextLine());
+			int amount = sc.nextInt();
+			sc.nextLine();
+			for (int i = 0; i < amount; i++) {
+				data.add(sc.nextLine());
+			}
+			out.close();
+			sc.close();
+			// an ArrayList of the files to be included and the name is returned
+			return data;
+		} catch (DbxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		out.close();
-		sc.close();
-		// an ArrayList of the files to be included and the name is returned
-		return data;
+		return null;
+
 	}
 
 	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) throws DbxException, IOException {
