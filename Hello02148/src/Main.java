@@ -1,4 +1,6 @@
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.DbxWriteMode;
 
 public class Main {
 
@@ -41,15 +44,15 @@ public class Main {
 		Template t1;
 		Template t2;
 		
-//		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
-//		List<String> imgfiles = new ArrayList<String>();
-//		for (String img : images) {
-//			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-//		}
-//		System.out.println("collected images");
-//		
-//		String image = "http://i.imgur.com/0IDhAcc.jpg";
-//		ImgurConnecter.downloadFromImgur(image);
+		List<String> images = ImgurConnecter.getImgByTag("http://imgur.com/t/archer");
+		List<String> imgfiles = new ArrayList<String>();
+		for (String img : images) {
+			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+		}
+		System.out.println("collected images");
+		
+		String image = "http://i.imgur.com/0IDhAcc.jpg";
+		ImgurConnecter.downloadFromImgur(image);
 		
 		// Main loop that processes files in the shared space
 		while (true) {
@@ -80,15 +83,15 @@ public class Main {
 
 	// reads the .txt file command
 	public static void readTextCommands() throws DbxException, IOException {
-		String path = "/space/collage/text";
-		DbxEntry.WithChildren listing = client.getMetadataWithChildren(path);
+		String textpath = "/space/collage/text";
+		DbxEntry.WithChildren listing = client.getMetadataWithChildren(textpath);
 
 		for (DbxEntry child : listing.children) {
 			switch (child.name) {
 			case "create.txt":
 				// data is a list of structure [Collagename, picname 1,
 				// ...,picname N]
-				ArrayList<String> data = readCreateCommand(path, child);
+				ArrayList<String> data = readCreateCommand(textpath, child);
 				System.out.println(data);
 
 				// collage code here
@@ -99,22 +102,42 @@ public class Main {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
 					client.getFile("/space/collage/pics/" + data.get(i), null, out);
 					byte[] fileArray = out.toByteArray();
-					String newpath = Main.path + data.get(i);
+					String newpath = path + data.get(i);
 					FileOutputStream fos = new FileOutputStream(newpath);
 					fos.write(fileArray);
 					fos.close();
 					data.set(i, newpath);
 				}
 				Collage.multi(data);
+				File collage = new File(path + Collage.finalName);
 				
+				try {
+					FileInputStream inputStream = new FileInputStream(collage);
+					DbxEntry.File uploadedFile = Main.client.uploadFile(
+							"/space/collage/collages/" + Collage.finalName, DbxWriteMode.add(),
+							collage.length(), inputStream);
 
+					System.out.println("Uploaded: " + uploadedFile.toString());
+					inputStream.close();
+					collage.delete();
+					collage.deleteOnExit();
+					
+				} catch (DbxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
 				break;
 
 			case "move.txt":
 				// fetches the fromPath and toPath from the move.txt text file
-				String[] paths = fetchMovePaths(path, child);
+				String[] paths = fetchMovePaths(textpath, child);
 				System.out.println("Moving the file at placement: '" + paths[0] + "', to: '" + paths[1] + "'");
 				client.move(paths[0], paths[1]);
 				System.out.println("Deleting the command file 'move.txt'");
@@ -122,7 +145,7 @@ public class Main {
 				break;
 
 			case "delete.txt":
-				DbxEntry deletefile = fetchDeleteOrUpload(path, child);
+				DbxEntry deletefile = fetchDeleteOrUpload(textpath, child);
 				System.out.println("Deleting the file: '" + deletefile.name + "', at placement: '" + deletefile.path
 						+ "'");
 				delete(deletefile);
@@ -131,7 +154,7 @@ public class Main {
 				break;
 
 			case "upload.txt":
-				DbxEntry uploadfile = fetchDeleteOrUpload(path, child);
+				DbxEntry uploadfile = fetchDeleteOrUpload(textpath, child);
 				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
 						+ "'");
 				ByteArrayOutputStream out = new ByteArrayOutputStream();

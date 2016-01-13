@@ -16,6 +16,7 @@ public class Collage {
 	static int heightt = height * 2;
 	static int type = 1;
 	static String collagename = "collage" + counter;
+	static String finalName;
 	
 	// multi
 	static String multi(List<String> imgfiles){
@@ -270,6 +271,7 @@ public class Collage {
 		// mangler en ordentlig path
 		String path = Main.path + name;
 		ImageIO.write(image, "jpg", new File(path));
+		finalName = name;
 		return name;
 	}
 }
