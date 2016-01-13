@@ -16,11 +16,12 @@ public class Collage {
 	static int heightt = height * 2;
 	static int type = 1;
 	static String finalname = "";
+	static String name = "";
 
 	// multi
 	static String multi(List<String> imgfiles) {
 
-		String name = "";
+		
 
 		while (imgfiles.size() > 1) {
 			switch (imgfiles.size()) {
@@ -82,16 +83,16 @@ public class Collage {
 		System.out.println("done collaging");
 
 		if (!finalname.equals("")) {
-			File oldfile = new File(name);
-			File newfile = new File(finalname);
-			if (!newfile.exists()) {
-				oldfile.renameTo(newfile);
+			File oldfile = new File(Dropbox.path + name);
+			File newfile = new File(Dropbox.path + finalname);
+			if (oldfile.renameTo(newfile)) {
 				System.out.println("The collage was named: " + finalname);
 			} else {
 				System.out.println("A file with the name " + finalname + " already exist. The collage was named "
 						+ name + " instead.");
 			}
 		}
+		name = finalname;
 		finalname = "";
 		return null;
 	}
@@ -272,7 +273,7 @@ public class Collage {
 		counter++;
 		System.out.println(name + " was created");
 		// mangler en ordentlig path
-		String path = Main.path + name;
+		String path = Dropbox.path + name;
 		ImageIO.write(image, "jpg", new File(path));
 		return name;
 	}

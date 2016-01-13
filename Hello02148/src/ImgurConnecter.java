@@ -34,7 +34,7 @@ public class ImgurConnecter {
 	public static void main(String[] args) {
 
 		// Uploads an image and returns the link to the image on imgur
-		// System.out.println(uploadToImgur(Main.path + "82wtUgg.jpg"));
+		// System.out.println(uploadToImgur(Dropbox.path + "82wtUgg.jpg"));
 
 		// Downloads an image specified by the url provided in the string image
 		// String image = "http://i.imgur.com/eDgsWZa.gifv";
@@ -149,11 +149,11 @@ public class ImgurConnecter {
 			outStream.close();
 			inStream.close();
 			byte[] result = outStream.toByteArray();
-			FileOutputStream fileStream = new FileOutputStream(Main.path + name);
+			FileOutputStream fileStream = new FileOutputStream(Dropbox.path + name);
 			fileStream.write(result);
 			fileStream.close();
 			// Testing the file
-			image = new File(Main.path + name);
+			image = new File(Dropbox.path + name);
 			@SuppressWarnings("unused")
 			BufferedImage BI = ImageIO.read(image);
 
@@ -169,7 +169,7 @@ public class ImgurConnecter {
 		// Uploading the file to dropbox
 		try {
 			FileInputStream inputStream = new FileInputStream(image);
-			DbxEntry.File uploadedFile = Main.client.uploadFile(
+			DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
 					"/space/collage/imgur/" + name, DbxWriteMode.add(),
 					image.length(), inputStream);
 

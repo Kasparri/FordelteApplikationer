@@ -20,7 +20,6 @@ public class Template {
 		this.ext = e;
 		this.content = c;
 		this.type = null;
-		// this.client = Main.getClient();
 	}
 
 	// Blocking operation to check the existence of a file matching a
