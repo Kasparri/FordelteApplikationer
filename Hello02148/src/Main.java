@@ -84,7 +84,12 @@ public class Main {
 	// reads the .txt file command
 	public static void readTextCommands() throws DbxException, IOException {
 		String textpath = "/space/collage/text";
-		DbxEntry.WithChildren listing = client.getMetadataWithChildren(textpath);
+		DbxEntry.WithChildren listing = null;
+		try {
+			listing = client.getMetadataWithChildren(textpath);
+		} catch (DbxException e1) {
+			e1.printStackTrace();
+		}
 
 		for (DbxEntry child : listing.children) {
 			switch (child.name) {
@@ -179,9 +184,14 @@ public class Main {
 	}
 
 	// return amount of files in the picture folder
-	public static int pictureAmount() throws DbxException {
+	public static int pictureAmount() {
 		String path = "/space/collage/pics";
-		return client.getMetadataWithChildren(path).children.size();
+		try {
+			return client.getMetadataWithChildren(path).children.size();
+		} catch (DbxException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	// whether or not a file is either a .png, .jpg or .jpeg file
@@ -201,8 +211,12 @@ public class Main {
 		return false;
 	}
 
-	private static void delete(DbxEntry file) throws DbxException {
-		client.delete(file.path);
+	private static void delete(DbxEntry file) {
+		try {
+			client.delete(file.path);
+		} catch (DbxException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) {
@@ -234,30 +248,44 @@ public class Main {
 
 	}
 
-	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) throws DbxException, IOException {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		client.getFile(path + "/" + child.name, null, out);
-		Scanner sc = new Scanner(out.toString());
-		String name = sc.nextLine();
-		String folderPath = sc.nextLine();
-		out.close();
-		sc.close();
-		DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
-		// the file to be deleted or uploaded is returned
-		return file;
+	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) {
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			client.getFile(path + "/" + child.name, null, out);
+			Scanner sc = new Scanner(out.toString());
+			String name = sc.nextLine();
+			String folderPath = sc.nextLine();
+			out.close();
+			sc.close();
+			DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
+			// the file to be deleted or uploaded is returned
+			return file;
+		} catch (DbxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	private static String[] fetchMovePaths(String path, DbxEntry child) throws DbxException, IOException {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		client.getFile(path + "/" + child.name, null, out);
-		String[] paths = new String[2];
-		Scanner sc = new Scanner(out.toString());
-		paths[0] = sc.nextLine();
-		paths[1] = sc.nextLine();
-		sc.close();
-		out.close();
-		// the string array is returned
-		return paths;
+	private static String[] fetchMovePaths(String path, DbxEntry child) {
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			client.getFile(path + "/" + child.name, null, out);
+			String[] paths = new String[2];
+			Scanner sc = new Scanner(out.toString());
+			paths[0] = sc.nextLine();
+			paths[1] = sc.nextLine();
+			sc.close();
+			out.close();
+			// the string array is returned
+			return paths;
+		} catch (DbxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
