@@ -100,8 +100,7 @@ public class Main {
 				System.out.println(data);
 
 				// collage code here
-				Collage.collagename = data.get(0);
-				Collage.collagename = Collage.collagename.substring(0, Collage.collagename.length() - 4);
+				Collage.finalname = data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -114,11 +113,11 @@ public class Main {
 					data.set(i, newpath);
 				}
 				Collage.multi(data);
-				File collage = new File(path + Collage.finalName);
+				File collage = new File(path + Collage.finalname);
 
 				try {
 					FileInputStream inputStream = new FileInputStream(collage);
-					DbxEntry.File uploadedFile = Main.client.uploadFile("/space/collage/collages/" + Collage.finalName,
+					DbxEntry.File uploadedFile = Main.client.uploadFile("/space/collage/collages/" + Collage.finalname,
 							DbxWriteMode.add(), collage.length(), inputStream);
 
 					System.out.println("Uploaded: " + uploadedFile.toString());

@@ -15,21 +15,22 @@ public class Collage {
 	static int height = 255;
 	static int heightt = height * 2;
 	static int type = 1;
-	static String collagename = "collage" + counter;
-	static String finalName;
+	static String finalname = "";
 	
 	// multi
 	static String multi(List<String> imgfiles){
+		
+		String name = "";
 		
 		while (imgfiles.size() > 1) {
 			switch (imgfiles.size()) {
 			case 2:
 				try {
-					String path = Collage.collage(Main.path + imgfiles.get(0),
+					name = Collage.collage(Main.path + imgfiles.get(0),
 							Main.path + imgfiles.get(1));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), path);
+					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -38,13 +39,13 @@ public class Collage {
 				break;
 			case 3:
 				try {
-					String path = Collage.collage(Main.path + imgfiles.get(0),
+					name = Collage.collage(Main.path + imgfiles.get(0),
 							Main.path + imgfiles.get(1),
 							Main.path + imgfiles.get(2));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), path);
+					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -53,7 +54,7 @@ public class Collage {
 				break;
 			case 5:
 				try {
-					String path = Collage.collage(Main.path + imgfiles.get(0),
+					name = Collage.collage(Main.path + imgfiles.get(0),
 							Main.path + imgfiles.get(1),
 							Main.path + imgfiles.get(2),
 							Main.path + imgfiles.get(3),
@@ -63,7 +64,7 @@ public class Collage {
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), path);
+					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -72,7 +73,7 @@ public class Collage {
 				break;
 			default:
 				try {
-					String path = Collage.collage(Main.path + imgfiles.get(0),
+					name = Collage.collage(Main.path + imgfiles.get(0),
 							Main.path + imgfiles.get(1),
 							Main.path + imgfiles.get(2),
 							Main.path + imgfiles.get(3));
@@ -80,7 +81,7 @@ public class Collage {
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), path);
+					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -89,6 +90,17 @@ public class Collage {
 			}
 		}
 		System.out.println("done collaging");
+		
+		if (!finalname.equals("")){
+			File oldfile = new File(name);
+	        File newfile = new File(finalname);
+	        if(oldfile.renameTo(newfile)){
+	        	System.out.println("The collage was named: " + finalname);
+	        }else{
+	            System.out.println("A file with the name " + finalname + " allready exist. The collage was named " + name + " instead.");
+	        }
+		}
+		finalname = "";
 		return null;
 	}
 
@@ -264,14 +276,12 @@ public class Collage {
 	}
 
 	static String path(BufferedImage image) throws IOException {
-		String name = collagename + ".jpg";
+		String name = "collage" + counter + ".jpg";
 		counter++;
-		collagename = "collage" + counter;
 		System.out.println(name + " was created");
 		// mangler en ordentlig path
 		String path = Main.path + name;
 		ImageIO.write(image, "jpg", new File(path));
-		finalName = name;
 		return name;
 	}
 }
