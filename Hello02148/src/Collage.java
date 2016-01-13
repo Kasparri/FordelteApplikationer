@@ -84,7 +84,8 @@ public class Collage {
 		if (!finalname.equals("")) {
 			File oldfile = new File(name);
 			File newfile = new File(finalname);
-			if (oldfile.renameTo(newfile)) {
+			if (!newfile.exists()) {
+				oldfile.renameTo(newfile);
 				System.out.println("The collage was named: " + finalname);
 			} else {
 				System.out.println("A file with the name " + finalname + " already exist. The collage was named "
