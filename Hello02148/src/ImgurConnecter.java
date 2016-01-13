@@ -10,7 +10,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.ServerSocket;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -32,12 +35,15 @@ public class ImgurConnecter {
 
 		// Uploads an image and returns the link to the image on imgur
 		// System.out.println(uploadToImgur(Main.path + "82wtUgg.jpg"));
-		String image = "http://i.imgur.com/eDgsWZa.gifv";
-		downloadFromImgur(image);
 
-		// Den kan hente alle billeder fra et tag og komme tilbage med deres
-		// links
-		// List<String> images = getImgByTag("http://imgur.com/t/archer");
+		// Downloads an image specified by the url provided in the string image
+		// String image = "http://i.imgur.com/eDgsWZa.gifv";
+		// downloadFromImgur(image);
+
+		// Downloads all images by the tag specified in the string used by
+		// getImgsFromSite method
+		// Then makes a collage of the images it has downloaded
+		// List<String> images = getImgsFromSite("http://imgur.com/t/archer");
 		// List<String> imgfiles = new ArrayList<String>();
 		// for (String img : images) {
 		// imgfiles.add(downloadFromImgur(img));
@@ -47,6 +53,7 @@ public class ImgurConnecter {
 		//
 		// Collage.multi(imgfiles);
 
+		// Attempts to authorize us as our user on imgur
 	}
 
 	public static String uploadToImgur(String filepath) {
@@ -106,7 +113,6 @@ public class ImgurConnecter {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -117,9 +123,8 @@ public class ImgurConnecter {
 		URL url;
 		String name = imageURL.substring(19, 30);
 		File image = null;
-		
-		
-		//Checking if the image were about to download is animated or nsfw
+
+		// Checking if the image were about to download is animated or nsfw
 		String[] info = getInfo(name.substring(0, name.length() - 4));
 		for (String part : info) {
 			if (part.contains("\"nsfw\":true")) {
@@ -153,10 +158,8 @@ public class ImgurConnecter {
 			BufferedImage BI = ImageIO.read(image);
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			image.delete();
 			image.deleteOnExit();
@@ -175,10 +178,8 @@ public class ImgurConnecter {
 			image.delete();
 			image.deleteOnExit();
 		} catch (DbxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -215,10 +216,8 @@ public class ImgurConnecter {
 
 			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -261,10 +260,8 @@ public class ImgurConnecter {
 			split = output.split(",");
 
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return split;
