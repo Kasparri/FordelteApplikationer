@@ -29,9 +29,11 @@ import com.dropbox.core.DbxWriteMode;
 
 public class ImgurConnecter {
 	public static void main(String[] args) {
-		//System.out.println(uploadToImgur(Main.path + "default.jpg"));
-//		String image = "http://i.imgur.com/oEEdar9.jpg";
-//		downloadFromImgur(image);
+
+		// Uploads an image and returns the link to the image on imgur
+		// System.out.println(uploadToImgur(Main.path + "82wtUgg.jpg"));
+		String image = "http://i.imgur.com/eDgsWZa.gifv";
+		downloadFromImgur(image);
 
 		// Den kan hente alle billeder fra et tag og komme tilbage med deres
 		// links
@@ -44,7 +46,7 @@ public class ImgurConnecter {
 		// System.out.println("collected images");
 		//
 		// Collage.multi(imgfiles);
-		// System.out.println(getInfo("Kwxetau"));
+
 	}
 
 	public static String uploadToImgur(String filepath) {
@@ -52,6 +54,7 @@ public class ImgurConnecter {
 		BufferedImage image = null;
 		URL url;
 		String output = "upload failed";
+		String[] split = null;
 		File file = new File(filepath);
 		// Reading and preparing the image in base64
 		try {
@@ -92,6 +95,16 @@ public class ImgurConnecter {
 			wr.close();
 			rd.close();
 			output = stb.toString();
+
+			// Splitting the string to get the info we want
+			split = output.split(",");
+			for (String part : split) {
+				if (part.contains("link")) {
+					part = part.replace("\\", "");
+					output = (part.substring(8, part.length() - 2));
+
+				}
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,8 +115,23 @@ public class ImgurConnecter {
 
 	public static String downloadFromImgur(String imageURL) {
 		URL url;
-		String name = "";
+		String name = imageURL.substring(19, 30);
 		File image = null;
+		
+		
+		//Checking if the image were about to download is animated or nsfw
+		String[] info = getInfo(name.substring(0, name.length() - 4));
+		for (String part : info) {
+			if (part.contains("\"nsfw\":true")) {
+				System.out.println(part);
+				return "default.jpg";
+			}
+			if (part.contains("\"animated\":true")) {
+				System.out.println(part);
+				return "default.jpg";
+			}
+		}
+
 		try {
 			url = new URL(imageURL);
 			InputStream inStream = new BufferedInputStream(url.openStream());
@@ -116,7 +144,6 @@ public class ImgurConnecter {
 			outStream.close();
 			inStream.close();
 			byte[] result = outStream.toByteArray();
-			name = imageURL.substring(19, 30);
 			FileOutputStream fileStream = new FileOutputStream(Main.path + name);
 			fileStream.write(result);
 			fileStream.close();
@@ -132,9 +159,10 @@ public class ImgurConnecter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			image.delete();
+			image.deleteOnExit();
 			return "default.jpg";
 		}
-		
+
 		// Uploading the file to dropbox
 		try {
 			FileInputStream inputStream = new FileInputStream(image);
@@ -153,13 +181,12 @@ public class ImgurConnecter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		return name;
 
 	}
 
-	public static List<String> getImgByTag(String tagURL) {
+	public static List<String> getImgsFromSite(String tagURL) {
 		InputStream input;
 		List<String> srcs = null;
 		try {
@@ -198,9 +225,10 @@ public class ImgurConnecter {
 		return srcs;
 	}
 
-	public static String getInfo(String imageID) {
+	public static String[] getInfo(String imageID) {
 		URL url;
 		String output = "Failed to get the info";
+		String[] split = null;
 		try {
 			// Setting up the connection
 
@@ -228,6 +256,10 @@ public class ImgurConnecter {
 			}
 			rd.close();
 			output = stb.toString();
+
+			// Splitting the string to get the info we want
+			split = output.split(",");
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -235,7 +267,7 @@ public class ImgurConnecter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return output;
+		return split;
 
 	}
 }
