@@ -44,15 +44,15 @@ public class Main {
 		Template t1;
 		Template t2;
 
-		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
-		List<String> imgfiles = new ArrayList<String>();
-		for (String img : images) {
-			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-		}
-		System.out.println("collected images");
-
-		String image = "http://i.imgur.com/0IDhAcc.jpg";
-		ImgurConnecter.downloadFromImgur(image);
+//		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
+//		List<String> imgfiles = new ArrayList<String>();
+//		for (String img : images) {
+//			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+//		}
+//		System.out.println("collected images");
+//
+//		String image = "http://i.imgur.com/0IDhAcc.jpg";
+//		ImgurConnecter.downloadFromImgur(image);
 
 		// Main loop that processes files in the shared space
 		while (true) {
@@ -142,13 +142,27 @@ public class Main {
 				// fetches the fromPath and toPath from the move.txt text file
 				String[] paths = fetchMovePaths(textpath, child);
 				System.out.println("Moving the file at placement: '" + paths[0] + "', to: '" + paths[1] + "'");
-				client.move(paths[0], paths[1]);
-				System.out.println("Deleting the command file 'move.txt'");
-				delete(child);
+				try {
+					client.move(paths[0], paths[1]);
+					System.out.println("Deleting the command file 'move.txt'");
+					delete(child);
+				} catch (DbxException e) {
+					e.printStackTrace();
+					System.out.println("Invalid path/s");
+					System.out.println("Moving the text file to the invalid folder");
+					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
+					System.out.println("Moving on to the next command");
+					continue;
+				}
+				
 				break;
 
 			case "delete.txt":
 				DbxEntry deletefile = fetchDeleteOrUpload(textpath, child);
+				if (deletefile == null){
+					System.out.println("Moving on to the next command");
+					continue;
+				}
 				System.out.println("Deleting the file: '" + deletefile.name + "', at placement: '" + deletefile.path
 						+ "'");
 				delete(deletefile);
@@ -158,6 +172,10 @@ public class Main {
 
 			case "upload.txt":
 				DbxEntry uploadfile = fetchDeleteOrUpload(textpath, child);
+				if (uploadfile == null){
+					System.out.println("Moving on to the next command");
+					continue;
+				}
 				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
 						+ "'");
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -183,7 +201,6 @@ public class Main {
 
 	}
 
-	// return amount of files in the picture folder
 	public static int pictureAmount() {
 		String path = "/space/collage/pics";
 		try {
@@ -194,7 +211,6 @@ public class Main {
 		}
 	}
 
-	// whether or not a file is either a .png, .jpg or .jpeg file
 	private static boolean isPicture(String s) {
 		if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG") || s.equals("png") || s.equals("jpg")
 				|| s.equals("jpeg")) {
@@ -203,7 +219,6 @@ public class Main {
 		return false;
 	}
 
-	// whether or not a file is a .txt file
 	private static boolean isText(String s) {
 		if (s.equals("txt") || s.equals("TXT")) {
 			return true;
@@ -220,7 +235,6 @@ public class Main {
 	}
 
 	private static ArrayList<String> readCreateCommand(String path, DbxEntry child) {
-
 		try {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			client.getFile(path + "/" + child.name, null, out);
@@ -258,8 +272,17 @@ public class Main {
 			out.close();
 			sc.close();
 			DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
-			// the file to be deleted or uploaded is returned
-			return file;
+			if (file == null) {
+				System.out.println("Invalid filename or path");
+				System.out.println("Moving the text file to the invalid folder");
+				client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
+				return null;
+			} else {
+				// the file to be deleted or uploaded is returned
+				return file;
+			}
+			
+			
 		} catch (DbxException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
