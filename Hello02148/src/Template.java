@@ -1,5 +1,7 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -116,10 +118,30 @@ public class Template {
 						fos.write(bytes);
 						fos.close();
 						imgfiles.add(child.name);
-						
 					}
 					System.out.println("Begin collaging \n");
 					Collage.multi(imgfiles,"CollageIMGUR.jpg");
+					
+					//Uploading the finished collage to dropbox
+					
+					File collage = new File(Dropbox.path + "CollageIMGUR.jpg");
+					try {
+						FileInputStream inputStream = new FileInputStream(collage);
+						DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
+								"/space/collage/collage/" + name, DbxWriteMode.add(),
+								collage.length(), inputStream);
+
+						System.out.println("Uploaded: " + uploadedFile.toString());
+						inputStream.close();
+					} catch (DbxException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					//Uploading the finished collage to imgur
+					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.path + "CollageIMGUR.jpg"));
+					collage.delete();
 				}
 				i++;
 				Thread.sleep(1000);
