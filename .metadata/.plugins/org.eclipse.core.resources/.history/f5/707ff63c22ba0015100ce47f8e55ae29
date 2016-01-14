@@ -1,0 +1,45 @@
+import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxEntry;
+import com.dropbox.core.DbxException;
+
+public class Template2point0 {
+
+	String path;
+	String name;
+	String ext;
+	byte[] content;
+	String type;
+
+	public Template2point0(String path) {
+		this.path = path;
+		this.name = null;
+		this.ext = null;
+		this.content = null;
+		this.type = null;
+	}
+
+	public void get(DbxClient client) throws DbxException {
+		DbxEntry.WithChildren listing;
+		String name_aux = name;
+		String ext_aux = ext;
+
+		while (true) {
+			listing = client.getMetadataWithChildren(path);
+			for (DbxEntry child : listing.children) {
+				int j = child.name.lastIndexOf('.');
+				if (j == -1) {
+					continue;
+				}
+				name_aux = child.name.substring(0, j);
+				j = child.name.lastIndexOf('.');
+				if (j == -1) {
+					continue;
+				}
+				type = child.name.substring(j + 1);
+				ext_aux = type;
+
+			}
+		}
+	}
+
+}

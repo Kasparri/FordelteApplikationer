@@ -1,0 +1,79 @@
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxEntry;
+import com.dropbox.core.DbxException;
+
+public class Template2point0 {
+
+	String path;
+	String name;
+	String ext;
+	byte[] content;
+
+	public Template2point0(String path) {
+		this.path = path;
+		this.name = null;
+		this.ext = null;
+		this.content = null;
+	}
+
+	public void get(DbxClient client) throws DbxException, IOException {
+		DbxEntry.WithChildren listing;
+
+		while (true) {
+			listing = client.getMetadataWithChildren(path);
+			for (DbxEntry child : listing.children) {
+
+				int j = child.name.lastIndexOf('.');
+				if (j == -1) {
+					continue;
+				}
+				this.name = child.name.substring(0, j);
+				this.ext = child.name.substring(j + 1);
+
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				client.getFile(child.path, null, out);
+				content = out.toByteArray();
+				out.close();
+
+				if (isPicture(this.ext)) {
+					client.move(this.path, this.path + "/" + "pics");
+					System.out.println("Putting the file in the 'picture' subfolder");
+				} else if (isText(this.ext)) {
+					client.move(this.path, this.path + "/" + "text");
+					System.out.println("Putting the file in the 'text' subfolder");
+				} else {
+
+				}
+
+				return;
+
+			}
+
+			System.out.println("Blocking operation (qry/get) was unsucessful, sleeping for a while...");
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+		}
+	}
+
+	private static boolean isPicture(String s) {
+		if (s.equals("PNG") || s.equals("JPG") || s.equals("JPEG") || s.equals("png") || s.equals("jpg")
+				|| s.equals("jpeg")) {
+			return true;
+		}
+		return false;
+	}
+
+	private static boolean isText(String s) {
+		if (s.equals("txt") || s.equals("TXT")) {
+			return true;
+		}
+		return false;
+	}
+
+}

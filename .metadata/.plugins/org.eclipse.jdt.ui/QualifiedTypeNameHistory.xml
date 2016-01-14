@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="com.dropbox.core.DbxClient"/>
+<fullyQualifiedTypeName name="com.dropbox.core.DbxEntry"/>
+<fullyQualifiedTypeName name="com.dropbox.core.DbxEntry.WithChildren"/>
+</qualifiedTypeNameHistroy>

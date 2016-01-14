@@ -1,0 +1,32 @@
+import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxEntry;
+
+
+public class Template2point0 {
+	
+	String path;
+	String name;
+	String ext;
+	byte[] content;
+	String type;
+	
+	public Template2point0() {
+		this.path = null;
+		this.name = null;
+		this.ext = null;
+		this.content = null;
+		this.type = null;
+	}
+	
+	public void get(DbxClient client) {
+		DbxEntry.WithChildren;
+		String name_aux = name;
+		String ext_aux = ext;
+		
+		while (true) {
+			listing = client.getMetadataWithChildren(path);
+		}
+	}
+	
+
+}
