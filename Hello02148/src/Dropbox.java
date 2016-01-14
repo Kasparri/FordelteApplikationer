@@ -22,7 +22,7 @@ public class Dropbox {
 	static DbxRequestConfig config;
 	static DbxClient client;
 	static String path = "./images/";
-
+	
 	public static void main(String[] args) throws IOException, DbxException {
 
 		// Get your app key and secret from the Dropbox developers website and
@@ -44,15 +44,15 @@ public class Dropbox {
 		Template t1;
 		Template t2;
 
-		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
-		List<String> imgfiles = new ArrayList<String>();
-		for (String img : images) {
-			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-		}
-		System.out.println("collected images");
-
-		String image = "http://i.imgur.com/0IDhAcc.jpg";
-		ImgurConnecter.downloadFromImgur(image);
+//		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
+//		List<String> imgfiles = new ArrayList<String>();
+//		for (String img : images) {
+//			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+//		}
+//		System.out.println("collected images");
+//
+//		String image = "http://i.imgur.com/0IDhAcc.jpg";
+//		ImgurConnecter.downloadFromImgur(image);
 
 		// Main loop that processes files in the shared space
 		while (true) {
@@ -67,10 +67,10 @@ public class Dropbox {
 			// folder
 			if (isPicture(t1.type)) {
 				t2 = new Template(space + "/pics/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'picture' subfolder");
+				System.out.println("Putting the file in the 'picture' subfolder...");
 			} else if (isText(t1.type)) {
 				t2 = new Template(space + "/text/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'text' subfolder");
+				System.out.println("Putting the file in the 'text' subfolder...");
 			} else {
 				t2 = new Template(space + "/others/", t1.name, t1.ext, t1.content);
 				System.out.println("Putting the file in the 'others' subfolder...");
@@ -168,10 +168,10 @@ public class Dropbox {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				client.getFile(uploadfile.path, null, out);
 				byte[] fileArray = out.toByteArray();
-				FileOutputStream fos = new FileOutputStream(Dropbox.path + uploadfile.name);
+				FileOutputStream fos = new FileOutputStream(path + uploadfile.name);
 				fos.write(fileArray);
 				fos.close();
-				System.out.println(ImgurConnecter.uploadToImgur(Dropbox.path + uploadfile.name));
+				System.out.println(ImgurConnecter.uploadToImgur(path + uploadfile.name));
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
 				break;
