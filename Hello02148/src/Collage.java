@@ -21,17 +21,15 @@ public class Collage {
 
 		String name;
 
-		
 		while (imgfiles.size() > 1) {
-			
-			if (imgfiles.size() <= 5){
+
+			if (imgfiles.size() <= 5) {
 				name = n;
-			}
-			else {
+			} else {
 				name = "collage" + counter + ".jpg";
 				counter++;
 			}
-			
+
 			switch (imgfiles.size()) {
 			case 2:
 				try {
@@ -46,8 +44,6 @@ public class Collage {
 				break;
 			case 3:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
-							imgfiles.get(2));
 					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -60,10 +56,8 @@ public class Collage {
 				break;
 			case 5:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
-							imgfiles.get(2), imgfiles.get(3), imgfiles.get(4));
-					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
-							imgfiles.get(4), name);
+					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), imgfiles.get(4),
+							name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -77,8 +71,6 @@ public class Collage {
 				break;
 			default:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
-							imgfiles.get(2), imgfiles.get(3));
 					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -106,10 +98,8 @@ public class Collage {
 		BufferedImage temp = ImageIO.read(imgFiles);
 		BufferedImage tempImg = new BufferedImage(widthh, heightt, type);
 		Graphics2D g = tempImg.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g.drawImage(temp, 0, 0, widthh, heightt, 0, 0, temp.getWidth(),
-				temp.getHeight(), null);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(temp, 0, 0, widthh, heightt, 0, 0, temp.getWidth(), temp.getHeight(), null);
 		BufferedImage buffImage = tempImg;
 		g.dispose();
 
@@ -136,10 +126,8 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, heightt, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, heightt, 0, 0, temp.getWidth(),
-					temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, heightt, 0, 0, temp.getWidth(), temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -174,10 +162,8 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, height, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(),
-					temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -211,10 +197,8 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, height, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(),
-					temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -225,8 +209,7 @@ public class Collage {
 		int num = 0;
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
-				finalImg.createGraphics().drawImage(buffImage[num], width * i,
-						height * j, null);
+				finalImg.createGraphics().drawImage(buffImage[num], width * i, height * j, null);
 				num++;
 			}
 		}
@@ -253,10 +236,8 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, height, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(),
-					temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -267,13 +248,11 @@ public class Collage {
 		int num = 0;
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
-				finalImg.createGraphics().drawImage(buffImage[num], width * j,
-						height * i, null);
+				finalImg.createGraphics().drawImage(buffImage[num], width * j, height * i, null);
 				num++;
 			}
 		}
-		finalImg.createGraphics().drawImage(buffImage[num], width / 2,
-				height / 2, null);
+		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
 
 		// nameing the file
 		return path(finalImg, name);
