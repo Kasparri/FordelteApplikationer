@@ -20,8 +20,6 @@ public class Collage {
 	static void multi(List<String> imgfiles, String n) {
 
 		String name;
-		List<String> deleteList = imgfiles;
-
 		while (imgfiles.size() > 1) {
 
 			if (imgfiles.size() <= 5) {
