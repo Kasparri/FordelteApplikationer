@@ -46,10 +46,12 @@ public class Template {
 		String name_aux = name;
 		String ext_aux = ext;
 
+		String[] tags ={"http://imgur.com/t/pixelart","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
 		List<String> images = ImgurConnecter
-				.getImgsFromSite("http://imgur.com/t/pixelart");
+				.getImgsFromSite("http://imgur.com/t/nsfw");
 		List<String> imgfiles = new ArrayList<String>();
 		int i = 0;
+		int k = 0;
 
 		// Repeat until one file/tuple is found
 		while (true) {
@@ -96,22 +98,27 @@ public class Template {
 				}
 				if (i == images.size() - 1) {
 					System.out.println("collected images");
-				}
-				if (Dropbox.pictureAmount() >= 16) {
-					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
+					i=0;
+					images = ImgurConnecter
+							.getImgsFromSite(tags[k]);
+					k++;
 					
-					for ( DbxEntry child : imagesdbx.children )  {
-						ByteArrayOutputStream out = new ByteArrayOutputStream();
-						client.getFile(child.path, null, out);
-						byte[] bytes = out.toByteArray();
-						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
-						fos.write(bytes);
-						fos.close();
-						imgfiles.add(Dropbox.path + child.name);
-						
-					}
-					Collage.multi(imgfiles, Dropbox.path + "CollageFUCKINGFIXED.jpg");
 				}
+//				if (Dropbox.pictureAmount() >= 16) {
+//					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
+//					
+//					for ( DbxEntry child : imagesdbx.children )  {
+//						ByteArrayOutputStream out = new ByteArrayOutputStream();
+//						client.getFile(child.path, null, out);
+//						byte[] bytes = out.toByteArray();
+//						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
+//						fos.write(bytes);
+//						fos.close();
+//						imgfiles.add(Dropbox.path + child.name);
+//						
+//					}
+//					Collage.multi(imgfiles, Dropbox.path + "CollageFUCKINGFIXED.jpg");
+//				}
 				i++;
 				Thread.sleep(1000);
 
