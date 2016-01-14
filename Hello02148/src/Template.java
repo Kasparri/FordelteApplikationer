@@ -21,12 +21,12 @@ public class Template {
 	byte[] content; // File content (as byte array)
 	String type;
 	//Preloading the variables for imgur
-	String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
-	List<String> images = ImgurConnecter
+	static String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
+	static List<String> images = ImgurConnecter
 			.getImgsFromSite("http://imgur.com/t/earthporn");
-	List<String> imgfiles = new ArrayList<String>();
-	int i = 0;
-	int k = 0;
+	static List<String> imgfiles = new ArrayList<String>();
+	static int i = 0;
+	static int k = 0;
 
 	public Template(String p, String n, String e, byte[] c) {
 		this.path = p;
