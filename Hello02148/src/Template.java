@@ -46,9 +46,9 @@ public class Template {
 		String name_aux = name;
 		String ext_aux = ext;
 
-		String[] tags ={"http://imgur.com/t/pixelart","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
+		String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
 		List<String> images = ImgurConnecter
-				.getImgsFromSite("http://imgur.com/t/nsfw");
+				.getImgsFromSite("http://imgur.com/t/pixelart");
 		List<String> imgfiles = new ArrayList<String>();
 		int i = 0;
 		int k = 0;
@@ -91,34 +91,36 @@ public class Template {
 			// We hence insert a delay of 10 seconds to minimise unsucessful
 			// checks
 			System.out
-					.println("Blocking operation (qry/get) was unsucessful, sleeping for a while...");
+					.println("Blocking operation (qry/get) was unsucessful, downloading an image...");
 			try {
 				if (i < images.size()) {
+					System.out.println("Downloading an image then uploading to dropbox");
 					ImgurConnecter.downloadFromImgur(images.get(i));
 				}
 				if (i == images.size() - 1) {
-					System.out.println("collected images");
+					System.out.println("collected images, switching tag");
 					i=0;
 					images = ImgurConnecter
 							.getImgsFromSite(tags[k]);
 					k++;
 					
 				}
-//				if (Dropbox.pictureAmount() >= 16) {
-//					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
-//					
-//					for ( DbxEntry child : imagesdbx.children )  {
-//						ByteArrayOutputStream out = new ByteArrayOutputStream();
-//						client.getFile(child.path, null, out);
-//						byte[] bytes = out.toByteArray();
-//						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
-//						fos.write(bytes);
-//						fos.close();
-//						imgfiles.add(Dropbox.path + child.name);
-//						
-//					}
-//					Collage.multi(imgfiles, Dropbox.path + "CollageFUCKINGFIXED.jpg");
-//				}
+				if (Dropbox.pictureAmount() >= 16) {
+					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
+					System.out.println("Downloading images from dropbox");
+					for ( DbxEntry child : imagesdbx.children )  {
+						ByteArrayOutputStream out = new ByteArrayOutputStream();
+						client.getFile(child.path, null, out);
+						byte[] bytes = out.toByteArray();
+						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
+						fos.write(bytes);
+						fos.close();
+						imgfiles.add(Dropbox.path + child.name);
+						
+					}
+					System.out.println("Begin collaging");
+					Collage.multi(imgfiles,"CollageIMGUR.jpg");
+				}
 				i++;
 				Thread.sleep(1000);
 
