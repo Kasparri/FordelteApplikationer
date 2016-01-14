@@ -31,30 +31,6 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 
 public class ImgurConnecter {
-	public static void main(String[] args) {
-
-		// Uploads an image and returns the link to the image on imgur
-		// System.out.println(uploadToImgur(Dropbox.path + "82wtUgg.jpg"));
-
-		// Downloads an image specified by the url provided in the string image
-		// String image = "http://i.imgur.com/eDgsWZa.gifv";
-		// downloadFromImgur(image);
-
-		// Downloads all images by the tag specified in the string used by
-		// getImgsFromSite method
-		// Then makes a collage of the images it has downloaded
-		// List<String> images = getImgsFromSite("http://imgur.com/t/archer");
-		// List<String> imgfiles = new ArrayList<String>();
-		// for (String img : images) {
-		// imgfiles.add(downloadFromImgur(img));
-		// }
-		//
-		// System.out.println("collected images");
-		//
-		// Collage.multi(imgfiles);
-
-		// Attempts to authorize us as our user on imgur
-	}
 
 	public static String uploadToImgur(String filepath) {
 

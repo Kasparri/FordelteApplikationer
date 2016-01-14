@@ -100,23 +100,23 @@ public class Dropbox {
 				System.out.println(data);
 
 				// collage code here
-				Collage.finalname = data.get(0);
+				String collageName = data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
 					client.getFile("/space/collage/pics/" + data.get(i), null, out);
 					byte[] fileArray = out.toByteArray();
-					String newpath = path + data.get(i);
+					String newpath = data.get(i);
 					FileOutputStream fos = new FileOutputStream(newpath);
 					fos.write(fileArray);
 					fos.close();
 					data.set(i, newpath);
 				}
-				Collage.multi(data);
-				System.out.println("path: " + path + Collage.name);
-				File collage = new File(path + Collage.name);
+				Collage.multi(data, collageName);
+				System.out.println("path: " + path + collageName);
+				File collage = new File(path + collageName);
 				FileInputStream inputStream = new FileInputStream(collage);
-				DbxEntry.File uploadedFile = Dropbox.client.uploadFile("/space/collage/collages/" + Collage.name,
+				DbxEntry.File uploadedFile = Dropbox.client.uploadFile("/space/collage/collages/" + collageName,
 						DbxWriteMode.add(), collage.length(), inputStream);
 				System.out.println("Uploaded: " + uploadedFile.toString());
 				inputStream.close();
@@ -189,7 +189,7 @@ public class Dropbox {
 	}
 
 	public static int pictureAmount() {
-		String path = "/space/collage/pics";
+		String path = "/space/collage/imgur";
 		try {
 			return client.getMetadataWithChildren(path).children.size();
 		} catch (DbxException e) {

@@ -1,6 +1,10 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
@@ -36,10 +40,18 @@ public class Template {
 	}
 
 	// Auxiliary function that implements the both qry() and get()
-	public void read(DbxClient client, boolean delete) throws DbxException, IOException {
+	public void read(DbxClient client, boolean delete) throws DbxException,
+			IOException {
 		DbxEntry.WithChildren listing;
 		String name_aux = name;
 		String ext_aux = ext;
+
+		String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
+		List<String> images = ImgurConnecter
+				.getImgsFromSite("http://imgur.com/t/pixelart");
+		List<String> imgfiles = new ArrayList<String>();
+		int i = 0;
+		int k = 0;
 
 		// Repeat until one file/tuple is found
 		while (true) {
@@ -78,9 +90,40 @@ public class Template {
 			// Simple implementation based on busy-wait
 			// We hence insert a delay of 10 seconds to minimise unsucessful
 			// checks
-			System.out.println("Blocking operation (qry/get) was unsucessful, sleeping for a while...");
+			System.out
+					.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
 			try {
-				Thread.sleep(10000);
+				if (i < images.size()) {
+					System.out.println("Downloading an image then uploading to dropbox \n");
+					ImgurConnecter.downloadFromImgur(images.get(i));
+				}
+				if (i == images.size() - 1) {
+					System.out.println("collected images, switching tag \n");
+					i=0;
+					images = ImgurConnecter
+							.getImgsFromSite(tags[k]);
+					k++;
+					
+				}
+				if (Dropbox.pictureAmount() >= 16) {
+					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
+					System.out.println("Downloading images from dropbox \n");
+					for ( DbxEntry child : imagesdbx.children )  {
+						ByteArrayOutputStream out = new ByteArrayOutputStream();
+						client.getFile(child.path, null, out);
+						byte[] bytes = out.toByteArray();
+						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
+						fos.write(bytes);
+						fos.close();
+						imgfiles.add(child.name);
+						
+					}
+					System.out.println("Begin collaging \n");
+					Collage.multi(imgfiles,"CollageIMGUR.jpg");
+				}
+				i++;
+				Thread.sleep(1000);
+
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
