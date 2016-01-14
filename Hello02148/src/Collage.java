@@ -72,7 +72,6 @@ public class Collage {
 				break;
 			default:
 				try {
-					System.out.println("First image path="+ imgfiles.get(0) + " \n Second image path=" + imgfiles.get(1) + " \n Third image path=" + imgfiles.get(2) + " \n Fourth image path=" + imgfiles.get(3) + " \n Name=" + name);
 					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);

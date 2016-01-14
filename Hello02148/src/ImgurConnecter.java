@@ -152,7 +152,6 @@ public class ImgurConnecter {
 			System.out.println("Uploaded: " + uploadedFile.toString());
 			inputStream.close();
 			image.delete();
-			image.deleteOnExit();
 		} catch (DbxException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
