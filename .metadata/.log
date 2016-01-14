@@ -1871,3 +1871,6 @@ Hello02148/src/Dropbox.java
 
 !ENTRY org.infinitest.eclipse 1 0 2016-01-14 14:38:16.522
 !MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 14:38:59.373
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]

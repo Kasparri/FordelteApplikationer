@@ -1,0 +1,57 @@
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxEntry;
+import com.dropbox.core.DbxException;
+
+public class Template2point0 {
+
+	String path;
+	String name;
+	String ext;
+	byte[] content;
+	String type;
+
+	public Template2point0(String path) {
+		this.path = path;
+		this.name = null;
+		this.ext = null;
+		this.content = null;
+		this.type = null;
+	}
+
+	public void get(DbxClient client) throws DbxException, IOException {
+		DbxEntry.WithChildren listing;
+
+		while (true) {
+			listing = client.getMetadataWithChildren(path);
+			for (DbxEntry child : listing.children) {
+				int j = child.name.lastIndexOf('.');
+				if (j == -1) {
+					continue;
+				}
+				this.name = child.name.substring(0, j);
+				j = child.name.lastIndexOf('.');
+				if (j == -1) {
+					continue;
+				}
+				type = child.name.substring(j + 1);
+				this.ext = type;
+
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				client.getFile(child.path, null, out);
+				content = out.toByteArray();
+				out.close();
+
+				
+				
+				
+				
+				return;
+
+			}
+		}
+	}
+
+}
