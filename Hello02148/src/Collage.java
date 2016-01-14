@@ -21,8 +21,6 @@ public class Collage {
 	// multi
 	static String multi(List<String> imgfiles) {
 
-		
-
 		while (imgfiles.size() > 1) {
 			switch (imgfiles.size()) {
 			case 2:
@@ -39,7 +37,8 @@ public class Collage {
 				break;
 			case 3:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
+							imgfiles.get(2));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -52,8 +51,8 @@ public class Collage {
 				break;
 			case 5:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
-							imgfiles.get(4));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
+							imgfiles.get(2), imgfiles.get(3), imgfiles.get(4));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -67,7 +66,8 @@ public class Collage {
 				break;
 			default:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3));
+					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
+							imgfiles.get(2), imgfiles.get(3));
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -88,8 +88,9 @@ public class Collage {
 			if (oldfile.renameTo(newfile)) {
 				System.out.println("The collage was named: " + finalname);
 			} else {
-				System.out.println("A file with the name " + finalname + " already exist. The collage was named "
-						+ name + " instead.");
+				System.out.println("A file with the name " + finalname
+						+ " already exist. The collage was named " + name
+						+ " instead.");
 			}
 		}
 		name = finalname;
@@ -108,8 +109,10 @@ public class Collage {
 		BufferedImage temp = ImageIO.read(imgFiles);
 		BufferedImage tempImg = new BufferedImage(widthh, heightt, type);
 		Graphics2D g = tempImg.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g.drawImage(temp, 0, 0, widthh, heightt, 0, 0, temp.getWidth(), temp.getHeight(), null);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(temp, 0, 0, widthh, heightt, 0, 0, temp.getWidth(),
+				temp.getHeight(), null);
 		BufferedImage buffImage = tempImg;
 		g.dispose();
 
@@ -136,8 +139,10 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, heightt, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, heightt, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, heightt, 0, 0, temp.getWidth(),
+					temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -153,7 +158,8 @@ public class Collage {
 	}
 
 	// three
-	static String collage(String im0, String im1, String im2) throws IOException {
+	static String collage(String im0, String im1, String im2)
+			throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[3];
@@ -172,8 +178,10 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, height, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(),
+					temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -191,7 +199,8 @@ public class Collage {
 	}
 
 	// four
-	static String collage(String im0, String im1, String im2, String im3) throws IOException {
+	static String collage(String im0, String im1, String im2, String im3)
+			throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[4];
@@ -207,8 +216,10 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, height, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(),
+					temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -219,7 +230,8 @@ public class Collage {
 		int num = 0;
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
-				finalImg.createGraphics().drawImage(buffImage[num], width * i, height * j, null);
+				finalImg.createGraphics().drawImage(buffImage[num], width * i,
+						height * j, null);
 				num++;
 			}
 		}
@@ -229,7 +241,8 @@ public class Collage {
 	}
 
 	// five
-	static String collage(String im0, String im1, String im2, String im3, String im4) throws IOException {
+	static String collage(String im0, String im1, String im2, String im3,
+			String im4) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[5];
@@ -246,8 +259,10 @@ public class Collage {
 			BufferedImage temp = ImageIO.read(imgFiles[i]);
 			BufferedImage tempImg = new BufferedImage(width, height, type);
 			Graphics2D g = tempImg.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(), temp.getHeight(), null);
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+					RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(temp, 0, 0, width, height, 0, 0, temp.getWidth(),
+					temp.getHeight(), null);
 			buffImage[i] = tempImg;
 			g.dispose();
 		}
@@ -258,11 +273,13 @@ public class Collage {
 		int num = 0;
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
-				finalImg.createGraphics().drawImage(buffImage[num], width * j, height * i, null);
+				finalImg.createGraphics().drawImage(buffImage[num], width * j,
+						height * i, null);
 				num++;
 			}
 		}
-		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
+		finalImg.createGraphics().drawImage(buffImage[num], width / 2,
+				height / 2, null);
 
 		// nameing the file
 		return path(finalImg);

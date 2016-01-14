@@ -44,15 +44,15 @@ public class Dropbox {
 		Template t1;
 		Template t2;
 
-		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
-		List<String> imgfiles = new ArrayList<String>();
-		for (String img : images) {
-			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-		}
-		System.out.println("collected images");
-
-		String image = "http://i.imgur.com/0IDhAcc.jpg";
-		ImgurConnecter.downloadFromImgur(image);
+//		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
+//		List<String> imgfiles = new ArrayList<String>();
+//		for (String img : images) {
+//			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
+//		}
+//		System.out.println("collected images");
+//
+//		String image = "http://i.imgur.com/0IDhAcc.jpg";
+//		ImgurConnecter.downloadFromImgur(image);
 
 		// Main loop that processes files in the shared space
 		while (true) {
@@ -189,7 +189,7 @@ public class Dropbox {
 	}
 
 	public static int pictureAmount() {
-		String path = "/space/collage/pics";
+		String path = "/space/collage/imgur";
 		try {
 			return client.getMetadataWithChildren(path).children.size();
 		} catch (DbxException e) {
