@@ -2,7 +2,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,12 +110,7 @@ public class Template {
 					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
 					System.out.println("Downloading images from dropbox \n");
 					for ( DbxEntry child : imagesdbx.children )  {
-						ByteArrayOutputStream out = new ByteArrayOutputStream();
-						client.getFile(child.path, null, out);
-						byte[] bytes = out.toByteArray();
-						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
-						fos.write(bytes);
-						fos.close();
+						Dropbox.downloadFromDropbox(child.path, child.name);
 						imgfiles.add(child.name);
 					}
 					System.out.println("Begin collaging \n");

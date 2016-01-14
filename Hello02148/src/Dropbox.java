@@ -99,17 +99,11 @@ public class Dropbox {
 				List<String> data = readCreateCommand(textpath, child);
 				System.out.println(data);
 
-				// collage code here
 				String collageName = data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
-					ByteArrayOutputStream out = new ByteArrayOutputStream();
-					client.getFile("/space/collage/pics/" + data.get(i), null, out);
-					byte[] fileArray = out.toByteArray();
+					downloadFromDropbox("/space/collage/pics/" + data.get(i), data.get(i));
 					String newpath = data.get(i);
-					FileOutputStream fos = new FileOutputStream(newpath);
-					fos.write(fileArray);
-					fos.close();
 					data.set(i, newpath);
 				}
 				Collage.multi(data, collageName);
@@ -165,12 +159,7 @@ public class Dropbox {
 				}
 				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
 						+ "'");
-				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				client.getFile(uploadfile.path, null, out);
-				byte[] fileArray = out.toByteArray();
-				FileOutputStream fos = new FileOutputStream(path + uploadfile.name);
-				fos.write(fileArray);
-				fos.close();
+				downloadFromDropbox(uploadfile.path, uploadfile.name);
 				System.out.println(ImgurConnecter.uploadToImgur(path + uploadfile.name));
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
@@ -282,6 +271,22 @@ public class Dropbox {
 		}
 		Scanner sc = new Scanner(out.toString());
 		return sc;
+	}
+	
+	public static void downloadFromDropbox(String childPath, String childName) {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		try {
+			client.getFile(childPath, null, out);
+			byte[] fileArray = out.toByteArray();
+			FileOutputStream fos = new FileOutputStream(path + childName);
+			fos.write(fileArray);
+			fos.close();
+		} catch (DbxException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
