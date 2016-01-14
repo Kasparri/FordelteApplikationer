@@ -91,14 +91,14 @@ public class Template {
 			// We hence insert a delay of 10 seconds to minimise unsucessful
 			// checks
 			System.out
-					.println("Blocking operation (qry/get) was unsucessful, downloading an image...");
+					.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
 			try {
 				if (i < images.size()) {
-					System.out.println("Downloading an image then uploading to dropbox");
+					System.out.println("Downloading an image then uploading to dropbox \n");
 					ImgurConnecter.downloadFromImgur(images.get(i));
 				}
 				if (i == images.size() - 1) {
-					System.out.println("collected images, switching tag");
+					System.out.println("collected images, switching tag \n");
 					i=0;
 					images = ImgurConnecter
 							.getImgsFromSite(tags[k]);
@@ -107,7 +107,7 @@ public class Template {
 				}
 				if (Dropbox.pictureAmount() >= 16) {
 					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
-					System.out.println("Downloading images from dropbox");
+					System.out.println("Downloading images from dropbox \n");
 					for ( DbxEntry child : imagesdbx.children )  {
 						ByteArrayOutputStream out = new ByteArrayOutputStream();
 						client.getFile(child.path, null, out);
@@ -118,7 +118,7 @@ public class Template {
 						imgfiles.add(Dropbox.path + child.name);
 						
 					}
-					System.out.println("Begin collaging");
+					System.out.println("Begin collaging \n");
 					Collage.multi(imgfiles,"CollageIMGUR.jpg");
 				}
 				i++;
