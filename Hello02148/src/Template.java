@@ -142,6 +142,12 @@ public class Template {
 					//Uploading the finished collage to imgur
 					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.path + "CollageIMGUR.jpg"));
 					collage.delete();
+					DbxEntry.WithChildren imgurPictures;
+					imgurPictures = client.getMetadataWithChildren("/space/collage/imgur");
+					for (DbxEntry child : imgurPictures.children){
+						client.delete(child.path);
+					}
+					
 				}
 				i++;
 				Thread.sleep(1000);
