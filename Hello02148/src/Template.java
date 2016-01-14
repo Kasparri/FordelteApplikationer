@@ -128,7 +128,7 @@ public class Template {
 					try {
 						FileInputStream inputStream = new FileInputStream(collage);
 						DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
-								"/space/collage/collages/" + name, DbxWriteMode.add(),
+								"/space/collage/collages/" + "CollageIMGUR.jpg", DbxWriteMode.add(),
 								collage.length(), inputStream);
 
 						System.out.println("Uploaded: " + uploadedFile.toString());
