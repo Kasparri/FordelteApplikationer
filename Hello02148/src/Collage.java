@@ -17,16 +17,17 @@ public class Collage {
 	static int type = 1;
 
 	// multi
-	static String multi(List<String> imgfiles, String n) {
+	static void multi(List<String> imgfiles, String n) {
 
 		String name;
+		List<String> deleteList = imgfiles;
 
 		while (imgfiles.size() > 1) {
 
 			if (imgfiles.size() <= 5) {
 				name = n;
 			} else {
-				name = "collage" + counter + ".jpg";
+				name = Dropbox.path + "collage" + counter + ".jpg";
 				counter++;
 			}
 
@@ -84,7 +85,10 @@ public class Collage {
 			}
 		}
 		System.out.println("done collaging");
-		return null;
+		for (String img : deleteList) {
+			File imgfile = new File(img);
+			imgfile.delete();
+		}
 	}
 
 	// one

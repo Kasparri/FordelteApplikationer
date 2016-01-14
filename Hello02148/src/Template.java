@@ -47,7 +47,7 @@ public class Template {
 		String ext_aux = ext;
 
 		List<String> images = ImgurConnecter
-				.getImgsFromSite("http://imgur.com/t/selfie");
+				.getImgsFromSite("http://imgur.com/t/pixelart");
 		List<String> imgfiles = new ArrayList<String>();
 		int i = 0;
 
