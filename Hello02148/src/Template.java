@@ -11,6 +11,8 @@ import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 
+	
+
 public class Template {
 
 	String path; // File folder
@@ -18,6 +20,13 @@ public class Template {
 	String ext; // File extension, "?" denotes any value
 	byte[] content; // File content (as byte array)
 	String type;
+	//Preloading the variables for imgur
+	String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
+	List<String> images = ImgurConnecter
+			.getImgsFromSite("http://imgur.com/t/earthporn");
+	List<String> imgfiles = new ArrayList<String>();
+	int i = 0;
+	int k = 0;
 
 	public Template(String p, String n, String e, byte[] c) {
 		this.path = p;
@@ -46,13 +55,6 @@ public class Template {
 		DbxEntry.WithChildren listing;
 		String name_aux = name;
 		String ext_aux = ext;
-
-		String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
-		List<String> images = ImgurConnecter
-				.getImgsFromSite("http://imgur.com/t/earthporn");
-		List<String> imgfiles = new ArrayList<String>();
-		int i = 0;
-		int k = 0;
 
 		// Repeat until one file/tuple is found
 		while (true) {
@@ -143,15 +145,19 @@ public class Template {
 					for (DbxEntry child : imgurPictures.children){
 						client.delete(child.path);
 					}
+					//Emptying local folder
 					File folder = new File(Dropbox.path);
 					for(File file: folder.listFiles()) { 
 						file.delete();
 					}
 					Dropbox.downloadFromDropbox("/space/collage/pics/default.jpg", "default.jpg");
 					
+					//Emptying the list
+					imgfiles.clear();
+					
 				}
 				i++;
-				Thread.sleep(1000);
+				Thread.sleep(1);
 
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
