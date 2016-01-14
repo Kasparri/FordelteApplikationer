@@ -143,6 +143,11 @@ public class Template {
 					for (DbxEntry child : imgurPictures.children){
 						client.delete(child.path);
 					}
+					File folder = new File(Dropbox.path);
+					for(File file: folder.listFiles()) { 
+						file.delete();
+					}
+					Dropbox.downloadFromDropbox("/space/collage/pics/default.jpg", "default.jpg");
 					
 				}
 				i++;

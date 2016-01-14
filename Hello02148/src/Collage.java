@@ -83,10 +83,6 @@ public class Collage {
 			}
 		}
 		System.out.println("done collaging");
-		File folder = new File(Dropbox.path);
-		for(File file: folder.listFiles()) { 
-			file.delete();
-		}
 	}
 
 	// one
