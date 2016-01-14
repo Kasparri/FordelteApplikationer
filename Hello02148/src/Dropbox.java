@@ -100,7 +100,7 @@ public class Dropbox {
 				System.out.println(data);
 
 				// collage code here
-				Collage.finalname = data.get(0);
+				String collageName = path + data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -112,11 +112,11 @@ public class Dropbox {
 					fos.close();
 					data.set(i, newpath);
 				}
-				Collage.multi(data);
-				System.out.println("path: " + path + Collage.name);
-				File collage = new File(path + Collage.name);
+				Collage.multi(data, collageName);
+				System.out.println("path: " + path + collageName);
+				File collage = new File(path + collageName);
 				FileInputStream inputStream = new FileInputStream(collage);
-				DbxEntry.File uploadedFile = Dropbox.client.uploadFile("/space/collage/collages/" + Collage.name,
+				DbxEntry.File uploadedFile = Dropbox.client.uploadFile("/space/collage/collages/" + collageName,
 						DbxWriteMode.add(), collage.length(), inputStream);
 				System.out.println("Uploaded: " + uploadedFile.toString());
 				inputStream.close();

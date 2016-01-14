@@ -110,7 +110,7 @@ public class Template {
 						imgfiles.add(Dropbox.path + child.name);
 						
 					}
-					Collage.multi(imgfiles);
+					Collage.multi(imgfiles, Dropbox.path + "CollageFUCKINGFIXED.jpg");
 				}
 				i++;
 				Thread.sleep(1000);

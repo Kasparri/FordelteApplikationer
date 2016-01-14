@@ -92,20 +92,6 @@ public class Collage {
 			}
 		}
 		System.out.println("done collaging");
-
-		if (!finalname.equals("")) {
-			File oldfile = new File(Dropbox.path + name);
-			File newfile = new File(Dropbox.path + finalname);
-			if (oldfile.renameTo(newfile)) {
-				System.out.println("The collage was named: " + finalname);
-			} else {
-				System.out.println("A file with the name " + finalname
-						+ " already exist. The collage was named " + name
-						+ " instead.");
-			}
-		}
-		name = finalname;
-		finalname = "";
 		return null;
 	}
 
@@ -169,8 +155,6 @@ public class Collage {
 	}
 
 	// three
-	static String collage(String im0, String im1, String im2)
-			throws IOException {
 	static String collage(String im0, String im1, String im2, String name) throws IOException {
 
 		// fetching image files
@@ -211,8 +195,6 @@ public class Collage {
 	}
 
 	// four
-	static String collage(String im0, String im1, String im2, String im3)
-			throws IOException {
 	static String collage(String im0, String im1, String im2, String im3, String name) throws IOException {
 
 		// fetching image files
@@ -254,8 +236,6 @@ public class Collage {
 	}
 
 	// five
-	static String collage(String im0, String im1, String im2, String im3,
-			String im4) throws IOException {
 	static String collage(String im0, String im1, String im2, String im3, String im4, String name) throws IOException {
 
 		// fetching image files
@@ -301,8 +281,7 @@ public class Collage {
 
 	static String path(BufferedImage image, String name) throws IOException {
 		System.out.println(name + " was created");
-		String path = Dropbox.path + name;
-		ImageIO.write(image, "jpg", new File(path));
+		ImageIO.write(image, "jpg", new File(name));
 		return name;
 	}
 }
