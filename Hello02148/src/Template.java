@@ -50,7 +50,7 @@ public class Template {
 
 		String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
 		List<String> images = ImgurConnecter
-				.getImgsFromSite("http://imgur.com/t/pixelart");
+				.getImgsFromSite("http://imgur.com/t/earthporn");
 		List<String> imgfiles = new ArrayList<String>();
 		int i = 0;
 		int k = 0;
@@ -128,7 +128,7 @@ public class Template {
 					try {
 						FileInputStream inputStream = new FileInputStream(collage);
 						DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
-								"/space/collage/collage/" + name, DbxWriteMode.add(),
+								"/space/collage/collages/" + name, DbxWriteMode.add(),
 								collage.length(), inputStream);
 
 						System.out.println("Uploaded: " + uploadedFile.toString());

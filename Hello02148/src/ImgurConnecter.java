@@ -104,12 +104,21 @@ public class ImgurConnecter {
 		String[] info = getInfo(name.substring(0, name.length() - 4));
 		for (String part : info) {
 			if (part.contains("\"nsfw\":true")) {
-				System.out.println(part);
+				System.out.println("Image was nsfw");
 				return "default.jpg";
 			}
 			if (part.contains("\"animated\":true")) {
-				System.out.println(part);
+				System.out.println("Image was animated");
 				return "default.jpg";
+			}
+			if (part.contains("\"size\":")) {
+				int size = Integer.parseInt(part.substring(7));
+				if (size >= 2500000) {
+					size=size/1000000;
+					System.out.println("Image was too large, size was: " + size + "MB");
+					return "default.jpg";
+				}
+				
 			}
 		}
 
