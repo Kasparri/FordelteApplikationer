@@ -15,23 +15,32 @@ public class Collage {
 	static int height = 255;
 	static int heightt = height * 2;
 	static int type = 1;
-	static String finalname = "";
-	static String name = "";
 
 	// multi
-	static String multi(List<String> imgfiles) {
+	static String multi(List<String> imgfiles, String n) {
 
+		String name;
+
+		
 		while (imgfiles.size() > 1) {
+			
+			if (imgfiles.size() <= 5){
+				name = n;
+			}
+			else {
+				name = "collage" + counter + ".jpg";
+				counter++;
+			}
+			
 			switch (imgfiles.size()) {
 			case 2:
 				try {
-					name = Collage.collage(imgfiles.get(0), imgfiles.get(1));
+					Collage.collage(imgfiles.get(0), imgfiles.get(1), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
@@ -39,13 +48,13 @@ public class Collage {
 				try {
 					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
 							imgfiles.get(2));
+					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
@@ -53,6 +62,8 @@ public class Collage {
 				try {
 					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
 							imgfiles.get(2), imgfiles.get(3), imgfiles.get(4));
+					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
+							imgfiles.get(4), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -68,6 +79,7 @@ public class Collage {
 				try {
 					name = Collage.collage(imgfiles.get(0), imgfiles.get(1),
 							imgfiles.get(2), imgfiles.get(3));
+					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -75,7 +87,6 @@ public class Collage {
 					imgfiles.add(imgfiles.size(), name);
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -99,7 +110,7 @@ public class Collage {
 	}
 
 	// one
-	static String collage(String im0) throws IOException {
+	static String collage(String im0, String name) throws IOException {
 
 		// fetching image files
 		File imgFiles = new File(im0);
@@ -121,11 +132,11 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage, 0, 0, null);
 
 		// nameing the file
-		return path(finalImg);
+		return path(finalImg, name);
 	}
 
 	// two
-	static String collage(String im0, String im1) throws IOException {
+	static String collage(String im0, String im1, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[2];
@@ -154,12 +165,13 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 
 		// nameing the file
-		return path(finalImg);
+		return path(finalImg, name);
 	}
 
 	// three
 	static String collage(String im0, String im1, String im2)
 			throws IOException {
+	static String collage(String im0, String im1, String im2, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[3];
@@ -195,12 +207,13 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[2], 0, height, null);
 
 		// nameing the file
-		return path(finalImg);
+		return path(finalImg, name);
 	}
 
 	// four
 	static String collage(String im0, String im1, String im2, String im3)
 			throws IOException {
+	static String collage(String im0, String im1, String im2, String im3, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[4];
@@ -237,12 +250,13 @@ public class Collage {
 		}
 
 		// nameing the file
-		return path(finalImg);
+		return path(finalImg, name);
 	}
 
 	// five
 	static String collage(String im0, String im1, String im2, String im3,
 			String im4) throws IOException {
+	static String collage(String im0, String im1, String im2, String im3, String im4, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[5];
@@ -282,14 +296,11 @@ public class Collage {
 				height / 2, null);
 
 		// nameing the file
-		return path(finalImg);
+		return path(finalImg, name);
 	}
 
-	static String path(BufferedImage image) throws IOException {
-		String name = "collage" + counter + ".jpg";
-		counter++;
+	static String path(BufferedImage image, String name) throws IOException {
 		System.out.println(name + " was created");
-		// mangler en ordentlig path
 		String path = Dropbox.path + name;
 		ImageIO.write(image, "jpg", new File(path));
 		return name;
