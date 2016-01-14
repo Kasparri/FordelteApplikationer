@@ -15,3 +15,5 @@
 1452693378985	Rename type 'Main'
 1452708405701	Delete elements
 1452765114767	Delete elements
+1452781338310	Rename local variable 'filePath'
+1452781347908	Rename local variable 'fileName'

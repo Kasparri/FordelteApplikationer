@@ -85,9 +85,9 @@ public class Collage {
 			}
 		}
 		System.out.println("done collaging");
-		for (String img : deleteList) {
-			File imgfile = new File(img);
-			imgfile.delete();
+		File folder = new File(Dropbox.path);
+		for(File file: folder.listFiles()) { 
+			file.delete();
 		}
 	}
 
