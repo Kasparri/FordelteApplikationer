@@ -10,9 +10,9 @@ import javax.imageio.ImageIO;
 public class Collage {
 
 	static int counter = 0;
-	static int width = 300;
+	static int width = 960;
 	static int widthh = width * 2;
-	static int height = 255;
+	static int height = 540;
 	static int heightt = height * 2;
 	static int type = 1;
 
