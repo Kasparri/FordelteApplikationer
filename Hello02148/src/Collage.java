@@ -96,7 +96,7 @@ public class Collage {
 	static String collage(String im0, String name) throws IOException {
 
 		// fetching image files
-		File imgFiles = new File(im0);
+		File imgFiles = new File(Dropbox.path + im0);
 
 		// creating a image array from image files
 
@@ -113,7 +113,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage, 0, 0, null);
 
 		// nameing the file
-		return path(finalImg, name);
+		return path(finalImg, Dropbox.path + name);
 	}
 
 	// two
@@ -122,8 +122,8 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[2];
 
-		imgFiles[0] = new File(im0);
-		imgFiles[1] = new File(im1);
+		imgFiles[0] = new File(Dropbox.path + im0);
+		imgFiles[1] = new File(Dropbox.path + im1);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[2];
@@ -144,7 +144,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 
 		// nameing the file
-		return path(finalImg, name);
+		return path(finalImg, Dropbox.path + name);
 	}
 
 	// three
@@ -153,9 +153,9 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[3];
 
-		imgFiles[0] = new File(im0);
-		imgFiles[1] = new File(im1);
-		imgFiles[2] = new File(im2);
+		imgFiles[0] = new File(Dropbox.path + im0);
+		imgFiles[1] = new File(Dropbox.path + im1);
+		imgFiles[2] = new File(Dropbox.path + im2);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[3];
@@ -182,7 +182,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[2], 0, height, null);
 
 		// nameing the file
-		return path(finalImg, name);
+		return path(finalImg, Dropbox.path + name);
 	}
 
 	// four
@@ -191,10 +191,10 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[4];
 
-		imgFiles[0] = new File(im0);
-		imgFiles[1] = new File(im1);
-		imgFiles[2] = new File(im2);
-		imgFiles[3] = new File(im3);
+		imgFiles[0] = new File(Dropbox.path + im0);
+		imgFiles[1] = new File(Dropbox.path + im1);
+		imgFiles[2] = new File(Dropbox.path + im2);
+		imgFiles[3] = new File(Dropbox.path + im3);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[4];
@@ -220,7 +220,7 @@ public class Collage {
 		}
 
 		// nameing the file
-		return path(finalImg, name);
+		return path(finalImg, Dropbox.path + name);
 	}
 
 	// five
@@ -229,11 +229,11 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[5];
 
-		imgFiles[0] = new File(im0);
-		imgFiles[1] = new File(im1);
-		imgFiles[2] = new File(im2);
-		imgFiles[3] = new File(im3);
-		imgFiles[4] = new File(im4);
+		imgFiles[0] = new File(Dropbox.path + im0);
+		imgFiles[1] = new File(Dropbox.path + im1);
+		imgFiles[2] = new File(Dropbox.path + im2);
+		imgFiles[3] = new File(Dropbox.path + im3);
+		imgFiles[4] = new File(Dropbox.path + im4);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[5];
@@ -260,11 +260,10 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
 
 		// nameing the file
-		return path(finalImg, name);
+		return path(finalImg, Dropbox.path + name);
 	}
 
 	static String path(BufferedImage image, String name) throws IOException {
-		name = Dropbox.path + name;
 		System.out.println(name + " was created");
 		ImageIO.write(image, "jpg", new File(name));
 		return name;

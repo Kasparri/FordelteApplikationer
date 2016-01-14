@@ -106,7 +106,7 @@ public class Dropbox {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();
 					client.getFile("/space/collage/pics/" + data.get(i), null, out);
 					byte[] fileArray = out.toByteArray();
-					String newpath = path + data.get(i);
+					String newpath = data.get(i);
 					FileOutputStream fos = new FileOutputStream(newpath);
 					fos.write(fileArray);
 					fos.close();

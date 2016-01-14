@@ -115,7 +115,7 @@ public class Template {
 						FileOutputStream fos = new FileOutputStream(Dropbox.path + child.name);
 						fos.write(bytes);
 						fos.close();
-						imgfiles.add(Dropbox.path + child.name);
+						imgfiles.add(child.name);
 						
 					}
 					System.out.println("Begin collaging \n");
