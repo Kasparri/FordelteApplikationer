@@ -100,7 +100,7 @@ public class Dropbox {
 				System.out.println(data);
 
 				// collage code here
-				String collageName = path + data.get(0);
+				String collageName = data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
 					ByteArrayOutputStream out = new ByteArrayOutputStream();

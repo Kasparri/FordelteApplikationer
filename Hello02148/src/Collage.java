@@ -27,7 +27,7 @@ public class Collage {
 			if (imgfiles.size() <= 5) {
 				name = n;
 			} else {
-				name = Dropbox.path + "collage" + counter + ".jpg";
+				name = "collage" + counter + ".jpg";
 				counter++;
 			}
 
@@ -263,6 +263,7 @@ public class Collage {
 	}
 
 	static String path(BufferedImage image, String name) throws IOException {
+		name = Dropbox.path + name;
 		System.out.println(name + " was created");
 		ImageIO.write(image, "jpg", new File(name));
 		return name;
