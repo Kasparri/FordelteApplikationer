@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
-import com.dropbox.core.DbxEntry.WithChildren;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 
@@ -22,9 +21,9 @@ public class Template {
 	byte[] content; // File content (as byte array)
 	String type;
 	//Preloading the variables for imgur
-	static String[] tags ={"http://imgur.com/t/archery","http://imgur.com/t/cat","http://imgur.com/t/food","http://imgur.com/t/earthporn"};
+	static List<String> sections = new ArrayList<String>();
 	static List<String> images = ImgurConnecter
-			.getImgsFromSite("http://imgur.com/t/earthporn");
+			.getImgsFromSite("/r/pixelart");
 	static List<String> imgfiles = new ArrayList<String>();
 	static int i = 0;
 	static int k = 0;
@@ -98,14 +97,24 @@ public class Template {
 					.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
 			try {
 				if (i < images.size()) {
+					//Downloading in image then uploading to dropbox
 					System.out.println("Downloading an image then uploading to dropbox \n");
+					String[] info = ImgurConnecter.getInfo(images.get(i).substring(19, images.get(i).length() - 4));
+					for (String part : info) {
+						if (part.contains("\"section\":")) {
+							part=part.substring(part.indexOf(':')+1,part.length()-1);
+							part="/r/"+part;
+							sections.add(part);
+						}
+					}
 					ImgurConnecter.downloadFromImgur(images.get(i));
 				}
 				if (i == images.size() - 1) {
+					//Finished the current list of images, getting a new one
 					System.out.println("collected images, switching tag \n");
 					i=0;
 					images = ImgurConnecter
-							.getImgsFromSite(tags[k]);
+							.getImgsFromSite(sections.get(k));
 					k++;
 					
 				}
@@ -139,7 +148,6 @@ public class Template {
 								"/space/collage/collages/" + collagename, DbxWriteMode.add(),
 								collage.length(), inputStream);
 
-						System.out.println("Uploaded: " + uploadedFile.toString());
 						inputStream.close();
 					} catch (DbxException e) {
 						e.printStackTrace();

@@ -94,7 +94,7 @@ public class ImgurConnecter {
 
 	public static String downloadFromImgur(String imageURL) {
 		URL url;
-		String name = imageURL.substring(19, 30);
+		String name = imageURL.substring(19, imageURL.length());
 		File image = null;
 
 		// Checking if the image were about to download is animated or nsfw
@@ -154,7 +154,7 @@ public class ImgurConnecter {
 					"/space/collage/imgur/" + name, DbxWriteMode.add(),
 					image.length(), inputStream);
 
-			System.out.println("Uploaded: " + uploadedFile.toString());
+			
 			inputStream.close();
 			image.delete();
 		} catch (DbxException e) {
@@ -167,11 +167,12 @@ public class ImgurConnecter {
 
 	}
 
-	public static List<String> getImgsFromSite(String tagURL) {
+	public static List<String> getImgsFromSite(String tag) {
 		InputStream input;
 		List<String> srcs = null;
+		tag = "http://imgur.com" + tag;
 		try {
-			input = new URL(tagURL).openStream();
+			input = new URL(tag).openStream();
 			Tidy tidy = new Tidy();
 			tidy.setShowErrors(0);
 			tidy.setShowWarnings(false);
