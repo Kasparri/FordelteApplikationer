@@ -110,7 +110,7 @@ public class ImgurConnecter {
 			}
 			if (part.contains("\"size\":")) {
 				int size = Integer.parseInt(part.substring(7));
-				if (size >= 2500000) {
+				if (size >= 3999999) {
 					size=size/1000000;
 					System.out.println("Image was too large, size was: " + size + "MB");
 					return "default.jpg";
