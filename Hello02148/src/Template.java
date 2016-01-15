@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
+import com.dropbox.core.DbxEntry.WithChildren;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 
@@ -108,7 +109,7 @@ public class Template {
 					k++;
 					
 				}
-				if (Dropbox.pictureAmount() >= 16) {
+				if (Dropbox.pictureAmount("/space/collage/imgur") >= 16) {
 					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
 					System.out.println("Downloading images from dropbox \n");
 					for ( DbxEntry child : imagesdbx.children )  {
@@ -116,15 +117,26 @@ public class Template {
 						imgfiles.add(child.name);
 					}
 					System.out.println("Begin collaging \n");
-					Collage.multi(imgfiles,"CollageIMGUR.jpg");
+					
+					//Combining names to make a name for the collage
+					DbxEntry.WithChildren namelist;
+					String collagename = "";
+					namelist = client.getMetadataWithChildren("/space/collage/imgur");
+					for(int i = 0 ; i < 8 ; i++) {
+						int random = (int) Math.random() * (namelist.children.get(i).name.lastIndexOf('.')-1);
+						collagename = collagename + namelist.children.get(i).name.charAt(random);
+					}
+					collagename = collagename + ".jpg";
+					
+					Collage.multi(imgfiles,collagename);
 					
 					//Uploading the finished collage to dropbox
 					
-					File collage = new File(Dropbox.path + "CollageIMGUR.jpg");
+					File collage = new File(Dropbox.path + collagename);
 					try {
 						FileInputStream inputStream = new FileInputStream(collage);
 						DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
-								"/space/collage/collages/" + "CollageIMGUR.jpg", DbxWriteMode.add(),
+								"/space/collage/collages/" + collagename, DbxWriteMode.add(),
 								collage.length(), inputStream);
 
 						System.out.println("Uploaded: " + uploadedFile.toString());
@@ -136,7 +148,7 @@ public class Template {
 					}
 					
 					//Uploading the finished collage to imgur
-					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.path + "CollageIMGUR.jpg"));
+					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.path + collagename));
 					collage.delete();
 					
 					//Emptying the dropbox folder

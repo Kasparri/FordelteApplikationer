@@ -2065,3 +2065,101 @@ java.lang.NullPointerException
 
 !ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:29:56.579
 !MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.eclipse.egit.core 4 0 2016-01-14 15:30:51.434
+!MESSAGE An exception occurred during push on URI https://github.com/Kasparri/FordelteApplikationer.git: https://github.com/Kasparri/FordelteApplikationer.git: Packing cancelled during objects writing
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/Kasparri/FordelteApplikationer.git: Packing cancelled during objects writing
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:164)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:228)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:167)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI$1.run(PushOperationUI.java:229)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/Kasparri/FordelteApplikationer.git: Packing cancelled during objects writing
+	at org.eclipse.jgit.transport.BasePackPushConnection.doPush(BasePackPushConnection.java:218)
+	at org.eclipse.jgit.transport.TransportHttp$SmartHttpPushConnection.doPush(TransportHttp.java:807)
+	at org.eclipse.jgit.transport.BasePackPushConnection.push(BasePackPushConnection.java:153)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:166)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1200)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:157)
+	... 4 more
+Caused by: java.io.IOException: Packing cancelled during objects writing
+	at org.eclipse.jgit.internal.storage.pack.PackOutputStream.write(PackOutputStream.java:120)
+	at java.util.zip.DeflaterOutputStream.deflate(DeflaterOutputStream.java:253)
+	at java.util.zip.DeflaterOutputStream.write(DeflaterOutputStream.java:211)
+	at java.io.FilterOutputStream.write(FilterOutputStream.java:97)
+	at org.eclipse.jgit.lib.ObjectLoader.copyTo(ObjectLoader.java:266)
+	at org.eclipse.jgit.internal.storage.pack.PackWriter.writeWholeObjectDeflate(PackWriter.java:1538)
+	at org.eclipse.jgit.internal.storage.pack.PackWriter.writeObjectImpl(PackWriter.java:1516)
+	at org.eclipse.jgit.internal.storage.pack.PackWriter.writeObject(PackWriter.java:1459)
+	at org.eclipse.jgit.internal.storage.pack.PackOutputStream.writeObject(PackOutputStream.java:164)
+	at org.eclipse.jgit.internal.storage.file.WindowCursor.writeObjects(WindowCursor.java:195)
+	at org.eclipse.jgit.internal.storage.pack.PackWriter.writeObjects(PackWriter.java:1447)
+	at org.eclipse.jgit.internal.storage.pack.PackWriter.writeObjects(PackWriter.java:1435)
+	at org.eclipse.jgit.internal.storage.pack.PackWriter.writePack(PackWriter.java:998)
+	at org.eclipse.jgit.transport.BasePackPushConnection.writePack(BasePackPushConnection.java:306)
+	at org.eclipse.jgit.transport.BasePackPushConnection.doPush(BasePackPushConnection.java:198)
+	... 9 more
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:32:16.399
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:35:31.840
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:35:32.033
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:42:58.107
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:43:23.826
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.eclipse.ui 4 0 2016-01-14 15:44:00.680
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:57:15.953
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:57:16.100
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:57:50.745
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 15:58:08.862
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-14 16:02:11.134
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.eclipse.egit.ui 4 0 2016-01-15 11:44:55.348
+!MESSAGE Checkout conflict with files: 
+Hello02148/src/Dropbox.java
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+Hello02148/src/Dropbox.java
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:413)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:329)
+	at org.eclipse.egit.core.op.PullOperation$1.run(PullOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2311)
+	at org.eclipse.egit.core.op.PullOperation.execute(PullOperation.java:137)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI.execute(PullOperationUI.java:140)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI$1.runInWorkspace(PullOperationUI.java:115)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+Hello02148/src/Dropbox.java
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:414)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:396)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:288)
+	... 8 more
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:45:24.361
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:47:42.889
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
