@@ -82,7 +82,7 @@ public class Collage {
 					}
 			}
 		}
-		System.out.println("done collaging");
+		System.out.println("the collage '" + n + "' was created.");
 	}
 
 	// one
@@ -257,7 +257,6 @@ public class Collage {
 	}
 
 	static String path(BufferedImage image, String name) throws IOException {
-		System.out.println(name + " was created");
 		ImageIO.write(image, "jpg", new File(name));
 		return name;
 	}
