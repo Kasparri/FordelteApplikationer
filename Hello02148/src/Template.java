@@ -108,7 +108,7 @@ public class Template {
 					k++;
 					
 				}
-				if (Dropbox.pictureAmount() >= 16) {
+				if (Dropbox.pictureAmount("/space/collage/imgur") >= 16) {
 					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
 					System.out.println("Downloading images from dropbox \n");
 					for ( DbxEntry child : imagesdbx.children )  {
