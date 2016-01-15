@@ -44,19 +44,11 @@ public class Dropbox {
 		Template t1;
 		Template t2;
 
-//		List<String> images = ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
-//		List<String> imgfiles = new ArrayList<String>();
-//		for (String img : images) {
-//			imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-//		}
-//		System.out.println("collected images");
-//
-//		String image = "http://i.imgur.com/0IDhAcc.jpg";
-//		ImgurConnecter.downloadFromImgur(image);
-
+		
+		
 		// Main loop that processes files in the shared space
 		while (true) {
-
+			readTextCommands();
 			// Template t1 represents "any file in the space folder"
 			t1 = new Template(space, "?", "?", null);
 			System.out.println("Looking for some file...");
@@ -76,7 +68,7 @@ public class Dropbox {
 				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
-			readTextCommands();
+
 		}
 
 	}
@@ -115,7 +107,6 @@ public class Dropbox {
 				System.out.println("Uploaded: " + uploadedFile.toString());
 				inputStream.close();
 				collage.delete();
-				collage.deleteOnExit();
 				System.out.println("Deleting the command file 'create.txt'");
 				delete(child);
 				break;
