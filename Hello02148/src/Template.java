@@ -50,8 +50,7 @@ public class Template {
 	}
 
 	// Auxiliary function that implements the both qry() and get()
-	public void read(DbxClient client, boolean delete) throws DbxException,
-			IOException {
+	public void read(DbxClient client, boolean delete) throws DbxException, IOException {
 		DbxEntry.WithChildren listing;
 		String name_aux = name;
 		String ext_aux = ext;
@@ -93,8 +92,7 @@ public class Template {
 			// Simple implementation based on busy-wait
 			// We hence insert a delay of 10 seconds to minimise unsucessful
 			// checks
-			System.out
-					.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
+			System.out.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
 			try {
 				if (i < images.size()) {
 					//Downloading in image then uploading to dropbox

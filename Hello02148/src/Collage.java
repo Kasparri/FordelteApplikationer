@@ -16,7 +16,7 @@ public class Collage {
 	static int heightt = height * 2;
 	static int type = 1;
 
-	// multi
+	// Multi
 	static void multi(List<String> imgfiles, String n) {
 
 		String name;
@@ -55,8 +55,8 @@ public class Collage {
 				break;
 			case 5:
 				try {
-					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), imgfiles.get(4),
-							name);
+					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
+							imgfiles.get(4), name);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
 					imgfiles.remove(0);
@@ -79,13 +79,13 @@ public class Collage {
 
 				} catch (IOException e) {
 					e.printStackTrace();
-					}
+				}
 			}
 		}
-		System.out.println("the collage '" + n + "' was created.");
+		System.out.println("The collage '" + n + "' has been created..");
 	}
 
-	// one
+	// Collage of one picture
 	static String collage(String im0, String name) throws IOException {
 
 		// fetching image files
@@ -105,11 +105,11 @@ public class Collage {
 		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
 		finalImg.createGraphics().drawImage(buffImage, 0, 0, null);
 
-		// nameing the file
+		// Naming the file
 		return path(finalImg, Dropbox.path + name);
 	}
 
-	// two
+	// Collage of two pictures
 	static String collage(String im0, String im1, String name) throws IOException {
 
 		// fetching image files
@@ -136,11 +136,11 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[0], 0, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 
-		// nameing the file
+		// Naming the file
 		return path(finalImg, Dropbox.path + name);
 	}
 
-	// three
+	// Collage of three pictures
 	static String collage(String im0, String im1, String im2, String name) throws IOException {
 
 		// fetching image files
@@ -150,7 +150,7 @@ public class Collage {
 		imgFiles[1] = new File(Dropbox.path + im1);
 		imgFiles[2] = new File(Dropbox.path + im2);
 
-		// creating a image array from image files
+		// Creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[3];
 		int tempWidth = width;
 		for (int i = 0; i < 3; i++) {
@@ -174,11 +174,11 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[2], 0, height, null);
 
-		// nameing the file
+		// Naming the file
 		return path(finalImg, Dropbox.path + name);
 	}
 
-	// four
+	// Collage of four pictures
 	static String collage(String im0, String im1, String im2, String im3, String name) throws IOException {
 
 		// fetching image files
@@ -212,11 +212,11 @@ public class Collage {
 			}
 		}
 
-		// nameing the file
+		// naming the file
 		return path(finalImg, Dropbox.path + name);
 	}
 
-	// five
+	// Collage of five pictures
 	static String collage(String im0, String im1, String im2, String im3, String im4, String name) throws IOException {
 
 		// fetching image files
@@ -252,7 +252,7 @@ public class Collage {
 		}
 		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
 
-		// nameing the file
+		// naming the file
 		return path(finalImg, Dropbox.path + name);
 	}
 

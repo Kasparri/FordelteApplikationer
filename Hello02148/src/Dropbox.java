@@ -30,8 +30,7 @@ public class Dropbox {
 		final String APP_KEY = "6gm4dggg0pm4qd3";
 		final String APP_SECRET = "mnm27mqi749672i";
 		appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
-		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault()
-				.toString());
+		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault().toString());
 
 		// Insert here the access token from your app.
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
@@ -44,19 +43,6 @@ public class Dropbox {
 		// Two tuple templates for the main loop of the app
 		Template t1;
 		Template t2;
-
-		
-		
-		// List<String> images =
-		// ImgurConnecter.getImgsFromSite("http://imgur.com/t/archer");
-		// List<String> imgfiles = new ArrayList<String>();
-		// for (String img : images) {
-		// imgfiles.add(ImgurConnecter.downloadFromImgur(img));
-		// }
-		// System.out.println("collected images");
-		//
-		// String image = "http://i.imgur.com/0IDhAcc.jpg";
-		// ImgurConnecter.downloadFromImgur(image);
 
 		// Main loop that processes files in the shared space
 		while (true) {
@@ -71,17 +57,13 @@ public class Dropbox {
 			// folder
 			if (isPicture(t1.type)) {
 				t2 = new Template(space + "/pics/", t1.name, t1.ext, t1.content);
-				System.out
-						.println("Putting the file in the 'picture' subfolder...");
+				System.out.println("Putting the file in the 'picture' subfolder...");
 			} else if (isText(t1.type)) {
 				t2 = new Template(space + "/text/", t1.name, t1.ext, t1.content);
-				System.out
-						.println("Putting the file in the 'text' subfolder...");
+				System.out.println("Putting the file in the 'text' subfolder...");
 			} else {
-				t2 = new Template(space + "/others/", t1.name, t1.ext,
-						t1.content);
-				System.out
-						.println("Putting the file in the 'others' subfolder...");
+				t2 = new Template(space + "/others/", t1.name, t1.ext, t1.content);
+				System.out.println("Putting the file in the 'others' subfolder...");
 			}
 			t2.put(client);
 
@@ -110,8 +92,7 @@ public class Dropbox {
 				String collageName = data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
-					downloadFromDropbox("/space/collage/pics/" + data.get(i),
-							data.get(i));
+					downloadFromDropbox("/space/collage/pics/" + data.get(i), data.get(i));
 					String newpath = data.get(i);
 					data.set(i, newpath);
 				}
@@ -119,8 +100,7 @@ public class Dropbox {
 				System.out.println("path: " + path + collageName);
 				File collage = new File(path + collageName);
 				FileInputStream inputStream = new FileInputStream(collage);
-				DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
-						"/space/collage/collages/" + collageName,
+				DbxEntry.File uploadedFile = Dropbox.client.uploadFile("/space/collage/collages/" + collageName,
 						DbxWriteMode.add(), collage.length(), inputStream);
 				System.out.println("Uploaded: " + uploadedFile.toString());
 				inputStream.close();
@@ -132,8 +112,7 @@ public class Dropbox {
 			case "move.txt":
 				// fetches the fromPath and toPath from the move.txt text file
 				String[] paths = fetchMovePaths(textpath, child);
-				System.out.println("Moving the file at placement: '" + paths[0]
-						+ "', to: '" + paths[1] + "'");
+				System.out.println("Moving the file at placement: '" + paths[0] + "', to: '" + paths[1] + "'");
 				try {
 					client.move(paths[0], paths[1]);
 					System.out.println("Deleting the command file 'move.txt'");
@@ -141,10 +120,8 @@ public class Dropbox {
 				} catch (DbxException e) {
 					e.printStackTrace();
 					System.out.println("Invalid path/s");
-					System.out
-							.println("Moving the text file to the invalid folder");
-					client.move("/space/collage/text/" + child.name,
-							"/space/collage/text/invalid/" + child.name);
+					System.out.println("Moving the text file to the invalid folder");
+					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
 					System.out.println("Moving on to the next command");
 					continue;
 				}
@@ -156,8 +133,8 @@ public class Dropbox {
 					System.out.println("Moving on to the next command");
 					continue;
 				}
-				System.out.println("Deleting the file: '" + deletefile.name
-						+ "', at placement: '" + deletefile.path + "'");
+				System.out.println("Deleting the file: '" + deletefile.name + "', at placement: '" + deletefile.path
+						+ "'");
 				delete(deletefile);
 				System.out.println("Deleting the command file 'delete.txt'");
 				delete(child);
@@ -169,23 +146,19 @@ public class Dropbox {
 					System.out.println("Moving on to the next command");
 					continue;
 				}
-				System.out.println("Uploading the file: '" + uploadfile.name
-						+ "', from placement: '" + uploadfile.path + "'");
+				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
+						+ "'");
 				downloadFromDropbox(uploadfile.path, uploadfile.name);
-				System.out.println(ImgurConnecter.uploadToImgur(path
-						+ uploadfile.name));
+				System.out.println(ImgurConnecter.uploadToImgur(path + uploadfile.name));
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
 				break;
 
 			default:
 				if (child.isFile()) {
-					System.out.println("The .txt file " + child.name
-							+ " is an invalid command");
-					System.out
-							.println("Moving the text file to the invalid folder");
-					client.move("/space/collage/text/" + child.name,
-							"/space/collage/text/invalid/" + child.name);
+					System.out.println("The .txt file " + child.name + " is an invalid command");
+					System.out.println("Moving the text file to the invalid folder");
+					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
 
 				}
 				break;
@@ -211,7 +184,7 @@ public class Dropbox {
 	}
 
 	private static boolean isText(String s) {
-		s=s.toLowerCase();
+		s = s.toLowerCase();
 		if (s.equals("txt")) {
 			return true;
 		}
@@ -249,14 +222,11 @@ public class Dropbox {
 			String name = sc.nextLine();
 			String folderPath = sc.nextLine();
 			sc.close();
-			DbxEntry file = client.getMetadata("/space" + folderPath + "/"
-					+ name);
+			DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
 			if (file == null) {
 				System.out.println("Invalid filename or path");
-				System.out
-						.println("Moving the text file to the invalid folder");
-				client.move("/space/collage/text/" + child.name,
-						"/space/collage/text/invalid/" + child.name);
+				System.out.println("Moving the text file to the invalid folder");
+				client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
 				return null;
 			} else {
 				// the file to be deleted or uploaded is returned
@@ -305,7 +275,6 @@ public class Dropbox {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
