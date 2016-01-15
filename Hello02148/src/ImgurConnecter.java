@@ -111,11 +111,12 @@ public class ImgurConnecter {
 			if (part.contains("\"size\":")) {
 				int size = Integer.parseInt(part.substring(7));
 				if (size >= 3999999) {
-					size=size/1000000;
-					System.out.println("Image was too large, size was: " + size + "MB");
+					size = size / 1000000;
+					System.out.println("Image was too large, size was: " + size
+							+ "MB");
 					return "default.jpg";
 				}
-				
+
 			}
 		}
 
@@ -131,7 +132,8 @@ public class ImgurConnecter {
 			outStream.close();
 			inStream.close();
 			byte[] result = outStream.toByteArray();
-			FileOutputStream fileStream = new FileOutputStream(Dropbox.path + name);
+			FileOutputStream fileStream = new FileOutputStream(Dropbox.path
+					+ name);
 			fileStream.write(result);
 			fileStream.close();
 			// Testing the file
@@ -154,7 +156,6 @@ public class ImgurConnecter {
 					"/space/collage/imgur/" + name, DbxWriteMode.add(),
 					image.length(), inputStream);
 
-			
 			inputStream.close();
 			image.delete();
 		} catch (DbxException e) {
