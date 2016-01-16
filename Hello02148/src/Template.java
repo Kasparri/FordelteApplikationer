@@ -17,7 +17,7 @@ public class Template {
 	String ext; // File extension, "?" denotes any value
 	byte[] content; // File content (as byte array)
 
-	// Preloading the variables for imgur
+	// Pre-loading the variables for imgur
 	static List<String> sections = new ArrayList<String>();
 	static List<String> images = ImgurConnecter.getImgsFromSite("/r/pixelart");
 	static List<String> imgfiles = new ArrayList<String>();
@@ -31,21 +31,8 @@ public class Template {
 		this.content = c;
 	}
 
-	// Blocking operation to check the existence of a file matching a
-	// template
-	// The template is updated with the matched values for the tuple
-	// arguments that were binders (i.e. "?")
-	public void qry(DbxClient client) throws DbxException, IOException {
-		read(client, false);
-	}
-
-	// As qry() but the file is removed from the space
-	public void get(DbxClient client) throws DbxException, IOException {
-		read(client, true);
-	}
-
-	// Auxiliary function that implements the both qry() and get()
-	public void read(DbxClient client, boolean delete) throws DbxException, IOException {
+	// reads the name, extension and content
+	public void read(DbxClient client) throws DbxException, IOException {
 		DbxEntry.WithChildren listing;
 		String name_aux = name;
 		String ext_aux = ext;
@@ -76,17 +63,13 @@ public class Template {
 					client.getFile(child.path, null, out);
 					content = out.toByteArray();
 					out.close();
-					// Delete the file if this is a get()
-					if (delete) {
-						client.delete(child.path);
-					}
+					client.delete(child.path);
 					return;
 				}
 			}
 			// Simple implementation based on busy-wait
-			// We hence insert a delay of 10 seconds to minimise unsucessful
-			// checks
-			System.out.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
+			// We hence insert a delay in which images can be downloaded from
+			// imgur
 			try {
 				if (i < images.size()) {
 					// Downloading in image then uploading to dropbox
@@ -109,8 +92,8 @@ public class Template {
 					k++;
 
 				}
-				if (Dropbox.pictureAmount("/space/collage/imgur") >= 16) {
-					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren("/space/collage/imgur");
+				if (Dropbox.pictureAmount(Dropbox.space + "/imgur") >= 16) {
+					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren(Dropbox.space + "/imgur");
 					System.out.println("Downloading images from dropbox \n");
 					for (DbxEntry child : imagesdbx.children) {
 						Dropbox.downloadFromDropbox(child.path, child.name);
@@ -120,24 +103,21 @@ public class Template {
 
 					// Combining names to make a name for the collage
 					DbxEntry.WithChildren namelist;
-					String collagename = "";
-					namelist = client.getMetadataWithChildren("/space/collage/imgur");
+					String collageName = "";
+					namelist = client.getMetadataWithChildren(Dropbox.space + "/imgur");
 					for (int i = 0; i < 8; i++) {
 						int random = (int) Math.random() * (namelist.children.get(i).name.lastIndexOf('.') - 1);
-						collagename = collagename + namelist.children.get(i).name.charAt(random);
+						collageName = collageName + namelist.children.get(i).name.charAt(random);
 					}
-					collagename = collagename + ".jpg";
-
-					Collage.multi(imgfiles, collagename);
+					collageName = collageName + ".jpg";
+					Collage.multi(imgfiles, collageName);
 
 					// Uploading the finished collage to dropbox
-
-					File collage = new File(Dropbox.localPath + collagename);
+					File collage = new File(Dropbox.localPath + collageName);
 					try {
 						FileInputStream inputStream = new FileInputStream(collage);
-						Dropbox.client.uploadFile("/space/collage/collages/" + collagename, DbxWriteMode.add(),
+						Dropbox.client.uploadFile(Dropbox.space + "/ImgurCollages/" + collageName, DbxWriteMode.add(),
 								collage.length(), inputStream);
-
 						inputStream.close();
 					} catch (DbxException e) {
 						e.printStackTrace();
@@ -146,21 +126,22 @@ public class Template {
 					}
 
 					// Uploading the finished collage to imgur
-					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.localPath + collagename));
+					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.localPath + collageName));
 					collage.delete();
 
 					// Emptying the dropbox folder
 					DbxEntry.WithChildren imgurPictures;
-					imgurPictures = client.getMetadataWithChildren("/space/collage/imgur");
+					imgurPictures = client.getMetadataWithChildren(Dropbox.space + "/imgur");
 					for (DbxEntry child : imgurPictures.children) {
 						client.delete(child.path);
 					}
+					
 					// Emptying local folder
 					File folder = new File(Dropbox.localPath);
 					for (File file : folder.listFiles()) {
 						file.delete();
 					}
-					Dropbox.downloadFromDropbox("/space/collage/pics/default.jpg", "default.jpg");
+					Dropbox.downloadFromDropbox(Dropbox.space + "/pics/default.jpg", "default.jpg");
 
 					// Emptying the list
 					imgfiles.clear();

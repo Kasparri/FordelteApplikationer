@@ -141,7 +141,8 @@ public class ImgurConnecter {
 		// Uploading the file to dropbox
 		try {
 			FileInputStream inputStream = new FileInputStream(image);
-			Dropbox.client.uploadFile("/space/collage/imgur/" + name, DbxWriteMode.add(), image.length(), inputStream);
+			Dropbox.client
+					.uploadFile(Dropbox.space + "/imgur/" + name, DbxWriteMode.add(), image.length(), inputStream);
 
 			inputStream.close();
 			image.delete();
