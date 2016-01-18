@@ -16,14 +16,10 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-
 import javax.imageio.ImageIO;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.tidy.Tidy;
-
-import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 
@@ -44,30 +40,25 @@ public class ImgurConnecter {
 			ImageIO.write(image, "png", byteArray);
 			byte[] byteImage = byteArray.toByteArray();
 			String dataImage = Base64.getEncoder().encodeToString(byteImage);
-			String data = URLEncoder.encode("image", "UTF-8") + "="
-					+ URLEncoder.encode(dataImage, "UTF-8");
+			String data = URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(dataImage, "UTF-8");
 
 			url = new URL("https://api.imgur.com/3/image");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Authorization", "Client-ID "
-					+ "b34d2583bb8a43f");
+			conn.setRequestProperty("Authorization", "Client-ID " + "b34d2583bb8a43f");
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
+			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
 			conn.connect();
 			StringBuilder stb = new StringBuilder();
-			OutputStreamWriter wr = new OutputStreamWriter(
-					conn.getOutputStream());
+			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(data);
 			wr.flush();
 
 			// Get the response
-			BufferedReader rd = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line;
 			while ((line = rd.readLine()) != null) {
 				stb.append(line).append("\n");
@@ -112,8 +103,7 @@ public class ImgurConnecter {
 				int size = Integer.parseInt(part.substring(7));
 				if (size >= 3999999) {
 					size = size / 1000000;
-					System.out.println("Image was too large, size was: " + size
-							+ "MB");
+					System.out.println("Image was too large, size was: " + size + "MB");
 					return "default.jpg";
 				}
 
@@ -132,12 +122,11 @@ public class ImgurConnecter {
 			outStream.close();
 			inStream.close();
 			byte[] result = outStream.toByteArray();
-			FileOutputStream fileStream = new FileOutputStream(Dropbox.path
-					+ name);
+			FileOutputStream fileStream = new FileOutputStream(Dropbox.localPath + name);
 			fileStream.write(result);
 			fileStream.close();
 			// Testing the file
-			image = new File(Dropbox.path + name);
+			image = new File(Dropbox.localPath + name);
 			@SuppressWarnings("unused")
 			BufferedImage BI = ImageIO.read(image);
 
@@ -152,9 +141,8 @@ public class ImgurConnecter {
 		// Uploading the file to dropbox
 		try {
 			FileInputStream inputStream = new FileInputStream(image);
-			DbxEntry.File uploadedFile = Dropbox.client.uploadFile(
-					"/space/collage/imgur/" + name, DbxWriteMode.add(),
-					image.length(), inputStream);
+			Dropbox.client
+					.uploadFile(Dropbox.space + "/imgur/" + name, DbxWriteMode.add(), image.length(), inputStream);
 
 			inputStream.close();
 			image.delete();
@@ -183,9 +171,24 @@ public class ImgurConnecter {
 				NodeList imgs = document.getElementsByTagName("img");
 				srcs = new ArrayList<String>();
 
+<<<<<<< HEAD
 				for (int i = 0; i < imgs.getLength(); i++) {
 					srcs.add(imgs.item(i).getAttributes().getNamedItem("src")
 							.getNodeValue());
+=======
+			for (int i = 0; i < imgs.getLength(); i++) {
+				srcs.add(imgs.item(i).getAttributes().getNamedItem("src").getNodeValue());
+			}
+			for (int i = 0; i < srcs.size(); i++) {
+				srcs.set(
+						i,
+						srcs.get(i).substring(2, srcs.get(i).length() - 5)
+								+ srcs.get(i).substring(srcs.get(i).length() - 4));
+				if (srcs.get(i).startsWith("s")) {
+					srcs.remove(i);
+				} else {
+					srcs.set(i, "http://" + srcs.get(i));
+>>>>>>> refs/remotes/origin/master
 				}
 				for (int i = 0; i < srcs.size(); i++) {
 					srcs.set(
@@ -221,19 +224,16 @@ public class ImgurConnecter {
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Authorization", "Client-ID "
-					+ "b34d2583bb8a43f");
+			conn.setRequestProperty("Authorization", "Client-ID " + "b34d2583bb8a43f");
 			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
+			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
 			// Connecting
 			conn.connect();
 
 			// Getting the response
 			StringBuilder stb = new StringBuilder();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line;
 			while ((line = rd.readLine()) != null) {
 				stb.append(line).append("\n");

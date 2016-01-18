@@ -21,59 +21,60 @@ public class Dropbox {
 	static DbxAppInfo appInfo;
 	static DbxRequestConfig config;
 	static DbxClient client;
-	static String path = "./images/";
+	static String localPath = "./images/"; // the local path used to store
+											// pictures for the collage making
+	// Name of the shared folder to be used as shared space
+	static String space = "/space";
 
 	public static void main(String[] args) throws IOException, DbxException {
-
-		// Get your app key and secret from the Dropbox developers website and
-		// insert them below
 		final String APP_KEY = "6gm4dggg0pm4qd3";
 		final String APP_SECRET = "mnm27mqi749672i";
 		appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
 		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault().toString());
-
-		// Insert here the access token from your app.
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
 
+		// configuring the Dropbox client
 		client = new DbxClient(config, accessToken);
 
-		// Name of the shared folder to be used as shared space
-		final String space = "/space/collage";
-
-		// Two tuple templates for the main loop of the app
+		// Two tuple templates for the main loop of the application
 		Template t1;
 		Template t2;
 
-		// Main loop that processes files in the shared space
+		// Main loop of the program
 		while (true) {
+
+			// reads and executes the text commands
 			readTextCommands();
+
 			// Template t1 represents "any file in the space folder"
 			t1 = new Template(space, "?", "?", null);
-			System.out.println("Looking for some file...");
-			t1.get(client);
-			System.out.println("Found file " + t1.name + "." + t1.ext);
+			System.out.println("Looking for some file... \n");
+			t1.read(client);
+			System.out.println("Found file '" + t1.name + "." + t1.ext + "'");
 
-			// t2 is a tuple representing the previously retreived file in a new
-			// folder
-			if (isPicture(t1.type)) {
+			// t2 represents the previously retrieved file in a new folder
+			if (isPicture(t1.ext)) {
 				t2 = new Template(space + "/pics/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'picture' subfolder...");
-			} else if (isText(t1.type)) {
+				System.out.println("Putting the file in the 'picture' subfolder \n");
+			} else if (isText(t1.ext)) {
 				t2 = new Template(space + "/text/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'text' subfolder...");
+				System.out.println("Putting the file in the 'text' subfolder \n");
 			} else {
 				t2 = new Template(space + "/others/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'others' subfolder...");
+				System.out.println("Putting the file in the 'others' subfolder \n");
 			}
 			t2.put(client);
-
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
 		}
-
 	}
 
-	// reads the .txt file command
+	// reads and executes the text command
 	public static void readTextCommands() throws IOException, DbxException {
-		String textpath = "/space/collage/text";
+		String textpath = space + "/text";
 		DbxEntry.WithChildren listing = null;
 		try {
 			listing = client.getMetadataWithChildren(textpath);
@@ -81,31 +82,33 @@ public class Dropbox {
 			e1.printStackTrace();
 		}
 
+		// loops through all the text files
 		for (DbxEntry child : listing.children) {
 			switch (child.name) {
+
+			// creates a collage specified by the text file
 			case "create.txt":
 				// data is a list of structure [Collagename, picname 1,
 				// ...,picname n] with n amount of pictures used in the collage
 				List<String> data = readCreateCommand(textpath, child);
-				System.out.println(data);
-
 				String collageName = data.get(0);
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
-					downloadFromDropbox("/space/collage/pics/" + data.get(i), data.get(i));
-					String newpath = data.get(i);
-					data.set(i, newpath);
+					downloadFromDropbox(space + "/pics/" + data.get(i), data.get(i));
+
+					// TODO: Hvad er det her godt for Frederik?
+					// String newpath = data.get(i);
+					// data.set(i, newpath);
 				}
 				Collage.multi(data, collageName);
-				System.out.println("path: " + path + collageName);
-				File collage = new File(path + collageName);
+				File collage = new File(localPath + collageName);
 				FileInputStream inputStream = new FileInputStream(collage);
-				DbxEntry.File uploadedFile = Dropbox.client.uploadFile("/space/collage/collages/" + collageName,
-						DbxWriteMode.add(), collage.length(), inputStream);
-				System.out.println("Uploaded: " + uploadedFile.toString());
+				Dropbox.client.uploadFile(space + "/DropboxCollages/" + collageName, DbxWriteMode.add(),
+						collage.length(), inputStream);
+				System.out.println("'" + collageName + "' has been uploaded to " + space + "/DropboxCollages/");
 				inputStream.close();
 				collage.delete();
-				System.out.println("Deleting the command file 'create.txt'");
+				System.out.println("Deleting the command file 'create.txt' \n");
 				delete(child);
 				break;
 
@@ -121,12 +124,13 @@ public class Dropbox {
 					e.printStackTrace();
 					System.out.println("Invalid path/s");
 					System.out.println("Moving the text file to the invalid folder");
-					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
+					client.move(space + "/text/" + child.name, space + "/text/invalid/" + child.name);
 					System.out.println("Moving on to the next command");
 					continue;
 				}
 				break;
 
+			// deleting the file specified by the text file
 			case "delete.txt":
 				DbxEntry deletefile = fetchDeleteOrUpload(textpath, child);
 				if (deletefile == null) {
@@ -149,7 +153,7 @@ public class Dropbox {
 				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
 						+ "'");
 				downloadFromDropbox(uploadfile.path, uploadfile.name);
-				System.out.println(ImgurConnecter.uploadToImgur(path + uploadfile.name));
+				System.out.println(ImgurConnecter.uploadToImgur(localPath + uploadfile.name));
 				System.out.println("Deleting the command file 'upload.txt'");
 				delete(child);
 				break;
@@ -158,8 +162,7 @@ public class Dropbox {
 				if (child.isFile()) {
 					System.out.println("The .txt file " + child.name + " is an invalid command");
 					System.out.println("Moving the text file to the invalid folder");
-					client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
-
+					client.move(space + "/text/" + child.name, space + "/text/invalid/" + child.name);
 				}
 				break;
 			}
@@ -222,11 +225,11 @@ public class Dropbox {
 			String name = sc.nextLine();
 			String folderPath = sc.nextLine();
 			sc.close();
-			DbxEntry file = client.getMetadata("/space" + folderPath + "/" + name);
+			DbxEntry file = client.getMetadata(space + folderPath + "/" + name);
 			if (file == null) {
 				System.out.println("Invalid filename or path");
 				System.out.println("Moving the text file to the invalid folder");
-				client.move("/space/collage/text/" + child.name, "/space/collage/text/invalid/" + child.name);
+				client.move(space + "/text/" + child.name, space + "/text/invalid/" + child.name);
 				return null;
 			} else {
 				// the file to be deleted or uploaded is returned
@@ -267,7 +270,7 @@ public class Dropbox {
 		try {
 			client.getFile(childPath, null, out);
 			byte[] fileArray = out.toByteArray();
-			FileOutputStream fos = new FileOutputStream(path + childName);
+			FileOutputStream fos = new FileOutputStream(localPath + childName);
 			fos.write(fileArray);
 			fos.close();
 		} catch (DbxException e) {

@@ -82,14 +82,14 @@ public class Collage {
 				}
 			}
 		}
-		System.out.println("The collage '" + n + "' has been created..");
+		System.out.println("The collage '" + n + "' has been created");
 	}
 
 	// Collage of one picture
 	static String collage(String im0, String name) throws IOException {
 
 		// fetching image files
-		File imgFiles = new File(Dropbox.path + im0);
+		File imgFiles = new File(Dropbox.localPath + im0);
 
 		// creating a image array from image files
 
@@ -106,7 +106,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage, 0, 0, null);
 
 		// Naming the file
-		return path(finalImg, Dropbox.path + name);
+		return path(finalImg, Dropbox.localPath + name);
 	}
 
 	// Collage of two pictures
@@ -115,8 +115,8 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[2];
 
-		imgFiles[0] = new File(Dropbox.path + im0);
-		imgFiles[1] = new File(Dropbox.path + im1);
+		imgFiles[0] = new File(Dropbox.localPath + im0);
+		imgFiles[1] = new File(Dropbox.localPath + im1);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[2];
@@ -137,7 +137,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 
 		// Naming the file
-		return path(finalImg, Dropbox.path + name);
+		return path(finalImg, Dropbox.localPath + name);
 	}
 
 	// Collage of three pictures
@@ -146,9 +146,9 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[3];
 
-		imgFiles[0] = new File(Dropbox.path + im0);
-		imgFiles[1] = new File(Dropbox.path + im1);
-		imgFiles[2] = new File(Dropbox.path + im2);
+		imgFiles[0] = new File(Dropbox.localPath + im0);
+		imgFiles[1] = new File(Dropbox.localPath + im1);
+		imgFiles[2] = new File(Dropbox.localPath + im2);
 
 		// Creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[3];
@@ -175,7 +175,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[2], 0, height, null);
 
 		// Naming the file
-		return path(finalImg, Dropbox.path + name);
+		return path(finalImg, Dropbox.localPath + name);
 	}
 
 	// Collage of four pictures
@@ -184,10 +184,10 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[4];
 
-		imgFiles[0] = new File(Dropbox.path + im0);
-		imgFiles[1] = new File(Dropbox.path + im1);
-		imgFiles[2] = new File(Dropbox.path + im2);
-		imgFiles[3] = new File(Dropbox.path + im3);
+		imgFiles[0] = new File(Dropbox.localPath + im0);
+		imgFiles[1] = new File(Dropbox.localPath + im1);
+		imgFiles[2] = new File(Dropbox.localPath + im2);
+		imgFiles[3] = new File(Dropbox.localPath + im3);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[4];
@@ -213,7 +213,7 @@ public class Collage {
 		}
 
 		// naming the file
-		return path(finalImg, Dropbox.path + name);
+		return path(finalImg, Dropbox.localPath + name);
 	}
 
 	// Collage of five pictures
@@ -222,11 +222,11 @@ public class Collage {
 		// fetching image files
 		File[] imgFiles = new File[5];
 
-		imgFiles[0] = new File(Dropbox.path + im0);
-		imgFiles[1] = new File(Dropbox.path + im1);
-		imgFiles[2] = new File(Dropbox.path + im2);
-		imgFiles[3] = new File(Dropbox.path + im3);
-		imgFiles[4] = new File(Dropbox.path + im4);
+		imgFiles[0] = new File(Dropbox.localPath + im0);
+		imgFiles[1] = new File(Dropbox.localPath + im1);
+		imgFiles[2] = new File(Dropbox.localPath + im2);
+		imgFiles[3] = new File(Dropbox.localPath + im3);
+		imgFiles[4] = new File(Dropbox.localPath + im4);
 
 		// creating a image array from image files
 		BufferedImage[] buffImage = new BufferedImage[5];
@@ -253,7 +253,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
 
 		// naming the file
-		return path(finalImg, Dropbox.path + name);
+		return path(finalImg, Dropbox.localPath + name);
 	}
 
 	static String path(BufferedImage image, String name) throws IOException {
