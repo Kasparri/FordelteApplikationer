@@ -196,7 +196,7 @@ public class Dropbox {
 	}
 
 	private static List<String> readCreateCommand(String path, DbxEntry child) {
-		Scanner sc = fetchCommandInScanner(path, child);
+		Scanner sc = fetchCommandInScanner(path, child.name);
 		// making an ArrayList holding the name and filenames
 		List<String> data = new ArrayList<String>();
 		// the name of the collage
@@ -213,7 +213,7 @@ public class Dropbox {
 
 	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) {
 		try {
-			Scanner sc = fetchCommandInScanner(path, child);
+			Scanner sc = fetchCommandInScanner(path, child.name);
 			String name = sc.nextLine();
 			String folderPath = sc.nextLine();
 			sc.close();
@@ -234,7 +234,7 @@ public class Dropbox {
 	}
 
 	private static String[] fetchMovePaths(String path, DbxEntry child) {
-		Scanner sc = fetchCommandInScanner(path, child);
+		Scanner sc = fetchCommandInScanner(path, child.name);
 		String[] paths = new String[2];
 		paths[0] = sc.nextLine();
 		paths[1] = sc.nextLine();
@@ -244,10 +244,11 @@ public class Dropbox {
 	}
 
 	// fetches the command.txt file and returns it in a Scanner
-	private static Scanner fetchCommandInScanner(String path, DbxEntry child) {
+	public static Scanner fetchCommandInScanner(String path, String name) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
-			client.getFile(path + "/" + child.name, null, out);
+			client.getFile(path + "/" + 
+		name, null, out);
 		} catch (DbxException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -291,7 +292,7 @@ public class Dropbox {
 				String collageName = "";
 				namelist = client.getMetadataWithChildren(space + "/pics");
 				for (int i = 0; i < 8; i++) {
-					int random = (int) Math.random() * (namelist.children.get(i).name.lastIndexOf('.') - 1);
+					int random = (int) (Math.random() * (namelist.children.get(i).name.lastIndexOf('.') - 1));
 					collageName = collageName + namelist.children.get(i).name.charAt(random);
 				}
 				File collage = new File(localPath + collageName);
