@@ -113,8 +113,9 @@ public class Collage {
 		BufferedImage finalImg = new BufferedImage(widthh, heightt, type);
 		finalImg.createGraphics().drawImage(buffImage, 0, 0, null);
 
-		// Naming the file
-		return path(finalImg, Dropbox.localPath + name);
+		// Naming the file// naming the file
+		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
+		return name;
 	}
 
 	// Collage of two pictures
@@ -144,8 +145,9 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[0], 0, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 
-		// Naming the file
-		return path(finalImg, Dropbox.localPath + name);
+		// Naming the file// naming the file
+		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
+		return name;
 	}
 
 	// Collage of three pictures
@@ -182,8 +184,9 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[1], width, 0, null);
 		finalImg.createGraphics().drawImage(buffImage[2], 0, height, null);
 
-		// Naming the file
-		return path(finalImg, Dropbox.localPath + name);
+		// Naming the file// naming the file
+		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
+		return name;
 	}
 
 	// Collage of four pictures
@@ -220,8 +223,9 @@ public class Collage {
 			}
 		}
 
-		// naming the file
-		return path(finalImg, Dropbox.localPath + name);
+		// naming the file// naming the file
+		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
+		return name;
 	}
 
 	// Collage of five pictures
@@ -261,11 +265,7 @@ public class Collage {
 		finalImg.createGraphics().drawImage(buffImage[num], width / 2, height / 2, null);
 
 		// naming the file
-		return path(finalImg, Dropbox.localPath + name);
-	}
-
-	static String path(BufferedImage image, String name) throws IOException {
-		ImageIO.write(image, "jpg", new File(name));
+		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
 		return name;
 	}
 }
