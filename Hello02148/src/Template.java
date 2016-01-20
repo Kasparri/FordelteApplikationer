@@ -1,10 +1,8 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,17 +36,6 @@ public class Template {
 		this.ext = e;
 		this.content = c;
 	}
-
-	// Blocking operation to check the existence of a file matching a
-	// template
-	// The template is updated with the matched values for the tuple
-	// arguments that were binders (i.e. "?")
-	public void qry(DbxClient client) throws DbxException, IOException {
-		read(client);
-	}
-
-	// As qry() but the file is removed from the space
-
 
 	// reads the name, extension and content
 	public void read(DbxClient client) throws DbxException, IOException {
