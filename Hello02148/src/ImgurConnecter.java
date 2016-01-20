@@ -25,6 +25,8 @@ import com.dropbox.core.DbxWriteMode;
 
 public class ImgurConnecter {
 
+	// TODO: Mads, printlines når vi henter billeder fra dropbox og laver collagen
+	
 	public static String uploadToImgur(String filepath) {
 
 		BufferedImage image = null;

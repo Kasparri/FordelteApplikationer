@@ -16,7 +16,7 @@ public class Collage {
 	static int type = 1;
 
 	// Multi
-	static void multi(List<String> imgfiles, String n) {
+	static void makeCollage(List<String> imgfiles, String n) {
 
 		if (imgfiles.size() == 1) {
 			try {

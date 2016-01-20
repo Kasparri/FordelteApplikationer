@@ -47,8 +47,7 @@ public class Template {
 	}
 
 	// Auxiliary function that implements the both qry() and get()
-	public void read(DbxClient client, boolean delete) throws DbxException,
-			IOException {
+	public void read(DbxClient client, boolean delete) throws DbxException, IOException {
 	}
 
 	// reads the name, extension and content
@@ -94,124 +93,107 @@ public class Template {
 					return;
 				}
 			}
-			// Simple implementation based on busy-wait
-			// We hence insert a delay of 10 seconds to minimise unsucessful
-			// checks
-			System.out
-					.println("Blocking operation (qry/get) was unsucessful, downloading an image... ");
-			try {
-				if (i < images.size()) {
-					// Downloading in image then uploading to dropbox
-					System.out
-							.println("Downloading an image then uploading to dropbox \n");
-					String[] info = ImgurConnecter.getInfo(images.get(i)
-							.substring(19, images.get(i).length() - 4));
-					for (String part : info) {
-						if (part.contains("\"section\":")
-								&& !part.contains("null")) {
-							part = part.substring(part.indexOf(':') + 2,
-									part.length() - 1);
-							part = "/t/" + part;
-							if (!sections.contains(part.toLowerCase())) {
-								sections.add(part);
-								System.out
-										.println("Found new section: " + part);
-							}
-						}
-					}
-					ImgurConnecter.downloadFromImgur(images.get(i));
-					if (i == images.size() - 1) {
-						// Finished the current list of images, getting a new
-						// one
-						System.out
-								.println("collected images, switching tag \n");
-						i = 0;
-						images = ImgurConnecter
-								.getImgsFromSite(sections.get(k));
-						k++;
-
-					}
-					if (Dropbox.pictureAmount(Dropbox.space + "/imgur") >= 16) {
-						DbxEntry.WithChildren imagesdbx = client
-								.getMetadataWithChildren(Dropbox.space
-										+ "/imgur");
-						System.out
-								.println("Downloading images from dropbox \n");
-						for (DbxEntry child : imagesdbx.children) {
-							Dropbox.downloadFromDropbox(child.path, child.name);
-							imgfiles.add(child.name);
-						}
-						System.out.println("Begin collaging \n");
-
-						// Combining names to make a name for the collage
-						DbxEntry.WithChildren namelist;
-						String collageName = "";
-						namelist = client.getMetadataWithChildren(Dropbox.space
-								+ "/imgur");
-						for (int i = 0; i < 8; i++) {
-							int random = (int) Math.random()
-									* (namelist.children.get(i).name
-											.lastIndexOf('.') - 1);
-							collageName = collageName
-									+ namelist.children.get(i).name
-											.charAt(random);
-						}
-						// Uploading the finished collage to dropbox
-
-						File collage = new File(Dropbox.localPath + collageName);
-						collageName = collageName + ".jpg";
-						Collage.multi(imgfiles, collageName);
-
-						// Uploading the finished collage to dropbox
-						collage = new File(Dropbox.localPath + collageName);
-						try {
-							FileInputStream inputStream = new FileInputStream(
-									collage);
-							Dropbox.client.uploadFile(Dropbox.space
-									+ "/ImgurCollages/" + collageName,
-									DbxWriteMode.add(), collage.length(),
-									inputStream);
-							inputStream.close();
-						} catch (DbxException e) {
-							e.printStackTrace();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-
-						// Uploading the finished collage to imgur
-						System.out
-								.println(ImgurConnecter
-										.uploadToImgur(Dropbox.localPath
-												+ collageName));
-						collage.delete();
-
-						// Emptying the dropbox folder
-						DbxEntry.WithChildren imgurPictures;
-						imgurPictures = client
-								.getMetadataWithChildren(Dropbox.space
-										+ "/imgur");
-						for (DbxEntry child : imgurPictures.children) {
-							client.delete(child.path);
-						}
-
-						// Emptying local folder
-						File folder = new File(Dropbox.localPath);
-						for (File file : folder.listFiles()) {
-							file.delete();
-						}
-						Dropbox.downloadFromDropbox(Dropbox.space
-								+ "/pics/default.jpg", "default.jpg");
-
-						// Emptying the list
-						imgfiles.clear();
-
-					}
-					i++;
-					Thread.sleep(5000);
-				}
-			} catch (InterruptedException ex) {
-				Thread.currentThread().interrupt();
+			System.out.println("No files to sort, executing text commands then downloading an image from imgur...");
+			Dropbox.readTextCommands();
+			
+			if (Dropbox.makeCollageFromDropboxImages()){
+				System.out.println("Making a collage from the pictures currently on Dropbox");
 			}
+			
+			downloadFromImgur(client);
+
+		}
+	}
+
+	private void downloadFromImgur(DbxClient client) {
+		try {
+			if (i < images.size()) {
+				// Downloading in image then uploading to dropbox
+				System.out.println("Downloading an image then uploading to dropbox \n");
+				String[] info = ImgurConnecter.getInfo(images.get(i).substring(19, images.get(i).length() - 4));
+				for (String part : info) {
+					if (part.contains("\"section\":") && !part.contains("null")) {
+						part = part.substring(part.indexOf(':') + 2, part.length() - 1);
+						part = "/t/" + part;
+						if (!sections.contains(part.toLowerCase())) {
+							sections.add(part);
+							System.out.println("Found new section: " + part);
+						}
+					}
+				}
+				ImgurConnecter.downloadFromImgur(images.get(i));
+				if (i == images.size() - 1) {
+					// Finished the current list of images, getting a new
+					// one
+					System.out.println("collected images, switching tag \n");
+					i = 0;
+					images = ImgurConnecter.getImgsFromSite(sections.get(k));
+					k++;
+
+				}
+				if (Dropbox.pictureAmount(Dropbox.space + "/imgur") >= 16) {
+					DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren(Dropbox.space + "/imgur");
+					System.out.println("Downloading images from dropbox \n");
+					for (DbxEntry child : imagesdbx.children) {
+						Dropbox.downloadFromDropbox(child.path, child.name);
+						imgfiles.add(child.name);
+					}
+					System.out.println("Begin collaging \n");
+
+					// Combining names to make a name for the collage
+					DbxEntry.WithChildren namelist;
+					String collageName = "";
+					namelist = client.getMetadataWithChildren(Dropbox.space + "/imgur");
+					for (int i = 0; i < 8; i++) {
+						int random = (int) Math.random() * (namelist.children.get(i).name.lastIndexOf('.') - 1);
+						collageName = collageName + namelist.children.get(i).name.charAt(random);
+					}
+					File collage = new File(Dropbox.localPath + collageName);
+					collageName = collageName + ".jpg";
+					Collage.makeCollage(imgfiles, collageName);
+
+					// Uploading the finished collage to dropbox
+					collage = new File(Dropbox.localPath + collageName);
+					try {
+						FileInputStream inputStream = new FileInputStream(collage);
+						Dropbox.client.uploadFile(Dropbox.space + "/ImgurCollages/" + collageName, DbxWriteMode.add(),
+								collage.length(), inputStream);
+						inputStream.close();
+					} catch (DbxException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					// Uploading the finished collage to imgur
+					System.out.println(ImgurConnecter.uploadToImgur(Dropbox.localPath + collageName));
+					collage.delete();
+
+					// Emptying the dropbox folder
+					DbxEntry.WithChildren imgurPictures;
+					imgurPictures = client.getMetadataWithChildren(Dropbox.space + "/imgur");
+					for (DbxEntry child : imgurPictures.children) {
+						client.delete(child.path);
+					}
+
+					// Emptying local folder
+					File folder = new File(Dropbox.localPath);
+					for (File file : folder.listFiles()) {
+						file.delete();
+					}
+					Dropbox.downloadFromDropbox(Dropbox.space + "/pics/default.jpg", "default.jpg");
+
+					// Emptying the list
+					imgfiles.clear();
+
+				}
+				i++;
+				Thread.sleep(5000);
+			}
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		} catch (DbxException e1) {
+			Thread.currentThread().interrupt();
 		}
 	}
 

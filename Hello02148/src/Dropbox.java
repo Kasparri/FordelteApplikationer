@@ -1,6 +1,7 @@
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,10 +43,6 @@ public class Dropbox {
 
 		// Main loop of the program
 		while (true) {
-
-			// reads and executes the text commands
-			readTextCommands();
-
 			// Template t1 represents "any file in the space folder"
 			t1 = new Template(space, "?", "?", null);
 			System.out.println("Looking for some file... \n");
@@ -65,7 +62,7 @@ public class Dropbox {
 			}
 			t2.put(client);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(5000);
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
@@ -96,7 +93,7 @@ public class Dropbox {
 				for (int i = 0; i < data.size(); i++) {
 					downloadFromDropbox(space + "/pics/" + data.get(i), data.get(i));
 				}
-				Collage.multi(data, collageName);
+				Collage.makeCollage(data, collageName);
 				File collage = new File(localPath + collageName);
 				FileInputStream inputStream = new FileInputStream(collage);
 				Dropbox.client.uploadFile(space + "/DropboxCollages/" + collageName, DbxWriteMode.add(),
@@ -273,6 +270,73 @@ public class Dropbox {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static boolean makeCollageFromDropboxImages() {
+		if (pictureAmount(space + "/pics") >= 16) {
+			List<String> images = new ArrayList<>();
+			try {
+				DbxEntry.WithChildren listing = client.getMetadataWithChildren(space + "/pics");
+				System.out.println("Downloading images from dropbox \n");
+				for (DbxEntry child : listing.children) {
+					if (child.isFile()){
+						downloadFromDropbox(child.path, child.name);
+						images.add(child.name);
+					}
+				}
+				System.out.println("Begin collaging \n");
+
+				// Combining names to make a name for the collage
+				DbxEntry.WithChildren namelist;
+				String collageName = "";
+				namelist = client.getMetadataWithChildren(space + "/pics");
+				for (int i = 0; i < 8; i++) {
+					int random = (int) Math.random() * (namelist.children.get(i).name.lastIndexOf('.') - 1);
+					collageName = collageName + namelist.children.get(i).name.charAt(random);
+				}
+				File collage = new File(localPath + collageName);
+				collageName = collageName + ".jpg";
+				Collage.makeCollage(images, collageName);
+
+				// Uploading the finished collage to dropbox
+				collage = new File(localPath + collageName);
+
+				FileInputStream inputStream = new FileInputStream(collage);
+				client.uploadFile(space + "/DropboxCollages/" + collageName, DbxWriteMode.add(), collage.length(),
+						inputStream);
+				inputStream.close();
+				
+				
+				// Emptying the dropbox folder
+				DbxEntry.WithChildren dropboxPictures;
+				dropboxPictures = client.getMetadataWithChildren(space + "/pics");
+				for (DbxEntry child : dropboxPictures.children) {
+					if (child.isFile() && !child.name.equals("default.jpg")){
+						client.delete(child.path);
+					}
+				}
+
+				// Emptying local folder
+				File folder = new File(localPath);
+				for (File file : folder.listFiles()) {
+					file.delete();
+				}
+				downloadFromDropbox(space + "/pics/default.jpg", "default.jpg");
+
+				// Emptying the list
+				images.clear();
+
+			} catch (DbxException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return false;
+
 	}
 
 }
