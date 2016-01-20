@@ -186,7 +186,6 @@ public class Template {
 					}
 
 					// Uploading the finished collage to imgur
-					System.out.println("Calling addLink \n");
 					addLink(ImgurConnecter.uploadToImgur(Dropbox.localPath
 							+ collageName));
 					collage.delete();
@@ -236,9 +235,6 @@ public class Template {
 			}
 			// Adding the link
 			lines.add(link + "\n");
-			for (String s : lines) {
-				System.out.println(s);
-			}
 
 			File linkfile = new File(Dropbox.localPath + filename);
 			// Writing the list back to the file
