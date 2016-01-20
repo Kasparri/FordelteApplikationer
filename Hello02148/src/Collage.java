@@ -13,7 +13,7 @@ public class Collage {
 	static int widthh = width * 2;
 	static int height = 540;
 	static int heightt = height * 2;
-	static int type = 1;
+	static int type = BufferedImage.TYPE_INT_RGB;
 
 	// The "main" collage making method.
 	static void makeCollage(List<String> imgfiles, String n) {

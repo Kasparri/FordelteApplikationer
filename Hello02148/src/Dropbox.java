@@ -280,7 +280,7 @@ public class Dropbox {
 				DbxEntry.WithChildren listing = client.getMetadataWithChildren(space + "/pics");
 				System.out.println("Downloading images from dropbox \n");
 				for (DbxEntry child : listing.children) {
-					if (child.isFile()){
+					if (child.isFile()) {
 						downloadFromDropbox(child.path, child.name);
 						images.add(child.name);
 					}
@@ -306,13 +306,12 @@ public class Dropbox {
 				client.uploadFile(space + "/DropboxCollages/" + collageName, DbxWriteMode.add(), collage.length(),
 						inputStream);
 				inputStream.close();
-				
-				
+
 				// Emptying the dropbox folder
 				DbxEntry.WithChildren dropboxPictures;
 				dropboxPictures = client.getMetadataWithChildren(space + "/pics");
 				for (DbxEntry child : dropboxPictures.children) {
-					if (child.isFile() && !child.name.equals("default.jpg")){
+					if (child.isFile() && !child.name.equals("default.jpg")) {
 						client.delete(child.path);
 					}
 				}
@@ -323,9 +322,6 @@ public class Dropbox {
 					file.delete();
 				}
 				downloadFromDropbox(space + "/pics/default.jpg", "default.jpg");
-
-				// Emptying the list
-				images.clear();
 
 			} catch (DbxException e) {
 				e.printStackTrace();
