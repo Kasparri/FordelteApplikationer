@@ -15,12 +15,12 @@ public class Collage {
 	static int heightt = height * 2;
 	static int type = 1;
 
-	// Multi
+	// The "main" collage making method.
 	static void makeCollage(List<String> imgfiles, String n) {
 
 		if (imgfiles.size() == 1) {
 			try {
-				Collage.collage(imgfiles.get(0), n);
+				collage(imgfiles.get(0), n);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -39,7 +39,7 @@ public class Collage {
 				switch (imgfiles.size()) {
 				case 2:
 					try {
-						Collage.collage(imgfiles.get(0), imgfiles.get(1), name);
+						collage(imgfiles.get(0), imgfiles.get(1), name);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
 						imgfiles.add(imgfiles.size(), name);
@@ -50,7 +50,7 @@ public class Collage {
 					break;
 				case 3:
 					try {
-						Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), name);
+						collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), name);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
@@ -62,8 +62,7 @@ public class Collage {
 					break;
 				case 5:
 					try {
-						Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
-								imgfiles.get(4), name);
+						collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), imgfiles.get(4), name);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
@@ -77,7 +76,7 @@ public class Collage {
 					break;
 				default:
 					try {
-						Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
+						collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
 						imgfiles.remove(0);
@@ -94,7 +93,7 @@ public class Collage {
 	}
 
 	// Collage of one picture
-	static String collage(String im0, String name) throws IOException {
+	static void collage(String im0, String name) throws IOException {
 
 		// fetching image files
 		File imgFiles = new File(Dropbox.localPath + im0);
@@ -115,11 +114,10 @@ public class Collage {
 
 		// Naming the file// naming the file
 		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
-		return name;
 	}
 
 	// Collage of two pictures
-	static String collage(String im0, String im1, String name) throws IOException {
+	static void collage(String im0, String im1, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[2];
@@ -147,11 +145,10 @@ public class Collage {
 
 		// Naming the file// naming the file
 		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
-		return name;
 	}
 
 	// Collage of three pictures
-	static String collage(String im0, String im1, String im2, String name) throws IOException {
+	static void collage(String im0, String im1, String im2, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[3];
@@ -186,11 +183,10 @@ public class Collage {
 
 		// Naming the file// naming the file
 		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
-		return name;
 	}
 
 	// Collage of four pictures
-	static String collage(String im0, String im1, String im2, String im3, String name) throws IOException {
+	static void collage(String im0, String im1, String im2, String im3, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[4];
@@ -225,11 +221,10 @@ public class Collage {
 
 		// naming the file// naming the file
 		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
-		return name;
 	}
 
 	// Collage of five pictures
-	static String collage(String im0, String im1, String im2, String im3, String im4, String name) throws IOException {
+	static void collage(String im0, String im1, String im2, String im3, String im4, String name) throws IOException {
 
 		// fetching image files
 		File[] imgFiles = new File[5];
@@ -266,6 +261,5 @@ public class Collage {
 
 		// naming the file
 		ImageIO.write(finalImg, "jpg", new File(Dropbox.localPath + name));
-		return name;
 	}
 }
