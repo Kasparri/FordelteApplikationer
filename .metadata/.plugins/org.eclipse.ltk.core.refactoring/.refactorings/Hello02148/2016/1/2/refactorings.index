@@ -18,3 +18,5 @@
 1452781338310	Rename local variable 'filePath'
 1452781347908	Rename local variable 'fileName'
 1452781862377	Delete elements
+1452860630423	Rename field 'path'
+1452968722884	Rename local variable 'collagename'

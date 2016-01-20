@@ -2163,3 +2163,683 @@ Hello02148/src/Dropbox.java
 
 !ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:47:42.889
 !MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:51:03.034
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:51:04.431
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:51:08.442
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:51:18.569
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 11:52:09.916
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:04:04.455
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:04:24.207
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:04:41.813
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:04:56.560
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:05:40.322
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:05:45.268
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:05:50.124
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:05.373
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:17.653
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:21.216
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:25.360
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:32.590
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:39.734
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:06:45.314
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:07:37.401
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:07:43.673
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:07:49.300
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:08:34.555
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.eclipse.ui 4 0 2016-01-15 13:09:06.794
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:19:37.105
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.eclipse.ui 4 0 2016-01-15 13:20:30.952
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.eclipse.ui 4 0 2016-01-15 13:20:31.176
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.eclipse.ui 4 0 2016-01-15 13:20:31.245
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:20:37.660
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:20:55.483
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:21:37.741
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:22:24.333
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:22:29.442
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:22:34.374
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:23:20.617
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:23:26.925
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:23:34.349
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:23:50.606
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:01.526
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:08.300
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:16.343
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:19.316
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:30.181
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:35.170
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:43.758
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:24:59.664
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:25:07.350
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:25:26.478
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:26:20.622
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:26:37.108
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:27:07.937
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:27:42.551
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:27:46.277
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:28:03.914
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:28:19.508
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:28:36.058
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:29:05.305
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:29:57.175
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:30:15.397
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:30:42.986
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:32:00.340
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:32:18.054
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:32:22.278
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:33:09.332
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:33:21.884
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:33:39.221
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:34:33.572
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:35:15.619
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:35:38.567
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:35:44.676
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:36:05.936
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:36:35.185
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:36:37.116
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:36:40.643
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:37:39.104
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+!SESSION 2016-01-15 13:42:09.594 -----------------------------------------------
+eclipse.buildId=4.5.0.I20140806-2000
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-15 13:42:15.560
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:42:22.235
+!MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, resultCollectorBean, coreLifecycleObserver, classFileChangeProcessor, cleanEventProcessor, coreUpdateNotifier, saveDetector, failureMediator, infinitestActivationController, markerClearingRunnable, markerClearingObserver, markerPlacer, problemMarkerRegistry, resourceLookupAdapter, slowMarkerRegistry, preferenceChangeHandler, slowTestObserver, swtEventQueue, testResultAggregator, visualStatusPresenter, coreFactory, eclipseWorkspace, infinitestCoreRegistry, javaProjectSet, workspaceResourceFinder, workspace, sourceContainer]
+!SESSION 2016-01-15 13:43:34.170 -----------------------------------------------
+eclipse.buildId=4.5.0.I20140806-2000
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-15 13:43:37.947
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-15 13:43:42.093
+!MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, resultCollectorBean, coreLifecycleObserver, classFileChangeProcessor, cleanEventProcessor, coreUpdateNotifier, saveDetector, failureMediator, infinitestActivationController, markerClearingRunnable, markerClearingObserver, markerPlacer, problemMarkerRegistry, resourceLookupAdapter, slowMarkerRegistry, preferenceChangeHandler, slowTestObserver, swtEventQueue, testResultAggregator, visualStatusPresenter, coreFactory, eclipseWorkspace, infinitestCoreRegistry, javaProjectSet, workspaceResourceFinder, workspace, sourceContainer]
+!SESSION 2016-01-16 18:37:02.423 -----------------------------------------------
+eclipse.buildId=4.5.0.I20140806-2000
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-16 18:37:09.622
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:37:16.994
+!MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, resultCollectorBean, coreLifecycleObserver, classFileChangeProcessor, cleanEventProcessor, coreUpdateNotifier, saveDetector, failureMediator, infinitestActivationController, markerClearingRunnable, markerClearingObserver, markerPlacer, problemMarkerRegistry, resourceLookupAdapter, slowMarkerRegistry, preferenceChangeHandler, slowTestObserver, swtEventQueue, testResultAggregator, visualStatusPresenter, coreFactory, eclipseWorkspace, infinitestCoreRegistry, javaProjectSet, workspaceResourceFinder, workspace, sourceContainer]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:37:41.908
+!MESSAGE Filter file /Users/Kasper/git/FordelteApplikationer/Hello02148/infinitest.filters does not exist.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:37:41.967
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:37:41.982
+!MESSAGE Added core Hello02148 with classpath /Users/Kasper/git/FordelteApplikationer/Hello02148/bin:/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/dropbox-core-sdk-1.8.2.jar:/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/jackson-core-2.6.1.jar:/Users/Kasper/Downloads/jtidy-r938/jtidy-r938.jar:/var/folders/8x/zh_11lls2hdg49k44xr4x76m0000gn/T/infinitest.jar
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:37:41.987
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148$Template.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:39:03.983
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:40:41.328
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:41:23.840
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:44:45.006
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:45:51.202
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:48:10.888
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:50:07.621
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:50:29.458
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:52:03.627
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:53:50.090
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:53:51.153
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:55:21.802
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:55:29.037
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:59:28.022
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:59:35.583
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 18:59:44.664
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:00:54.753
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:01:17.267
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:02:18.647
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:02:37.243
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:02:42.086
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:02:51.276
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:03:12.305
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:04:02.579
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:06:01.008
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:06:20.634
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:07:09.155
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:07:40.583
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:07:43.430
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:10:18.800
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:10:31.874
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:10:42.172
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:13:32.370
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:13:40.816
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:14:03.614
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:18:12.031
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:18:19.483
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:19:07.634
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:20:01.740
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:20:40.024
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:20:41.842
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:21:08.068
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:21:36.992
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:22:11.316
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:22:20.258
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:22:55.065
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:23:28.852
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:23:39.006
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:23:58.645
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:24:26.603
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:24:40.196
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:24:46.037
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:25:01.010
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:25:04.558
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:25:23.040
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:25:53.447
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:26:15.935
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:26:22.224
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:27:18.679
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:27:32.130
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class]
+
+!ENTRY org.eclipse.ui 4 0 2016-01-16 19:28:02.338
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.swt.widgets.Control.internal_new_GC(Control.java:2118)
+	at org.eclipse.swt.graphics.GC.cocoa_new(GC.java:207)
+	at org.eclipse.swt.widgets.Tree.sendMeasureItem(Tree.java:2593)
+	at org.eclipse.swt.widgets.Tree.cellSize(Tree.java:288)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5517)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper_stret(Native Method)
+	at org.eclipse.swt.widgets.Widget.expansionFrameWithFrame_inView(Widget.java:798)
+	at org.eclipse.swt.widgets.Tree.expansionFrameWithFrame_inView(Tree.java:1271)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5896)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSend_bool(Native Method)
+	at org.eclipse.swt.internal.cocoa.NSRunLoop.runMode(NSRunLoop.java:42)
+	at org.eclipse.swt.widgets.Display.sleep(Display.java:4680)
+	at org.eclipse.ui.application.WorkbenchAdvisor.eventLoopIdle(WorkbenchAdvisor.java:368)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.eventLoopIdle(IDEWorkbenchAdvisor.java:918)
+	at org.eclipse.ui.internal.Workbench$3.eventLoopIdle(Workbench.java:498)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:382)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:236)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-16 19:28:14.748
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+!SESSION 2016-01-19 11:53:06.178 -----------------------------------------------
+eclipse.buildId=4.5.0.I20140806-2000
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-19 11:53:13.050
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-19 11:53:20.065
+!MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, resultCollectorBean, coreLifecycleObserver, classFileChangeProcessor, cleanEventProcessor, coreUpdateNotifier, saveDetector, failureMediator, infinitestActivationController, markerClearingRunnable, markerClearingObserver, markerPlacer, problemMarkerRegistry, resourceLookupAdapter, slowMarkerRegistry, preferenceChangeHandler, slowTestObserver, swtEventQueue, testResultAggregator, visualStatusPresenter, coreFactory, eclipseWorkspace, infinitestCoreRegistry, javaProjectSet, workspaceResourceFinder, workspace, sourceContainer]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-19 14:49:51.776
+!MESSAGE Filter file /Users/Kasper/git/FordelteApplikationer/Hello02148/infinitest.filters does not exist.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-19 14:49:51.830
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-19 14:49:51.842
+!MESSAGE Added core Hello02148 with classpath /Users/Kasper/git/FordelteApplikationer/Hello02148/bin:/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/dropbox-core-sdk-1.8.2.jar:/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/jackson-core-2.6.1.jar:/Users/Kasper/Downloads/jtidy-r938/jtidy-r938.jar:/var/folders/8x/zh_11lls2hdg49k44xr4x76m0000gn/T/infinitest.jar
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-19 14:49:51.843
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Hello_02148$Template.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.eclipse.ui 4 0 2016-01-19 15:02:17.067
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.swt.widgets.Control.internal_new_GC(Control.java:2118)
+	at org.eclipse.swt.graphics.GC.cocoa_new(GC.java:207)
+	at org.eclipse.swt.widgets.Table.sendMeasureItem(Table.java:3088)
+	at org.eclipse.swt.widgets.Table.cellSize(Table.java:235)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5517)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper_stret(Native Method)
+	at org.eclipse.swt.widgets.Widget.expansionFrameWithFrame_inView(Widget.java:798)
+	at org.eclipse.swt.widgets.Table.expansionFrameWithFrame_inView(Table.java:1182)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5896)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSend_bool(Native Method)
+	at org.eclipse.swt.internal.cocoa.NSRunLoop.runMode(NSRunLoop.java:42)
+	at org.eclipse.swt.widgets.Display.sleep(Display.java:4680)
+	at org.eclipse.ui.application.WorkbenchAdvisor.eventLoopIdle(WorkbenchAdvisor.java:368)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.eventLoopIdle(IDEWorkbenchAdvisor.java:918)
+	at org.eclipse.ui.internal.Workbench$3.eventLoopIdle(Workbench.java:498)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:382)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:236)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-19 15:03:13.620
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:00:39.599
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class]
+
+!ENTRY org.eclipse.egit.ui 4 0 2016-01-20 11:00:52.253
+!MESSAGE Checkout conflict with files: 
+Hello02148/bin/Dropbox.class
+!STACK 0
+org.eclipse.jgit.api.errors.CheckoutConflictException: Checkout conflict with files: 
+Hello02148/bin/Dropbox.class
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:413)
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:329)
+	at org.eclipse.egit.core.op.PullOperation$1.run(PullOperation.java:106)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2311)
+	at org.eclipse.egit.core.op.PullOperation.execute(PullOperation.java:137)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI.execute(PullOperationUI.java:140)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI$1.runInWorkspace(PullOperationUI.java:115)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.jgit.errors.CheckoutConflictException: Checkout conflict with files: 
+Hello02148/bin/Dropbox.class
+	at org.eclipse.jgit.dircache.DirCacheCheckout.doCheckout(DirCacheCheckout.java:414)
+	at org.eclipse.jgit.dircache.DirCacheCheckout.checkout(DirCacheCheckout.java:396)
+	at org.eclipse.jgit.api.MergeCommand.call(MergeCommand.java:288)
+	... 8 more
+
+!ENTRY org.eclipse.ui 4 0 2016-01-20 11:01:21.304
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.swt.widgets.Control.internal_new_GC(Control.java:2118)
+	at org.eclipse.swt.graphics.GC.cocoa_new(GC.java:207)
+	at org.eclipse.swt.widgets.Tree.sendMeasureItem(Tree.java:2593)
+	at org.eclipse.swt.widgets.Tree.cellSize(Tree.java:288)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5517)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper_stret(Native Method)
+	at org.eclipse.swt.widgets.Widget.expansionFrameWithFrame_inView(Widget.java:798)
+	at org.eclipse.swt.widgets.Tree.expansionFrameWithFrame_inView(Tree.java:1271)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5896)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSend_bool(Native Method)
+	at org.eclipse.swt.internal.cocoa.NSRunLoop.runMode(NSRunLoop.java:42)
+	at org.eclipse.swt.widgets.Display.sleep(Display.java:4680)
+	at org.eclipse.ui.application.WorkbenchAdvisor.eventLoopIdle(WorkbenchAdvisor.java:368)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.eventLoopIdle(IDEWorkbenchAdvisor.java:918)
+	at org.eclipse.ui.internal.Workbench$3.eventLoopIdle(Workbench.java:498)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:382)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:236)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:02:06.918
+!MESSAGE Files removed. Reloading Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:02:06.918
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:02:06.976
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:02:44.627
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]
+!SESSION 2016-01-20 11:03:26.497 -----------------------------------------------
+eclipse.buildId=4.5.0.I20140806-2000
+java.version=1.8.0_31
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/Kasper/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-01-20 11:03:32.489
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:03:39.003
+!MESSAGE Beans loaded: [org.springframework.context.annotation.internalConfigurationAnnotationProcessor, org.springframework.context.annotation.internalAutowiredAnnotationProcessor, org.springframework.context.annotation.internalRequiredAnnotationProcessor, org.springframework.context.annotation.internalCommonAnnotationProcessor, infinitestConfig, org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor, resultCollectorBean, coreLifecycleObserver, classFileChangeProcessor, cleanEventProcessor, coreUpdateNotifier, saveDetector, failureMediator, infinitestActivationController, markerClearingRunnable, markerClearingObserver, markerPlacer, problemMarkerRegistry, resourceLookupAdapter, slowMarkerRegistry, preferenceChangeHandler, slowTestObserver, swtEventQueue, testResultAggregator, visualStatusPresenter, coreFactory, eclipseWorkspace, infinitestCoreRegistry, javaProjectSet, workspaceResourceFinder, sourceContainer, workspace]
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:06:41.227
+!MESSAGE Filter file /Users/Kasper/git/FordelteApplikationer/Hello02148/infinitest.filters does not exist.
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:06:41.285
+!MESSAGE Reloading core Hello02148
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:06:41.298
+!MESSAGE Added core Hello02148 with classpath /Users/Kasper/git/FordelteApplikationer/Hello02148/bin:/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/dropbox-core-sdk-1.8.2.jar:/Users/Kasper/Dropbox/DTU/02148 Koordinering af fordelte applikationer/dropbox-java-sdk-1.8.2/lib/jackson-core-2.6.1.jar:/Users/Kasper/Downloads/jtidy-r938/jtidy-r938.jar:/var/folders/8x/zh_11lls2hdg49k44xr4x76m0000gn/T/infinitest.jar
+
+!ENTRY org.infinitest.eclipse 1 0 2016-01-20 11:06:41.376
+!MESSAGE Hello02148 Files changed: [/Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Collage.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Dropbox.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/ImgurConnecter.class, /Users/Kasper/git/FordelteApplikationer/Hello02148/bin/Template.class]

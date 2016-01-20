@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 
 public class Collage {
@@ -19,66 +18,75 @@ public class Collage {
 	// Multi
 	static void multi(List<String> imgfiles, String n) {
 
-		String name;
-		while (imgfiles.size() > 1) {
-
-			if (imgfiles.size() <= 5) {
-				name = n;
-			} else {
-				name = "collage" + counter + ".jpg";
-				counter++;
+		if (imgfiles.size() == 1) {
+			try {
+				Collage.collage(imgfiles.get(0), n);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+		} else {
 
-			switch (imgfiles.size()) {
-			case 2:
-				try {
-					Collage.collage(imgfiles.get(0), imgfiles.get(1), name);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), name);
+			String name;
+			while (imgfiles.size() > 1) {
 
-				} catch (IOException e) {
-					e.printStackTrace();
+				if (imgfiles.size() <= 5) {
+					name = n;
+				} else {
+					name = "collage" + counter + ".jpg";
+					counter++;
 				}
-				break;
-			case 3:
-				try {
-					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), name);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), name);
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				break;
-			case 5:
-				try {
-					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
-							imgfiles.get(4), name);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), name);
+				switch (imgfiles.size()) {
+				case 2:
+					try {
+						Collage.collage(imgfiles.get(0), imgfiles.get(1), name);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.add(imgfiles.size(), name);
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				break;
-			default:
-				try {
-					Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.remove(0);
-					imgfiles.add(imgfiles.size(), name);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 3:
+					try {
+						Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), name);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.add(imgfiles.size(), name);
 
-				} catch (IOException e) {
-					e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 5:
+					try {
+						Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3),
+								imgfiles.get(4), name);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.add(imgfiles.size(), name);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					break;
+				default:
+					try {
+						Collage.collage(imgfiles.get(0), imgfiles.get(1), imgfiles.get(2), imgfiles.get(3), name);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.remove(0);
+						imgfiles.add(imgfiles.size(), name);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

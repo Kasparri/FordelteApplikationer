@@ -8,14 +8,14 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="space/"/>
+			<item value="/space/"/>
+			<item value="Initializing"/>
+			<item value="system"/>
+			<item value="System"/>
 			<item value="Main"/>
 			<item value="Dropbox"/>
 			<item value="Dropbox.path"/>
-			<item value="renameTo"/>
-			<item value="Main.path"/>
-			<item value="allready"/>
-			<item value="download"/>
-			<item value="C:"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Main.path"/>
