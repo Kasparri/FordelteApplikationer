@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-
 import com.dropbox.core.DbxAppInfo;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
@@ -85,14 +84,17 @@ public class Dropbox {
 
 			// creates a collage specified by the text file
 			case "create.txt":
+				System.out.println("Executing 'create' command");
 				// data is a list of structure [Collagename, picname 1,
 				// ...,picname n] with n amount of pictures used in the collage
 				List<String> data = readCreateCommand(textpath, child);
 				String collageName = data.get(0);
 				data.remove(0);
+				System.out.println("Downloading images from dropbox");
 				for (int i = 0; i < data.size(); i++) {
 					downloadFromDropbox(space + "/pics/" + data.get(i), data.get(i));
 				}
+				System.out.println("Creating collage");
 				Collage.makeCollage(data, collageName);
 				File collage = new File(localPath + collageName);
 				FileInputStream inputStream = new FileInputStream(collage);
@@ -106,6 +108,7 @@ public class Dropbox {
 				break;
 
 			case "move.txt":
+				System.out.println("Executing 'move' command");
 				// fetches the fromPath and toPath from the move.txt text file
 				String[] paths = fetchMovePaths(textpath, child);
 				System.out.println("Moving the file at placement: '" + paths[0] + "', to: '" + paths[1] + "'");
@@ -125,6 +128,7 @@ public class Dropbox {
 
 			// deleting the file specified by the text file
 			case "delete.txt":
+				System.out.println("Executing 'delete' command");
 				DbxEntry deletefile = fetchDeleteOrUpload(textpath, child);
 				if (deletefile == null) {
 					System.out.println("Moving on to the next command");
@@ -138,6 +142,7 @@ public class Dropbox {
 				break;
 
 			case "upload.txt":
+				System.out.println("Executing 'upload' command");
 				DbxEntry uploadfile = fetchDeleteOrUpload(textpath, child);
 				if (uploadfile == null) {
 					System.out.println("Moving on to the next command");
@@ -247,8 +252,7 @@ public class Dropbox {
 	public static Scanner fetchCommandInScanner(String path, String name) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		try {
-			client.getFile(path + "/" + 
-		name, null, out);
+			client.getFile(path + "/" + name, null, out);
 		} catch (DbxException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
