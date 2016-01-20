@@ -30,7 +30,7 @@ public class Dropbox {
 		final String APP_KEY = "6gm4dggg0pm4qd3";
 		final String APP_SECRET = "mnm27mqi749672i";
 		appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
-		config = new DbxRequestConfig("JavaTutorial/1.0", Locale.getDefault().toString());
+		config = new DbxRequestConfig("Dropbox and imgur tuple spaces", Locale.getDefault().toString());
 		final String accessToken = "2IXvlsnWAFAAAAAAAAAAEPhoKJM-eyCMjv3hmLJncYB_x536trI0mGHg3U-OIYep";
 
 		// configuring the Dropbox client
@@ -95,10 +95,6 @@ public class Dropbox {
 				data.remove(0);
 				for (int i = 0; i < data.size(); i++) {
 					downloadFromDropbox(space + "/pics/" + data.get(i), data.get(i));
-
-					// TODO: Hvad er det her godt for Frederik?
-					// String newpath = data.get(i);
-					// data.set(i, newpath);
 				}
 				Collage.multi(data, collageName);
 				File collage = new File(localPath + collageName);
@@ -216,7 +212,6 @@ public class Dropbox {
 		sc.close();
 		// an ArrayList of the files to be included and the name is returned
 		return data;
-
 	}
 
 	private static DbxEntry fetchDeleteOrUpload(String path, DbxEntry child) {
