@@ -44,18 +44,11 @@ public class Template {
 	// The template is updated with the matched values for the tuple
 	// arguments that were binders (i.e. "?")
 	public void qry(DbxClient client) throws DbxException, IOException {
-		read(client, false);
+		read(client);
 	}
 
 	// As qry() but the file is removed from the space
-	public void get(DbxClient client) throws DbxException, IOException {
-		read(client, true);
-	}
 
-	// Auxiliary function that implements the both qry() and get()
-	public void read(DbxClient client, boolean delete) throws DbxException,
-			IOException {
-	}
 
 	// reads the name, extension and content
 	public void read(DbxClient client) throws DbxException, IOException {
@@ -64,7 +57,7 @@ public class Template {
 		String ext_aux = ext;
 
 		if (sections.isEmpty()) {
-			sections.add("/t/pics");
+			sections.add("/t/earthporn");
 			sections.add("/t/funny");
 			sections.add("/t/blackpeopletwitter");
 			images = ImgurConnecter.getImgsFromSite(sections.get(0));
