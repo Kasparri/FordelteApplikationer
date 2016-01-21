@@ -95,29 +95,6 @@ public class ImgurConnecter {
 		String name = imageURL.substring(19, imageURL.length());
 		File image = null;
 
-		// Checking if the image were about to download is animated or nsfw
-		String[] info = getInfo(name.substring(0, name.length() - 4));
-		for (String part : info) {
-			if (part.contains("\"nsfw\":true")) {
-				System.out.println("Image was nsfw");
-				return "default.jpg";
-			}
-			if (part.contains("\"animated\":true")) {
-				System.out.println("Image was animated");
-				return "default.jpg";
-			}
-			if (part.contains("\"size\":")) {
-				int size = Integer.parseInt(part.substring(7));
-				if (size >= 3999999) {
-					size = size / 1000000;
-					System.out.println("Image was too large, size was: " + size
-							+ "MB");
-					return "default.jpg";
-				}
-
-			}
-		}
-
 		try {
 			url = new URL(imageURL);
 			InputStream inStream = new BufferedInputStream(url.openStream());

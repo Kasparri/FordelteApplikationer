@@ -51,17 +51,22 @@ public class Dropbox {
 			// t2 represents the previously retrieved file in a new folder
 			if (isPicture(t1.ext)) {
 				t2 = new Template(space + "/pics/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'picture' subfolder \n");
+				System.out.println("Putting the file in the 'pics' subfolder \n");
 			} else if (isText(t1.ext)) {
-				t2 = new Template(space + "/text/", t1.name, t1.ext, t1.content);
-				System.out.println("Putting the file in the 'text' subfolder \n");
+				if (t1.name.equals("links")){
+					t2 = new Template(space + "/ImgurCollages/", t1.name, t1.ext, t1.content);
+					System.out.println("Putting the 'links' file in the 'ImgurCollages' subfolder \n");
+				} else {
+					t2 = new Template(space + "/text/", t1.name, t1.ext, t1.content);
+					System.out.println("Putting the file in the 'text' subfolder \n");
+				}
 			} else {
 				t2 = new Template(space + "/others/", t1.name, t1.ext, t1.content);
 				System.out.println("Putting the file in the 'others' subfolder \n");
 			}
 			t2.put(client);
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(750);
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
@@ -114,14 +119,14 @@ public class Dropbox {
 				System.out.println("Moving the file at placement: '" + paths[0] + "', to: '" + paths[1] + "'");
 				try {
 					client.move(paths[0], paths[1]);
-					System.out.println("Deleting the command file 'move.txt'");
+					System.out.println("Deleting the command file 'move.txt' \n");
 					delete(child);
 				} catch (DbxException e) {
 					e.printStackTrace();
 					System.out.println("Invalid path/s");
 					System.out.println("Moving the text file to the invalid folder");
 					client.move(space + "/text/" + child.name, space + "/text/invalid/" + child.name);
-					System.out.println("Moving on to the next command");
+					System.out.println("Moving on to the next command \n");
 					continue;
 				}
 				break;
@@ -131,13 +136,13 @@ public class Dropbox {
 				System.out.println("Executing 'delete' command");
 				DbxEntry deletefile = fetchDeleteOrUpload(textpath, child);
 				if (deletefile == null) {
-					System.out.println("Moving on to the next command");
+					System.out.println("Moving on to the next command \n");
 					continue;
 				}
 				System.out.println("Deleting the file: '" + deletefile.name + "', at placement: '" + deletefile.path
 						+ "'");
 				delete(deletefile);
-				System.out.println("Deleting the command file 'delete.txt'");
+				System.out.println("Deleting the command file 'delete.txt' \n");
 				delete(child);
 				break;
 
@@ -145,21 +150,21 @@ public class Dropbox {
 				System.out.println("Executing 'upload' command");
 				DbxEntry uploadfile = fetchDeleteOrUpload(textpath, child);
 				if (uploadfile == null) {
-					System.out.println("Moving on to the next command");
+					System.out.println("Moving on to the next command \n");
 					continue;
 				}
 				System.out.println("Uploading the file: '" + uploadfile.name + "', from placement: '" + uploadfile.path
 						+ "'");
 				downloadFromDropbox(uploadfile.path, uploadfile.name);
 				System.out.println(ImgurConnecter.uploadToImgur(localPath + uploadfile.name));
-				System.out.println("Deleting the command file 'upload.txt'");
+				System.out.println("Deleting the command file 'upload.txt' \n");
 				delete(child);
 				break;
 
 			default:
 				if (child.isFile()) {
 					System.out.println("The .txt file " + child.name + " is an invalid command");
-					System.out.println("Moving the text file to the invalid folder");
+					System.out.println("Moving the text file to the invalid folder \n");
 					client.move(space + "/text/" + child.name, space + "/text/invalid/" + child.name);
 				}
 				break;

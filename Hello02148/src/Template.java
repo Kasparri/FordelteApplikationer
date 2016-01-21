@@ -80,13 +80,12 @@ public class Template {
 					return;
 				}
 			}
-			System.out
-					.println("No files to sort, executing text commands then downloading an image from imgur...");
+			System.out.println("No files to sort...");
 			Dropbox.readTextCommands();
+			System.out.println("All commands are executed...");
 
 			if (Dropbox.makeCollageFromDropboxImages()) {
-				System.out
-						.println("Making a collage from the pictures currently on Dropbox");
+				System.out.println("Making a collage from the pictures currently on Dropbox");
 			}
 
 			downloadFromImgur(client);
@@ -98,22 +97,38 @@ public class Template {
 		try {
 			if (i < images.size()) {
 				// Downloading in image then uploading to dropbox
-				System.out
-						.println("Downloading an image then uploading to dropbox \n");
-				String[] info = ImgurConnecter.getInfo(images.get(i).substring(
-						19, images.get(i).length() - 4));
+				System.out.println("Downloading an image from imgur then uploading to dropbox \n");
+				String[] info = ImgurConnecter.getInfo(images.get(i).substring(19, images.get(i).length() - 4));
+				boolean valid = true;
 				for (String part : info) {
 					if (part.contains("\"section\":") && !part.contains("null")) {
-						part = part.substring(part.indexOf(':') + 2,
-								part.length() - 1);
+						part = part.substring(part.indexOf(':') + 2, part.length() - 1);
 						part = "/t/" + part;
 						if (!sections.contains(part.toLowerCase())) {
 							sections.add(part);
 							System.out.println("Found new section: " + part);
 						}
 					}
+					if (part.contains("\"nsfw\":true")) {
+						System.out.println("Image was nsfw");
+						valid = false;
+					} else if (part.contains("\"animated\":true")) {
+						System.out.println("Image was animated");
+						valid = false;
+					} else if (part.contains("\"size\":")) {
+						int size = Integer.parseInt(part.substring(7));
+						if (size >= 3999999) {
+							size = size / 1000000;
+							valid = false;
+							System.out.println("Image was too large, size was: " + size + "MB");
+						}
+
+					}
+
 				}
-				ImgurConnecter.downloadFromImgur(images.get(i));
+				if (valid) {
+					ImgurConnecter.downloadFromImgur(images.get(i));
+				}
 				if (i == images.size() - 1) {
 					// Finished the current list of images, getting a new
 					// one
@@ -123,73 +138,64 @@ public class Template {
 					k++;
 
 				}
-				if (Dropbox.pictureAmount(Dropbox.space + "/imgur") >= 16) {
-					DbxEntry.WithChildren imagesdbx = client
-							.getMetadataWithChildren(Dropbox.space + "/imgur");
-					System.out.println("Downloading images from dropbox \n");
-					for (DbxEntry child : imagesdbx.children) {
-						Dropbox.downloadFromDropbox(child.path, child.name);
-						imgfiles.add(child.name);
+				if (valid) {
+					if (Dropbox.pictureAmount(Dropbox.space + "/imgur") >= 16) {
+						DbxEntry.WithChildren imagesdbx = client.getMetadataWithChildren(Dropbox.space + "/imgur");
+						System.out.println("Downloading images from dropbox \n");
+						for (DbxEntry child : imagesdbx.children) {
+							Dropbox.downloadFromDropbox(child.path, child.name);
+							imgfiles.add(child.name);
+						}
+						System.out.println("Begin collaging \n");
+
+						// Combining names to make a name for the collage
+						DbxEntry.WithChildren namelist;
+						String collageName = "";
+						namelist = client.getMetadataWithChildren(Dropbox.space + "/imgur");
+						for (int i = 0; i < 8; i++) {
+							int random = (int) (Math.random() * (namelist.children.get(i).name.lastIndexOf('.') - 1));
+							collageName = collageName + namelist.children.get(i).name.charAt(random);
+						}
+						File collage = new File(Dropbox.localPath + collageName);
+						collageName = collageName + ".jpg";
+						Collage.makeCollage(imgfiles, collageName);
+
+						// Uploading the finished collage to dropbox
+						collage = new File(Dropbox.localPath + collageName);
+						try {
+							FileInputStream inputStream = new FileInputStream(collage);
+							Dropbox.client.uploadFile(Dropbox.space + "/ImgurCollages/" + collageName,
+									DbxWriteMode.add(), collage.length(), inputStream);
+							inputStream.close();
+						} catch (DbxException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
+						// Uploading the finished collage to imgur
+						addLink(ImgurConnecter.uploadToImgur(Dropbox.localPath + collageName));
+						collage.delete();
+
+						// Emptying the dropbox folder
+						System.out.println("Cleaning folders");
+						DbxEntry.WithChildren imgurPictures;
+						imgurPictures = client.getMetadataWithChildren(Dropbox.space + "/imgur");
+						for (DbxEntry child : imgurPictures.children) {
+							client.delete(child.path);
+						}
+
+						// Emptying local folder
+						File folder = new File(Dropbox.localPath);
+						for (File file : folder.listFiles()) {
+							file.delete();
+						}
+						Dropbox.downloadFromDropbox(Dropbox.space + "/pics/default.jpg", "default.jpg");
+
+						// Emptying the list
+						imgfiles.clear();
+
 					}
-					System.out.println("Begin collaging \n");
-
-					// Combining names to make a name for the collage
-					DbxEntry.WithChildren namelist;
-					String collageName = "";
-					namelist = client.getMetadataWithChildren(Dropbox.space
-							+ "/imgur");
-					for (int i = 0; i < 8; i++) {
-						int random = (int) (Math.random()
-								* (namelist.children.get(i).name
-										.lastIndexOf('.') - 1));
-						collageName = collageName
-								+ namelist.children.get(i).name.charAt(random);
-					}
-					File collage = new File(Dropbox.localPath + collageName);
-					collageName = collageName + ".jpg";
-					Collage.makeCollage(imgfiles, collageName);
-
-					// Uploading the finished collage to dropbox
-					collage = new File(Dropbox.localPath + collageName);
-					try {
-						FileInputStream inputStream = new FileInputStream(
-								collage);
-						Dropbox.client.uploadFile(Dropbox.space
-								+ "/ImgurCollages/" + collageName,
-								DbxWriteMode.add(), collage.length(),
-								inputStream);
-						inputStream.close();
-					} catch (DbxException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
-					// Uploading the finished collage to imgur
-					addLink(ImgurConnecter.uploadToImgur(Dropbox.localPath
-							+ collageName));
-					collage.delete();
-
-					// Emptying the dropbox folder
-					System.out.println("Cleaning folders");
-					DbxEntry.WithChildren imgurPictures;
-					imgurPictures = client
-							.getMetadataWithChildren(Dropbox.space + "/imgur");
-					for (DbxEntry child : imgurPictures.children) {
-						client.delete(child.path);
-					}
-
-					// Emptying local folder
-					File folder = new File(Dropbox.localPath);
-					for (File file : folder.listFiles()) {
-						file.delete();
-					}
-					Dropbox.downloadFromDropbox(Dropbox.space
-							+ "/pics/default.jpg", "default.jpg");
-
-					// Emptying the list
-					imgfiles.clear();
-
 				}
 				i++;
 				Thread.sleep(5000);
@@ -208,8 +214,7 @@ public class Template {
 			// Downloading the file from Dropbox
 
 			// Reading the file into the list
-			Scanner scan = Dropbox.fetchCommandInScanner(Dropbox.space
-					+ "/ImgurCollages", filename);
+			Scanner scan = Dropbox.fetchCommandInScanner(Dropbox.space + "/ImgurCollages", filename);
 			while (scan.hasNextLine()) {
 				lines.add(scan.nextLine() + "\n");
 			}
@@ -229,9 +234,8 @@ public class Template {
 
 			Dropbox.client.delete(Dropbox.space + "/ImgurCollages/" + filename);
 
-			Dropbox.client.uploadFile(Dropbox.space + "/ImgurCollages/"
-					+ filename, DbxWriteMode.add(), linkfile.length(),
-					inputStream);
+			Dropbox.client.uploadFile(Dropbox.space + "/ImgurCollages/" + filename, DbxWriteMode.add(),
+					linkfile.length(), inputStream);
 
 			inputStream.close();
 			// linkfile.delete();
